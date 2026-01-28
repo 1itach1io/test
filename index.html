@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover the beauty of Egypt - A student web design project">
+    <meta name="author" content="Grade 8 Student">
+    <title>Discover Egypt - Tourism Guide</title>
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ========== HEADER / NAVIGATION BAR ========== -->
+<header class="header">
+    <nav class="navbar">
+        <!-- Logo -->
+        <div class="logo">
+            <h1>🇪🇬 Discover Egypt</h1>
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul class="nav-menu">
+            <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+            <li><a href="#nearby" class="nav-link" data-section="nearby">Nearby Places</a></li>
+            <li><a href="#explore" class="nav-link" data-section="explore">Explore Egypt</a></li>
+            <li><a href="#map" class="nav-link" data-section="map">Map</a></li>
+            <li><a href="#ai-guide" class="nav-link" data-section="ai-guide">AI Guide</a></li>
+            <li><a href="#settings" class="nav-link" data-section="settings">Settings</a></li>
+        </ul>
+
+        <!-- Right Side Controls -->
+        <div class="nav-controls">
+            <!-- Language Selector -->
+            <select id="language-selector" class="language-select">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+            </select>
+
+            <!-- Theme Toggle Button -->
+            <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<!-- ========== MAIN CONTENT CONTAINER ========== -->
+<main class="main-content">
+
+    <!-- ========== HOME SECTION ========== -->
+    <section id="home" class="section active">
+        <!-- Hero Section with Background -->
+        <div class="hero">
+            <div class="hero-content">
+                <h2 class="hero-title" data-translate="hero.title">Welcome to Egypt</h2>
+                <p class="hero-subtitle" data-translate="hero.subtitle">Discover 7000 years of history and culture</p>
+                <button class="cta-button" data-translate="hero.cta">Start Exploring</button>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3 class="stat-number">7000+</h3>
+                <p class="stat-label" data-translate="stats.years">Years of History</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="stat-number">138</h3>
+                <p class="stat-label" data-translate="stats.pyramids">Pyramids</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="stat-number">100+</h3>
+                <p class="stat-label" data-translate="stats.museums">Museums</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="stat-number">20M+</h3>
+                <p class="stat-label" data-translate="stats.visitors">Annual Visitors</p>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="intro-section">
+            <h2 data-translate="intro.title">Why Visit Egypt?</h2>
+            <p data-translate="intro.text">
+                Egypt is a land of wonders, where ancient history meets modern culture.
+                From the majestic pyramids to the serene Nile River, every corner tells a story.
+                Explore vibrant cities, relax on beautiful beaches, and dive into rich traditions.
+            </p>
+        </div>
+    </section>
+
+    <!-- ========== NEARBY PLACES SECTION ========== -->
+    <section id="nearby" class="section">
+        <div class="section-header">
+            <h2 class="section-title" data-translate="nearby.title">Nearby Places</h2>
+            <p class="section-subtitle" data-translate="nearby.subtitle">Popular tourist destinations near you</p>
+        </div>
+
+        <!-- Places Grid -->
+        <div class="places-grid">
+            <!-- Place Card 1 -->
+            <article class="place-card">
+                <div class="place-image">
+                    <img src="images/places/pyramids.jpg" alt="Pyramids of Giza" loading="lazy">
+                </div>
+                <div class="place-content">
+                    <h3 class="place-title" data-translate="places.pyramids.title">Pyramids of Giza</h3>
+                    <p class="place-description" data-translate="places.pyramids.desc">
+                        The last remaining wonder of the ancient world
+                    </p>
+                    <span class="place-location">📍 Giza</span>
+                </div>
+            </article>
+
+            <!-- Place Card 2 -->
+            <article class="place-card">
+                <div class="place-image">
+                    <img src="images/places/sphinx.jpg" alt="Great Sphinx" loading="lazy">
+                </div>
+                <div class="place-content">
+                    <h3 class="place-title" data-translate="places.sphinx.title">Great Sphinx</h3>
+                    <p class="place-description" data-translate="places.sphinx.desc">
+                        Mysterious guardian of the pyramids
+                    </p>
+                    <span class="place-location">📍 Giza</span>
+                </div>
+            </article>
+
+            <!-- Place Card 3 -->
+            <article class="place-card">
+                <div class="place-image">
+                    <img src="images/places/museum.jpg" alt="Egyptian Museum" loading="lazy">
+                </div>
+                <div class="place-content">
+                    <h3 class="place-title" data-translate="places.museum.title">Egyptian Museum</h3>
+                    <p class="place-description" data-translate="places.museum.desc">
+                        Home to Tutankhamun's treasures
+                    </p>
+                    <span class="place-location">📍 Cairo</span>
+                </div>
+            </article>
+
+            <!-- Place Card 4 -->
+            <article class="place-card">
+                <div class="place-image">
+                    <img src="images/places/nile.jpg" alt="Nile River" loading="lazy">
+                </div>
+                <div class="place-content">
+                    <h3 class="place-title" data-translate="places.nile.title">Nile River</h3>
+                    <p class="place-description" data-translate="places.nile.desc">
+                        The longest river in the world
+                    </p>
+                    <span class="place-location">📍 Throughout Egypt</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ========== EXPLORE EGYPT SECTION ========== -->
+    <section id="explore" class="section">
+        <div class="section-header">
+            <h2 class="section-title" data-translate="explore.title">Explore Egypt</h2>
+            <p class="section-subtitle" data-translate="explore.subtitle">Browse by category</p>
+        </div>
+
+        <!-- Category Filter Buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-category="all" data-translate="explore.all">All</button>
+            <button class="filter-btn" data-category="ancient" data-translate="explore.ancient">Ancient Sites</button>
+            <button class="filter-btn" data-category="modern" data-translate="explore.modern">Modern Cities</button>
+            <button class="filter-btn" data-category="nature" data-translate="explore.nature">Nature</button>
+            <button class="filter-btn" data-category="beach" data-translate="explore.beach">Beaches</button>
+        </div>
+
+        <!-- Explore Grid -->
+        <div class="explore-grid">
+            <!-- Ancient Sites -->
+            <article class="explore-card" data-category="ancient">
+                <div class="explore-image">
+                    <img src="images/places/luxor.jpg" alt="Luxor Temple" loading="lazy">
+                </div>
+                <div class="explore-content">
+                    <span class="category-badge">Ancient</span>
+                    <h3 class="explore-title" data-translate="explore.luxor.title">Luxor Temple</h3>
+                    <p class="explore-description" data-translate="explore.luxor.desc">
+                        A large ancient Egyptian temple complex on the east bank of the Nile
+                    </p>
+                </div>
+            </article>
+
+            <article class="explore-card" data-category="ancient">
+                <div class="explore-image">
+                    <img src="images/places/karnak.jpg" alt="Karnak Temple" loading="lazy">
+                </div>
+                <div class="explore-content">
+                    <span class="category-badge">Ancient</span>
+                    <h3 class="explore-title" data-translate="explore.karnak.title">Karnak Temple</h3>
+                    <p class="explore-description" data-translate="explore.karnak.desc">
+                        The largest religious building ever constructed
+                    </p>
+                </div>
+            </article>
+
+            <!-- Modern Cities -->
+            <article class="explore-card" data-category="modern">
+                <div class="explore-image">
+                    <img src="images/places/cairo.jpg" alt="Cairo City" loading="lazy">
+                </div>
+                <div class="explore-content">
+                    <span class="category-badge">Modern</span>
+                    <h3 class="explore-title" data-translate="explore.cairo.title">Cairo City</h3>
+                    <p class="explore-description" data-translate="explore.cairo.desc">
+                        The vibrant capital of Egypt with bustling markets and modern life
+                    </p>
+                </div>
+            </article>
+
+            <article class="explore-card" data-category="modern">
+                <div class="explore-image">
+                    <img src="images/places/alexandria.jpg" alt="Alexandria" loading="lazy">
+                </div>
+                <div class="explore-content">
+                    <span class="category-badge">Modern</span>
+                    <h3 class="explore-title" data-translate="explore.alex.title">Alexandria</h3>
+                    <p class="explore-description" data-translate="explore.alex.desc">
+                        Egypt's second-largest city and Mediterranean pearl
+                    </p>
+                </div>
+            </article>
+
+            <!-- Nature -->
+            <article class="explore-card" data-category="nature">
+                <div class="explore-image">
+                    <img src="images/places/oasis.jpg" alt="Siwa Oasis" loading="lazy">
+                </div>
+                <div class="explore-content">
+                    <span class="category-badge">Nature</span>
+                    <h3 class="explore-title" data-translate="explore.siwa.title">Siwa Oasis</h3>
+                    <p class="explore-description" data-translate="explore.siwa.desc">
+                        A peaceful desert oasis with natural springs
+                    </p>
+                </div>
+            </article>
+
+            <!-- Beaches -->
+            <article class="explore-card" data-category="beach">
+                <div class="explore-image">
+                    <img src="images/places/redsea.jpg" alt="Red Sea" loading="lazy">
+                </div>
+                <div class="explore-content">
+                    <span class="category-badge">Beach</span>
+                    <h3 class="explore-title" data-translate="explore.redsea.title">Red Sea</h3>
+                    <p class="explore-description" data-translate="explore.redsea.desc">
+                        Crystal clear waters perfect for diving and snorkeling
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ========== MAP SECTION ========== -->
+    <section id="map" class="section">
+        <div class="section-header">
+            <h2 class="section-title" data-translate="map.title">Egypt Map</h2>
+            <p class="section-subtitle" data-translate="map.subtitle">Explore locations across Egypt</p>
+        </div>
+
+        <!-- Simple SVG Map Placeholder -->
+        <div class="map-container">
+            <svg class="egypt-map" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+                <!-- Simple Egypt Shape -->
+                <path d="M 200 50 L 250 100 L 280 180 L 300 280 L 280 380 L 250 480 L 200 550 L 150 480 L 120 380 L 100 280 L 120 180 L 150 100 Z"
+                      fill="#f4a460" stroke="#333" stroke-width="2"/>
+
+                <!-- Location Markers -->
+                <g class="marker" data-location="cairo">
+                    <circle cx="200" cy="200" r="8" fill="#e74c3c"/>
+                    <text x="220" y="205" font-size="14" fill="#333">Cairo</text>
+                </g>
+
+                <g class="marker" data-location="giza">
+                    <circle cx="190" cy="210" r="8" fill="#e74c3c"/>
+                    <text x="210" y="215" font-size="14" fill="#333">Giza</text>
+                </g>
+
+                <g class="marker" data-location="luxor">
+                    <circle cx="220" cy="350" r="8" fill="#e74c3c"/>
+                    <text x="240" y="355" font-size="14" fill="#333">Luxor</text>
+                </g>
+
+                <g class="marker" data-location="aswan">
+                    <circle cx="210" cy="450" r="8" fill="#e74c3c"/>
+                    <text x="230" y="455" font-size="14" fill="#333">Aswan</text>
+                </g>
+
+                <g class="marker" data-location="alexandria">
+                    <circle cx="180" cy="120" r="8" fill="#e74c3c"/>
+                    <text x="200" y="125" font-size="14" fill="#333">Alexandria</text>
+                </g>
+            </svg>
+
+            <!-- Map Legend -->
+            <div class="map-legend">
+                <h3 data-translate="map.legend">Map Legend</h3>
+                <ul>
+                    <li><span class="legend-marker"></span> <span data-translate="map.cities">Major Cities</span></li>
+                    <li><span data-translate="map.click">Click on markers to learn more</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Location Info Card (Hidden by default, shown on marker click) -->
+        <div class="location-info" style="display: none;">
+            <button class="close-btn">×</button>
+            <h3 class="location-name"></h3>
+            <p class="location-description"></p>
+        </div>
+    </section>
+
+    <!-- ========== AI TOURIST GUIDE SECTION ========== -->
+    <section id="ai-guide" class="section">
+        <div class="section-header">
+            <h2 class="section-title" data-translate="ai.title">AI Tourist Guide</h2>
+            <p class="section-subtitle" data-translate="ai.subtitle">Ask me anything about Egypt tourism!</p>
+        </div>
+
+        <!-- AI Disclaimer -->
+        <div class="ai-disclaimer">
+            <p data-translate="ai.disclaimer">
+                ℹ️ This is a simple educational AI model using keyword matching.
+                It provides basic tourism information about Egypt.
+            </p>
+        </div>
+
+        <!-- Chat Container -->
+        <div class="chat-container">
+            <!-- Chat Messages Area -->
+            <div class="chat-messages" id="chat-messages">
+                <!-- Welcome Message -->
+                <div class="message bot-message">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <p data-translate="ai.welcome">
+                            Hello! I'm your AI tourist guide. Ask me about Egyptian places, history,
+                            culture, or travel tips!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input Area -->
+            <div class="chat-input-area">
+                <input
+                        type="text"
+                        id="chat-input"
+                        class="chat-input"
+                        placeholder="Type your question..."
+                        data-translate-placeholder="ai.placeholder"
+                >
+                <button id="send-btn" class="send-btn">
+                    <span>Send</span>
+                </button>
+            </div>
+
+            <!-- Quick Question Buttons -->
+            <div class="quick-questions">
+                <button class="quick-btn" data-question="pyramids">🏛️ <span data-translate="ai.q1">Pyramids</span></button>
+                <button class="quick-btn" data-question="weather">🌤️ <span data-translate="ai.q2">Weather</span></button>
+                <button class="quick-btn" data-question="food">🍽️ <span data-translate="ai.q3">Food</span></button>
+                <button class="quick-btn" data-question="safety">🛡️ <span data-translate="ai.q4">Safety</span></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SETTINGS SECTION ========== -->
+    <section id="settings" class="section">
+        <div class="section-header">
+            <h2 class="section-title" data-translate="settings.title">Settings</h2>
+            <p class="section-subtitle" data-translate="settings.subtitle">Customize your experience</p>
+        </div>
+
+        <div class="settings-container">
+            <!-- Language Settings -->
+            <div class="settings-card">
+                <h3 data-translate="settings.lang.title">Language Preferences</h3>
+                <p data-translate="settings.lang.desc">Choose your preferred language</p>
+
+                <div class="language-options">
+                    <label class="radio-option">
+                        <input type="radio" name="language" value="en" checked>
+                        <span>🇬🇧 English</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="language" value="ar">
+                        <span>🇪🇬 العربية (Arabic)</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="language" value="fr">
+                        <span>🇫🇷 Français (French)</span>
+                    </label>
+                </div>
+
+                <label class="checkbox-option">
+                    <input type="checkbox" id="auto-detect-lang" checked>
+                    <span data-translate="settings.lang.auto">Auto-detect device language</span>
+                </label>
+            </div>
+
+            <!-- Theme Settings -->
+            <div class="settings-card">
+                <h3 data-translate="settings.theme.title">Theme Settings</h3>
+                <p data-translate="settings.theme.desc">Choose your preferred color theme</p>
+
+                <div class="theme-options">
+                    <button class="theme-option-btn active" data-theme="light">
+                        <span class="theme-icon">☀️</span>
+                        <span data-translate="settings.theme.light">Light Mode</span>
+                    </button>
+                    <button class="theme-option-btn" data-theme="dark">
+                        <span class="theme-icon">🌙</span>
+                        <span data-translate="settings.theme.dark">Dark Mode</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- About Project -->
+            <div class="settings-card">
+                <h3 data-translate="settings.about.title">About This Project</h3>
+                <p data-translate="settings.about.desc">
+                    This is a student web design project for a Grade 8 school competition.
+                    Built with HTML, CSS, and JavaScript to showcase Egypt's tourism attractions.
+                </p>
+                <p data-translate="settings.about.tech">
+                    <strong>Technologies:</strong> HTML5, CSS3, Vanilla JavaScript
+                </p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Discover Egypt</h3>
+            <p data-translate="footer.tagline">Your gateway to Egypt's wonders</p>
+        </div>
+
+        <div class="footer-section">
+            <h4 data-translate="footer.quick">Quick Links</h4>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#explore">Explore</a></li>
+                <li><a href="#ai-guide">AI Guide</a></li>
+                <li><a href="#settings">Settings</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4 data-translate="footer.contact">Contact</h4>
+            <p>Email: info@discoveregypt.edu</p>
+            <p>Phone: +20 123 456 789</p>
+        </div>
+
+        <div class="footer-section">
+            <h4 data-translate="footer.social">Follow Us</h4>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">📘</a>
+                <a href="#" aria-label="Instagram">📷</a>
+                <a href="#" aria-label="Twitter">🐦</a>
+                <a href="#" aria-label="YouTube">📹</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Discover Egypt - Student Web Design Project | Grade 8</p>
+    </div>
+</footer>
+
+<!-- ========== JAVASCRIPT LINKS ========== -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
