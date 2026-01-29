@@ -9,6 +9,11 @@
 
     <!-- CSS Link -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- Leaflet CSS -->
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
 </head>
 <body>
 
@@ -281,64 +286,47 @@
         </div>
     </section>
 
+
+
+
+
+
+
+
+
+
+    <!-- Leaflet CSS -->
+    <link
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <!-- Map Container -->
+
+
     <!-- ========== MAP SECTION ========== -->
     <section id="map" class="section">
         <div class="section-header">
-            <h2 class="section-title" data-translate="map.title">Egypt Map</h2>
-            <p class="section-subtitle" data-translate="map.subtitle">Explore locations across Egypt</p>
+            <h2 class="section-title">Egypt Map</h2>
+            <p class="section-subtitle">Explore Egypt on the map</p>
         </div>
 
-        <!-- Simple SVG Map Placeholder -->
-        <div class="map-container">
-            <svg class="egypt-map" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
-                <!-- Simple Egypt Shape -->
-                <path d="M 200 50 L 250 100 L 280 180 L 300 280 L 280 380 L 250 480 L 200 550 L 150 480 L 120 380 L 100 280 L 120 180 L 150 100 Z"
-                      fill="#f4a460" stroke="#333" stroke-width="2"/>
-
-                <!-- Location Markers -->
-                <g class="marker" data-location="cairo">
-                    <circle cx="200" cy="200" r="8" fill="#e74c3c"/>
-                    <text x="220" y="205" font-size="14" fill="#333">Cairo</text>
-                </g>
-
-                <g class="marker" data-location="giza">
-                    <circle cx="190" cy="210" r="8" fill="#e74c3c"/>
-                    <text x="210" y="215" font-size="14" fill="#333">Giza</text>
-                </g>
-
-                <g class="marker" data-location="luxor">
-                    <circle cx="220" cy="350" r="8" fill="#e74c3c"/>
-                    <text x="240" y="355" font-size="14" fill="#333">Luxor</text>
-                </g>
-
-                <g class="marker" data-location="aswan">
-                    <circle cx="210" cy="450" r="8" fill="#e74c3c"/>
-                    <text x="230" y="455" font-size="14" fill="#333">Aswan</text>
-                </g>
-
-                <g class="marker" data-location="alexandria">
-                    <circle cx="180" cy="120" r="8" fill="#e74c3c"/>
-                    <text x="200" y="125" font-size="14" fill="#333">Alexandria</text>
-                </g>
-            </svg>
-
-            <!-- Map Legend -->
-            <div class="map-legend">
-                <h3 data-translate="map.legend">Map Legend</h3>
-                <ul>
-                    <li><span class="legend-marker"></span> <span data-translate="map.cities">Major Cities</span></li>
-                    <li><span data-translate="map.click">Click on markers to learn more</span></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Location Info Card (Hidden by default, shown on marker click) -->
-        <div class="location-info" style="display: none;">
-            <button class="close-btn">×</button>
-            <h3 class="location-name"></h3>
-            <p class="location-description"></p>
-        </div>
+        <div id="mapContainer"></div>
     </section>
+
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- ========== AI TOURIST GUIDE SECTION ========== -->
     <section id="ai-guide" class="section">
@@ -504,6 +492,7 @@
 
 <!-- ========== JAVASCRIPT LINKS ========== -->
 <script src="js/main.js"></script>
-
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </body>
 </html>
