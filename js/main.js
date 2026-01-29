@@ -1003,6 +1003,29 @@ setTimeout(() => {
     }
 }, 1000);
 
+// 🔧 FIX LEAFLET MAP ON MOBILE & WHEN SECTION IS SHOWN
+function fixMapSize() {
+    if (map) {
+        setTimeout(() => {
+            map.invalidateSize(true);
+            map.setView([26.8206, 30.8025], 6);
+        }, 300);
+    }
+}
+
+// عند فتح قسم الخريطة
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        setTimeout(fixMapSize, 400);
+    });
+});
+
+// عند تغيير حجم الشاشة (مهم للهاتف)
+window.addEventListener('resize', fixMapSize);
+
+// عند اللمس الأول (حل نهائي لمشكلة tap)
+document.addEventListener('touchstart', fixMapSize, { once: true });
+
 
 
 
