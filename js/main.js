@@ -316,13 +316,7 @@ function loadTranslations() {
                     "desc": "Crystal clear waters perfect for diving and snorkeling"
                 }
             },
-            "map": {
-                "title": "Egypt Map",
-                "subtitle": "Explore locations across Egypt",
-                "legend": "Map Legend",
-                "cities": "Major Cities",
-                "click": "Click on markers to learn more"
-            },
+
             "ai": {
                 "title": "AI Tourist Guide",
                 "subtitle": "Ask me anything about Egypt tourism!",
@@ -432,13 +426,7 @@ function loadTranslations() {
                     "desc": "مياه صافية مثالية للغوص والسباحة"
                 }
             },
-            "map": {
-                "title": "خريطة مصر",
-                "subtitle": "استكشف المواقع في جميع أنحاء مصر",
-                "legend": "مفتاح الخريطة",
-                "cities": "المدن الرئيسية",
-                "click": "انقر على العلامات لمعرفة المزيد"
-            },
+
             "ai": {
                 "title": "دليل سياحي ذكي",
                 "subtitle": "اسألني أي شيء عن السياحة في مصر!",
@@ -548,13 +536,7 @@ function loadTranslations() {
                     "desc": "Eaux cristallines parfaites pour la plongée et le snorkeling"
                 }
             },
-            "map": {
-                "title": "Carte d'Égypte",
-                "subtitle": "Explorer les emplacements en Égypte",
-                "legend": "Légende de la carte",
-                "cities": "Grandes villes",
-                "click": "Cliquez sur les marqueurs pour en savoir plus"
-            },
+
             "ai": {
                 "title": "Guide touristique IA",
                 "subtitle": "Demandez-moi n'importe quoi sur le tourisme en Égypte!",
@@ -945,6 +927,89 @@ function scrollToTop() {
         behavior: 'smooth'
     });
 }
+
+
+
+
+let map = null;
+
+function initMap() {
+    if (map) {
+        setTimeout(() => map.invalidateSize(), 200);
+        return;
+    }
+
+    const EGYPT_CENTER = [26.8206, 30.8025];
+    const DEFAULT_ZOOM = 6;
+
+    map = L.map("mapContainer").setView(EGYPT_CENTER, DEFAULT_ZOOM);
+
+    L.tileLayer(
+        "https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=9RqyjgoXD1yB84mKINGB",
+        {
+            tileSize: 512,
+            zoomOffset: -1,
+            attribution: "© MapTiler © OpenStreetMap contributors"
+        }
+    ).addTo(map);
+
+    const places = [
+        { name: "Cairo", coords: [30.0444, 31.2357] },
+        { name: "Giza", coords: [29.9792, 31.1342] },
+        { name: "Alexandria", coords: [31.2001, 29.9187] },
+        { name: "Luxor", coords: [25.6872, 32.6396] },
+        { name: "Aswan", coords: [24.0889, 32.8998] }
+    ];
+
+    places.forEach(place => {
+        L.marker(place.coords)
+            .addTo(map)
+            .bindPopup(`<strong>${place.name}</strong>`);
+    });
+
+    setTimeout(() => map.invalidateSize(), 300);
+}
+
+/* تشغيل الخريطة مباشرة */
+window.addEventListener("load", initMap);
+/* ===== FIX LEAFLET SIZE ISSUE (NO TAP NEEDED) ===== */
+
+// إعادة ضبط الحجم عند تغيير حجم الشاشة
+window.addEventListener("resize", () => {
+    if (map) {
+        map.invalidateSize();
+    }
+});
+
+// إعادة ضبط الحجم عند أول تفاعل (لمس / ماوس)
+["click", "touchstart", "wheel"].forEach(event => {
+    window.addEventListener(event, () => {
+        if (map) {
+            map.invalidateSize();
+        }
+    }, { once: true });
+});
+
+// إعادة ضبط الحجم بشكل دوري قصير بعد التحميل
+setTimeout(() => {
+    if (map) {
+        map.invalidateSize();
+    }
+}, 500);
+
+setTimeout(() => {
+    if (map) {
+        map.invalidateSize();
+    }
+}, 1000);
+
+
+
+
+
+
+
+
 
 // Log for educational purposes
 console.log('✅ All JavaScript modules loaded successfully!');
