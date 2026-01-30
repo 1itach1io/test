@@ -1,6 +1,6 @@
 /* ==========================================
    DISCOVER EGYPT - JAVASCRIPT
-   Student Web Design Project - Grade 8
+   OMAR Web Design Project - Middle 2
    ========================================== */
 
 // ========== GLOBAL VARIABLES ==========
@@ -246,6 +246,14 @@ function loadTranslations() {
 
     translations = {
         "en": {
+            "nav":{
+                "Home": "Home",
+                "Nearby Places": "Nearby Places",
+                "Explore Egypt": "Explore Egypt",
+                "Map": "Map",
+                "Smart Guide": "Smart Guide",
+
+            },
             "hero": {
                 "title": "Welcome to Egypt",
                 "subtitle": "Discover 7000 years of history and culture",
@@ -344,18 +352,26 @@ function loadTranslations() {
                 },
                 "about": {
                     "title": "About This Project",
-                    "desc": "This is a student web design project for a Grade 8 school competition. Built with HTML, CSS, and JavaScript to showcase Egypt's tourism attractions.",
                     "tech": "Technologies: HTML5, CSS3, Vanilla JavaScript"
                 }
             },
             "footer": {
                 "tagline": "Your gateway to Egypt's wonders",
-                "quick": "Quick Links",
                 "contact": "Contact",
                 "social": "Follow Us"
             }
         },
         "ar": {
+
+            "nav":{
+                "Home": "الصفحة الرئيسية",
+                "Nearby Places": "الأماكن القريبه",
+                "Explore Egypt": "أستكشف مصر",
+                "Map": "الخريطة",
+                "Smart Guide": "المرشد الذكي"
+
+            },
+
             "hero": {
                 "title": "مرحباً بك في مصر",
                 "subtitle": "اكتشف 7000 عام من التاريخ والثقافة",
@@ -460,12 +476,20 @@ function loadTranslations() {
             },
             "footer": {
                 "tagline": "بوابتك لعجائب مصر",
-                "quick": "روابط سريعة",
                 "contact": "اتصل بنا",
                 "social": "تابعنا"
             }
         },
         "fr": {
+            "nav":{
+                "Home": "Page d’accueil",
+                "Nearby Places": "Lieux à proximité",
+                "Explore Egypt": "Explorez l'Egypte",
+                "Map": "Carte",
+                "Smart Guide": "Assistant intelligent",
+
+            },
+
             "hero": {
                 "title": "Bienvenue en Égypte",
                 "subtitle": "Découvrez 7000 ans d'histoire et de culture",
@@ -570,7 +594,6 @@ function loadTranslations() {
             },
             "footer": {
                 "tagline": "Votre passerelle vers les merveilles de l'Égypte",
-                "quick": "Liens rapides",
                 "contact": "Contact",
                 "social": "Suivez-nous"
             }
@@ -919,18 +942,6 @@ function initializeAIGuide() {
 }
 
 // ========== UTILITY FUNCTIONS ==========
-
-// Smooth scroll to top
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
-
-
-
-
 let map = null;
 
 function initMap() {
