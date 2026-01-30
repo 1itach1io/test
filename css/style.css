@@ -265,58 +265,99 @@ ul {
 }
 
 /* ========== HOME SECTION ========== */
+/* ===== HERO IMAGE BACKGROUND (FINAL FIX) ===== */
 
 .hero {
-    height: 500px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    border-radius: var(--radius-xl);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: var(--spacing-xl);
     position: relative;
+    height: 520px;
+    border-radius: 24px;
     overflow: hidden;
+
+
 }
 
-/* Decorative pattern */
-.hero::before {
-    content: '';
+/* صورة الخلفية */
+.hero-bg {
     position: absolute;
-    width: 200%;
-    height: 200%;
-    background: repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 10px,
-            rgba(255, 255, 255, 0.05) 10px,
-            rgba(255, 255, 255, 0.05) 20px
-    );
-    animation: slidePattern 20s linear infinite;
-}
-
-@keyframes slidePattern {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
-}
-
-.hero-content {
-    text-align: center;
-    z-index: 1;
-    color: var(--text-light);
-}
-
-.hero-title {
-    font-size: 3.5rem;
+    inset: 0;
+    width: 100%;.hero-title {
+    font-size: 3rem;
     font-weight: 800;
-    margin-bottom: var(--spacing-md);
-    text-shadow: 2px 2px 4px var(--shadow-heavy);
+    margin-bottom: 16px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
-    margin-bottom: var(--spacing-lg);
+    font-size: 1.3rem;
+    margin-bottom: 24px;
     opacity: 0.95;
 }
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* طبقة تعتيم */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.35),
+            rgba(0, 0, 0, 0.55)
+    );
+    z-index: 2;
+}
+
+/* المحتوى */
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: #fff;
+    max-width: 800px;
+    margin: auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+
+
+}
+
+.cta-button{
+    margin-top: 35px;
+
+
+
+}
+
+
+.cta-button:hover {
+    transform: translateY(-3px);
+
+}
+
+/* 📱 Mobile */
+@media (max-width: 768px) {
+    .hero {
+        height: 380px;
+        border-radius: 18px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.05rem;
+    }
+}
+
+
+
 
 .cta-button {
     padding: 1rem 2.5rem;
