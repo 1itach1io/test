@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Discover the beauty of Egypt - A student web design project">
-    <meta name="author" content="Grade 8 Student">
+    <meta name="author" content="Middle 2 Student">
     <title>Discover Egypt - Tourism Guide</title>
 
     <!-- CSS Link -->
@@ -14,6 +14,8 @@
             rel="stylesheet"
             href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body>
 
@@ -27,12 +29,12 @@
 
         <!-- Navigation Menu -->
         <ul class="nav-menu">
-            <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
-            <li><a href="#nearby" class="nav-link" data-section="nearby">Nearby Places</a></li>
-            <li><a href="#explore" class="nav-link" data-section="explore">Explore Egypt</a></li>
-            <li><a href="#map" class="nav-link" data-section="map">Map</a></li>
-            <li><a href="#ai-guide" class="nav-link" data-section="ai-guide">AI Guide</a></li>
-            <li><a href="#settings" class="nav-link" data-section="settings">Settings</a></li>
+            <li><a href="#home" class="nav-link active" data-section="home" data-translate="nav.Home">Home</a></li>
+            <li><a href="#nearby" class="nav-link active" data-section="nearby" data-translate="nav.Nearby Places" >Nearby Places</a></li>
+            <li><a href="#explore" class="nav-link active" data-section="explore" data-translate="nav.Explore Egypt">Explore Egypt</a></li>
+            <li><a href="#map" class="nav-link active" data-section="map" data-translate="nav.Map">Map</a></li>
+            <li><a href="#ai-guide" class="nav-link active" data-section="ai-guide" data-translate="nav.Smart Guide">Smart Guide</a></li>
+            <li><a href="#settings" class="nav-link active" data-section="settings">⚙</a></li>
         </ul>
 
         <!-- Right Side Controls -->
@@ -65,21 +67,21 @@
         <!-- Hero Section with Background -->
 
 
-       <img src="images/sunset-pyramids-giza-egypt.jpg" alt="Egypt Pyramids" class="hero-bg">
+        <img src="images/sunset-pyramids-giza-egypt.jpg" alt="Egypt Pyramids" class="hero-bg">
         <div class="hero-overlay"></div>
 
-                <!-- المحتوى -->
-                <div class="hero-content">
-                    <h1 class="hero-title" data-translate="hero.title">Welcome to Egypt</h1>
-                    <p class="hero-subtitle" data-translate="hero.subtitle">
-                        Discover +7000 years of history and culture
-                    </p>
-                    <button class="cta-button" data-translate="hero.cta">
-                        Start Exploring
-                    </button>
-                </div>
+        <!-- المحتوى -->
+        <div class="hero-content">
+            <h1 class="hero-title" data-translate="hero.title">Welcome to Egypt</h1>
+            <p class="hero-subtitle" data-translate="hero.subtitle">
+                Discover +7000 years of history and culture
+            </p>
+            <button class="cta-button" data-translate="hero.cta">
+                Start Exploring
+            </button>
+        </div>
 
-            </div>
+        </div>
 
 
 
@@ -94,6 +96,7 @@
             <h2 class="section-title" data-translate="nearby.title">Nearby Places</h2>
             <p class="section-subtitle" data-translate="nearby.subtitle">Popular tourist destinations near you</p>
         </div>
+
 
         <!-- Places Grid -->
         <div class="places-grid">
@@ -424,7 +427,7 @@
             <div class="settings-card">
                 <h3 data-translate="settings.about.title">About This Project</h3>
                 <p data-translate="settings.about.desc">
-                    This is a student web design project for a Grade 8 school competition.
+                    This is a OMAR web design project for a Middle 2 school competition.
                     Built with HTML, CSS, and JavaScript to showcase Egypt's tourism attractions.
                 </p>
                 <p data-translate="settings.about.tech">
@@ -445,16 +448,6 @@
         </div>
 
         <div class="footer-section">
-            <h4 data-translate="footer.quick">Quick Links</h4>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#explore">Explore</a></li>
-                <li><a href="#ai-guide">AI Guide</a></li>
-                <li><a href="#settings">Settings</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
             <h4 data-translate="footer.contact">Contact</h4>
             <p>Email: info@discoveregypt.edu</p>
             <p>Phone: +20 123 456 789</p>
@@ -463,16 +456,16 @@
         <div class="footer-section">
             <h4 data-translate="footer.social">Follow Us</h4>
             <div class="social-links">
-                <a href="#" aria-label="Facebook">📘</a>
-                <a href="#" aria-label="Instagram">📷</a>
-                <a href="#" aria-label="Twitter">🐦</a>
-                <a href="#" aria-label="YouTube">📹</a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </div>
 
     <div class="footer-bottom">
-        <p>&copy; 2026 Discover Egypt - Student Web Design Project | Grade 8</p>
+        <p>&copy; 2026 Discover Egypt -    OMAR Web Design Project - Middle 2</p>
     </div>
 </footer>
 
