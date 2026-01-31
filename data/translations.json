@@ -1,9 +1,17 @@
 {
   "en": {
+    "nav":{
+      "Home": "Home",
+      "Nearby Places": "Nearby Places",
+      "Explore Egypt": "Explore Egypt",
+      "Map": "Map",
+      "Smart Guide": "Smart Guide"
+
+    },
     "hero": {
       "title": "Welcome to Egypt",
       "subtitle": "Discover 7000 years of history and culture",
-      "cta": "Start Exploring"
+      "cta": "Start"
     },
     "stats": {
       "years": "Years of History",
@@ -70,13 +78,7 @@
         "desc": "Crystal clear waters perfect for diving and snorkeling"
       }
     },
-    "map": {
-      "title": "Egypt Map",
-      "subtitle": "Explore locations across Egypt",
-      "legend": "Map Legend",
-      "cities": "Major Cities",
-      "click": "Click on markers to learn more"
-    },
+
     "ai": {
       "title": "AI Tourist Guide",
       "subtitle": "Ask me anything about Egypt tourism!",
@@ -104,18 +106,26 @@
       },
       "about": {
         "title": "About This Project",
-        "desc": "This is a student web design project for a Grade 8 school competition. Built with HTML, CSS, and JavaScript to showcase Egypt's tourism attractions.",
         "tech": "Technologies: HTML5, CSS3, Vanilla JavaScript"
       }
     },
     "footer": {
       "tagline": "Your gateway to Egypt's wonders",
-      "quick": "Quick Links",
       "contact": "Contact",
       "social": "Follow Us"
     }
   },
   "ar": {
+
+    "nav":{
+      "Home": "الصفحة الرئيسية",
+      "Nearby Places": "الأماكن القريبه",
+      "Explore Egypt": "أستكشف مصر",
+      "Map": "الخريطة",
+      "Smart Guide": "المرشد الذكي"
+
+    },
+
     "hero": {
       "title": "مرحباً بك في مصر",
       "subtitle": "اكتشف 7000 عام من التاريخ والثقافة",
@@ -186,13 +196,7 @@
         "desc": "مياه صافية مثالية للغوص والسباحة"
       }
     },
-    "map": {
-      "title": "خريطة مصر",
-      "subtitle": "استكشف المواقع في جميع أنحاء مصر",
-      "legend": "مفتاح الخريطة",
-      "cities": "المدن الرئيسية",
-      "click": "انقر على العلامات لمعرفة المزيد"
-    },
+
     "ai": {
       "title": "دليل سياحي ذكي",
       "subtitle": "اسألني أي شيء عن السياحة في مصر!",
@@ -226,12 +230,20 @@
     },
     "footer": {
       "tagline": "بوابتك لعجائب مصر",
-      "quick": "روابط سريعة",
       "contact": "اتصل بنا",
       "social": "تابعنا"
     }
   },
   "fr": {
+    "nav":{
+      "Home": "Page d’accueil",
+      "Nearby Places": "Lieux à proximité",
+      "Explore Egypt": "Explorez l'Egypte",
+      "Map": "Carte",
+      "Smart Guide": "Assistant intelligent"
+
+    },
+
     "hero": {
       "title": "Bienvenue en Égypte",
       "subtitle": "Découvrez 7000 ans d'histoire et de culture",
@@ -302,13 +314,7 @@
         "desc": "Eaux cristallines parfaites pour la plongée et le snorkeling"
       }
     },
-    "map": {
-      "title": "Carte d'Égypte",
-      "subtitle": "Explorer les emplacements en Égypte",
-      "legend": "Légende de la carte",
-      "cities": "Grandes villes",
-      "click": "Cliquez sur les marqueurs pour en savoir plus"
-    },
+
     "ai": {
       "title": "Guide touristique IA",
       "subtitle": "Demandez-moi n'importe quoi sur le tourisme en Égypte!",
@@ -342,7 +348,6 @@
     },
     "footer": {
       "tagline": "Votre passerelle vers les merveilles de l'Égypte",
-      "quick": "Liens rapides",
       "contact": "Contact",
       "social": "Suivez-nous"
     }
