@@ -264,23 +264,23 @@ function applyTranslations() {
 
 
 
-    // Find all elements with data-translate attribute
-    const elements = document.querySelectorAll('[data-translate]');
+// Find all elements with data-translate attribute
+const elements = document.querySelectorAll('[data-translate]');
 
-    elements.forEach(element => {
-        const key = element.getAttribute('data-translate');
-        const translation = getNestedTranslation(langData, key);
+elements.forEach(element => {
+    const key = element.getAttribute('data-translate');
+    const translation = getNestedTranslation(langData, key);
 
-        if (translation) {
-            element.textContent = translation;
-        }
-    });
-
-    // Translate placeholder
-    const chatInput = document.getElementById('chat-input');
-    if (chatInput && langData.ai && langData.ai.placeholder) {
-        chatInput.placeholder = langData.ai.placeholder;
+    if (translation) {
+        element.textContent = translation;
     }
+});
+
+// Translate placeholder
+const chatInput = document.getElementById('chat-input');
+if (chatInput && langData.ai && langData.ai.placeholder) {
+    chatInput.placeholder = langData.ai.placeholder;
+}
 
 
 // Helper function to get nested translation (e.g., "hero.title")
@@ -292,14 +292,79 @@ function getNestedTranslation(obj, key) {
 function initializeMobileMenu() {
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
+    const body = document.body;
+
+    // Create overlay element
+    let overlay = document.querySelector('.mobile-menu-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'mobile-menu-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 998;
+        `;
+        body.appendChild(overlay);
+    }
 
     if (mobileToggle && navMenu) {
-        mobileToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-
-            // Animate hamburger icon
-            this.classList.toggle('active');
+        // Toggle menu on button click
+        mobileToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMenu();
         });
+
+        // Close menu when clicking overlay
+        overlay.addEventListener('click', function() {
+            closeMenu();
+        });
+
+        // Close menu when clicking nav links
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                closeMenu();
+            });
+        });
+
+        // Close menu when pressing Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+
+        function toggleMenu() {
+            const isActive = navMenu.classList.contains('active');
+            if (isActive) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        }
+
+        function openMenu() {
+            navMenu.classList.add('active');
+            mobileToggle.classList.add('active');
+            overlay.style.opacity = '1';
+            overlay.style.visibility = 'visible';
+            body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            navMenu.classList.remove('active');
+            mobileToggle.classList.remove('active');
+            overlay.style.opacity = '0';
+            overlay.style.visibility = 'hidden';
+            body.style.overflow = '';
+        }
     }
 }
 
