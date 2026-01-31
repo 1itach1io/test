@@ -205,15 +205,48 @@ ul {
     padding: 0.5rem;
     background-color: var(--bg-secondary);
     border-radius: var(--radius-sm);
+    cursor: pointer;
 }
 
-.hamburger,
-.hamburger::before,
-.hamburger::after {
+.hamburger {
+    position: relative;
     width: 25px;
     height: 3px;
     background-color: var(--text-primary);
     transition: all var(--transition-fast);
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-primary);
+    transition: all var(--transition-fast);
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    top: 8px;
+}
+
+/* Hamburger Animation when Active */
+.mobile-menu-toggle.active .hamburger {
+    background-color: transparent;
+}
+
+.mobile-menu-toggle.active .hamburger::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.mobile-menu-toggle.active .hamburger::after {
+    top: 0;
+    transform: rotate(-45deg);
 }
 
 /* ========== MAIN CONTENT ========== */
@@ -947,65 +980,173 @@ ul {
 
 /* Tablets and below (768px) */
 @media (max-width: 768px) {
-    /* Navigation */
+    /* ===== NAVIGATION ===== */
     .navbar {
-        padding: 1rem;
-        flex-wrap: wrap;
+        padding: 0.75rem 1rem;
+        flex-wrap: nowrap;
+    }
+
+    .logo h1 {
+        font-size: 1.2rem;
     }
 
     .nav-menu {
-        display: none;
-        width: 100%;
+        position: fixed;
+        top: 60px;
+        left: -100%;
+        width: 85%;
+        max-width: 320px;
+        height: calc(100vh - 60px);
+        background-color: var(--bg-card);
         flex-direction: column;
         gap: 0;
-        margin-top: var(--spacing-md);
+        padding: 1rem 0;
+        box-shadow: 2px 0 15px var(--shadow-medium);
+        transition: left 0.3s ease;
+        overflow-y: auto;
+        z-index: 999;
     }
 
     .nav-menu.active {
+        left: 0;
         display: flex;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
     }
 
     .nav-link {
         width: 100%;
-        text-align: center;
-        padding: var(--spacing-md);
+        text-align: left;
+        padding: 1rem 1.5rem;
         border-radius: 0;
+        font-size: 1rem;
+        display: block;
+    }
+
+    .nav-link.active {
+        background-color: var(--primary-color);
+        color: var(--text-light);
+        border-left: 4px solid var(--secondary-color);
+    }
+
+    .nav-controls {
+        gap: 0.5rem;
+    }
+
+    .language-select {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.85rem;
+    }
+
+    .theme-btn {
+        padding: 0.4rem 0.7rem;
+        font-size: 1rem;
     }
 
     .mobile-menu-toggle {
         display: flex;
     }
 
-    /* Hero Section */
+    /* ===== HERO SECTION ===== */
     .hero {
-        height: 350px;
+        height: 320px;
+        border-radius: var(--radius-lg);
+    }
+
+    .hero-content {
+        padding: 0 1rem;
     }
 
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 0.75rem;
     }
 
     .hero-subtitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        margin-bottom: 1rem;
     }
 
-    /* Section Titles */
+    .cta-button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+        padding: 2rem 1rem;
+    }
+
+    .section-header {
+        margin-bottom: 2rem;
+    }
+
     .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    /* ===== STATS ===== */
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .stat-card {
+        padding: 1.25rem;
+    }
+
+    .stat-number {
         font-size: 2rem;
     }
 
-    /* Stats */
-    .stats-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    /* Cards */
+    /* ===== CARDS ===== */
     .places-grid,
     .explore-grid {
         grid-template-columns: 1fr;
+        gap: 1.25rem;
     }
 
-    /* Map */
+    .place-card,
+    .explore-card {
+        border-radius: var(--radius-md);
+    }
+
+    .place-image,
+    .explore-image {
+        height: 200px;
+    }
+
+    .place-content,
+    .explore-content {
+        padding: 1rem;
+    }
+
+    .place-title,
+    .explore-title {
+        font-size: 1.1rem;
+    }
+
+    /* ===== FILTER BUTTONS ===== */
+    .filter-buttons {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .filter-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        flex: 0 1 auto;
+    }
+
+    /* ===== MAP ===== */
     .map-container {
         flex-direction: column;
     }
@@ -1014,70 +1155,295 @@ ul {
         max-width: 100%;
     }
 
-    /* Chat */
+    #mapContainer {
+        height: 400px;
+        min-height: 300px;
+        border-radius: var(--radius-md);
+    }
+
+    /* ===== AI CHAT ===== */
+    .chat-container {
+        border-radius: var(--radius-md);
+    }
+
     .chat-messages {
-        height: 300px;
+        height: 350px;
     }
 
     .message-content {
-        max-width: 85%;
+        max-width: 80%;
     }
 
-    /* Footer */
+    .message-avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+    }
+
+    .chat-input {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+    }
+
+    .send-btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .quick-questions {
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+
+    .quick-btn {
+        padding: 0.6rem 0.9rem;
+        font-size: 0.85rem;
+    }
+
+    /* ===== SETTINGS ===== */
+    .settings-card {
+        padding: 1.5rem;
+    }
+
+    .settings-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .theme-options {
+        flex-direction: row;
+        gap: 0.75rem;
+    }
+
+    .theme-option-btn {
+        padding: 1rem;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+        padding: 2rem 1rem;
+    }
+
     .footer-content {
         grid-template-columns: 1fr;
+        gap: 2rem;
         text-align: center;
     }
 
     .social-links {
         justify-content: center;
     }
+
+    .footer-bottom {
+        font-size: 0.85rem;
+    }
 }
 
 /* Mobile phones (480px) */
 @media (max-width: 480px) {
-    /* Spacing */
-    .section {
-        padding: var(--spacing-lg) var(--spacing-sm);
+    /* ===== NAVIGATION ===== */
+    .navbar {
+        padding: 0.6rem 0.8rem;
     }
 
-    /* Typography */
+    .logo h1 {
+        font-size: 1.1rem;
+    }
+
+    .nav-menu {
+        width: 90%;
+    }
+
+    .language-select {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .theme-btn {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.95rem;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+        height: 280px;
+    }
+
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 
-    .section-title {
-        font-size: 1.6rem;
-    }
-
-    /* Stats */
-    .stat-number {
-        font-size: 2rem;
-    }
-
-    /* Buttons */
-    .filter-buttons {
-        gap: var(--spacing-xs);
-    }
-
-    .filter-btn {
-        padding: 0.5rem 1rem;
+    .hero-subtitle {
         font-size: 0.9rem;
     }
 
-    /* Quick Questions */
-    .quick-questions {
-        gap: var(--spacing-xs);
+    .cta-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.9rem;
+    }
+
+    /* ===== STATS ===== */
+    .stats-container {
+        gap: 0.75rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+    }
+
+    /* ===== CARDS ===== */
+    .places-grid,
+    .explore-grid {
+        gap: 1rem;
+    }
+
+    .place-image,
+    .explore-image {
+        height: 180px;
+    }
+
+    .place-content,
+    .explore-content {
+        padding: 0.85rem;
+    }
+
+    .place-title,
+    .explore-title {
+        font-size: 1rem;
+    }
+
+    .place-description,
+    .explore-description {
+        font-size: 0.85rem;
+    }
+
+    .category-badge {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    /* ===== FILTER BUTTONS ===== */
+    .filter-buttons {
+        gap: 0.5rem;
+    }
+
+    .filter-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    /* ===== MAP ===== */
+    #mapContainer {
+        height: 350px;
+    }
+
+    /* ===== AI CHAT ===== */
+    .chat-messages {
+        height: 320px;
+    }
+
+    .message-content {
+        max-width: 75%;
+        font-size: 0.9rem;
+    }
+
+    .message-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+    .chat-input {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+
+    .send-btn {
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
     }
 
     .quick-btn {
-        font-size: 0.85rem;
-        padding: 0.5rem 0.8rem;
+        padding: 0.5rem 0.7rem;
+        font-size: 0.8rem;
     }
 
-    /* Theme Options */
+    /* ===== SETTINGS ===== */
+    .settings-card {
+        padding: 1.25rem;
+    }
+
+    .settings-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .settings-card > p {
+        font-size: 0.9rem;
+    }
+
     .theme-options {
         flex-direction: column;
+        gap: 0.6rem;
+    }
+
+    .theme-option-btn {
+        padding: 0.85rem;
+    }
+
+    .theme-option-btn .theme-icon {
+        font-size: 1.5rem;
+    }
+
+    .radio-option {
+        padding: 0.85rem;
+        font-size: 0.9rem;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .footer-content {
+        gap: 1.5rem;
+    }
+
+    .footer-section h3,
+    .footer-section h4 {
+        font-size: 1rem;
+    }
+
+    .footer-section p {
+        font-size: 0.85rem;
+    }
+
+    .social-links {
+        font-size: 1.3rem;
+    }
+
+    .footer-bottom {
+        font-size: 0.8rem;
+        padding-top: 1rem;
     }
 }
 
@@ -1118,46 +1484,7 @@ select:focus {
     }
 }
 
-/* ===== MOBILE NAVBAR FIX ===== */
-@media (max-width: 768px) {
 
-    .navbar {
-        padding: 12px 16px;
-    }
-
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: var(--bg-primary);
-        flex-direction: column;
-        gap: 0;
-        display: none;
-        z-index: 999;
-        border-top: 1px solid rgba(0,0,0,0.1);
-    }
-
-    .nav-menu.active {
-        display: flex;
-    }
-
-    .nav-menu li {
-        width: 100%;
-    }
-
-    .nav-menu a {
-        width: 100%;
-        padding: 16px;
-        text-align: center;
-        font-size: 1.1rem;
-        border-bottom: 1px solid rgba(0,0,0,0.08);
-    }
-
-    .mobile-menu-toggle {
-        display: block;
-    }
-}
 /* 🗺️ MAP FIX */
 #mapContainer {
     width: 100%;
