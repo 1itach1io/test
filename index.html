@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover the beauty of Egypt - A student web design project">
+    <meta name="author" content="Middle 2 Student">
+    <title>Discover Egypt - Tourism Guide</title>
+
+    <link rel="icon" type="image/webp" href="images/giza-pyramids-frygia9m5ggjhaz1.webp"/>
+    <link rel="shortcut icon" type="image/webp" href="images/giza-pyramids-frygia9m5ggjhaz1.webp" />
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/auth-enhanced.css">
+    <link rel="stylesheet" href="css/nearby.css">
+    <link rel="stylesheet" href="css/plans.css">
+    <link rel="stylesheet" href="css/search.css">
+    <!-- Leaflet CSS -->
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+
+<!-- ========== HEADER / NAVIGATION BAR ========== -->
+<header class="header">
+    <nav class="navbar">
+        <!-- Logo -->
+        <div class="logo">
+            <h1> Discover Egypt</h1>
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="#home" class="nav-link active" data-section="home" data-translate="nav.home">Home</a></li>
+            <li><a href="#tools" class="nav-link" data-section="tools" data-translate="nav.tools">Tools</a></li>
+            <li><a href="#plans" class="nav-link" data-section="plans" data-translate="nav.plans">Plans</a></li>
+            <li><a href="#settings" class="nav-link" data-section="settings">⚙</a></li>
+            
+            <!-- Mobile Only Items -->
+            <li class="mobile-only-item">
+                <button class="mobile-search-btn" id="mobile-search-btn">
+                    <i class="fas fa-search"></i>
+                    <span data-translate="nav.search">Search</span>
+                </button>
+            </li>
+            <li class="mobile-only-item" id="mobile-auth-item">
+                <button class="mobile-login-btn" id="mobile-login-btn">
+                    <i class="fas fa-user"></i>
+                    <span data-translate="auth.login">Log in</span>
+                </button>
+            </li>
+            <li class="mobile-only-item" id="mobile-user-item" style="display: none;">
+                <div class="mobile-user-info" id="mobile-user-info">
+                    <img src="" alt="User Avatar" class="mobile-user-avatar" id="mobile-user-avatar">
+                    <div class="mobile-user-details">
+                        <span class="mobile-user-name" id="mobile-user-name"></span>
+                        <span class="mobile-user-email" id="mobile-user-email"></span>
+                    </div>
+                </div>
+            </li>
+            <li class="mobile-only-item mobile-logout-item" id="mobile-logout-item" style="display: none;">
+                <button class="mobile-logout-btn" id="mobile-logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span data-translate="auth.logout">Logout</span>
+                </button>
+            </li>
+        </ul>
+
+        <!-- Right Side Controls -->
+        <div class="nav-controls">
+            <!-- Language Selector -->
+            <select id="language-selector" class="language-select">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+            </select>
+
+            <!-- Search Button - Desktop Only -->
+            <button class="icon-btn search-btn desktop-only" aria-label="Search" id="desktop-search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+
+            <!-- Auth Section - Desktop Only -->
+            <div class="auth-section desktop-only">
+                <!-- Login Button (shown when not logged in) -->
+                <button class="auth-btn login-btn" id="login-btn">
+                    <i class="fas fa-user"></i>
+                    <span data-translate="auth.login">Log in</span>
+                </button>
+                
+                <!-- User Menu (shown when logged in) -->
+                <div class="user-menu" id="user-menu" style="display: none;">
+                    <button class="user-menu-btn" id="user-menu-btn">
+                        <img src="" alt="User Avatar" class="user-avatar" id="user-avatar">
+                        <span class="user-name" id="user-name"></span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    
+                    <!-- Dropdown Menu -->
+                    <div class="user-dropdown" id="user-dropdown">
+                        <div class="user-dropdown-header">
+                            <img src="" alt="User Avatar" class="dropdown-avatar" id="dropdown-avatar">
+                            <div class="dropdown-user-info">
+                                <span class="dropdown-user-name" id="dropdown-user-name"></span>
+                                <span class="dropdown-user-email" id="dropdown-user-email"></span>
+                            </div>
+                        </div>
+                        <div class="user-dropdown-divider"></div>
+                        <a href="#" class="user-dropdown-item" id="profile-link">
+                            <i class="fas fa-user"></i>
+                            <span data-translate="auth.profile">Profile</span>
+                        </a>
+                        <a href="#" class="user-dropdown-item" id="favorites-link">
+                            <i class="fas fa-heart"></i>
+                            <span data-translate="auth.favorites">Favorites</span>
+                        </a>
+                        <a href="#settings" class="user-dropdown-item" data-section="settings">
+                            <i class="fas fa-cog"></i>
+                            <span data-translate="auth.settings">Settings</span>
+                        </a>
+                        <div class="user-dropdown-divider"></div>
+                        <button class="user-dropdown-item logout-item" id="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span data-translate="auth.logout">Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<!-- ========== MAIN CONTENT CONTAINER ========== -->
+<main class="main-content">
+
+    <!-- ========== HOME SECTION ========== -->
+    <section id="home" class="section active">
+        <!-- Hero Section with Background -->
+
+
+        <img src="images/sunset-pyramids-giza-egypt.jpg" alt="Egypt Pyramids" class="hero-bg">
+        <div class="hero-overlay"></div>
+
+        <!-- المحتوى -->
+        <div class="hero-content">
+            <h1 class="hero-title" data-translate="hero.title">Welcome to Egypt</h1>
+            <p class="hero-subtitle" data-translate="hero.subtitle">
+                Discover +7000 years of history and culture
+            </p>
+            <button class="cta-button" data-translate="hero.cta">
+                Start
+            </button>
+        </div>
+
+
+
+
+    </section>
+
+    <!-- ============= Tools ===============  -->
+    <section id="tools" class="section tools">
+        <div class="section-header">
+            <h1 class="section-title" data-translate="tools.title">Tools</h1>
+            <p class="section-subtitle" data-translate="tools.subtitle">Explore our tourism tools</p>
+        </div>
+
+        <div class="tools-buttons">
+            <a href="#nearby" class="nav-link tool-card" data-section="nearby">
+                <div class="tool-icon">📍</div>
+                <h3><span data-translate="nav.nearbyPlaces">Nearby Places</span></h3>
+            </a>
+            <a href="#explore" class="nav-link tool-card" data-section="explore">
+                <div class="tool-icon">🗺️</div>
+                <h3><span data-translate="nav.exploreEgypt">Explore Egypt</span></h3>
+            </a>
+            <a href="#map" class="nav-link tool-card" data-section="map">
+                <div class="tool-icon">🌍</div>
+                <h3><span data-translate="nav.map">Map</span></h3>
+            </a>
+            <a href="#ai-guide" class="nav-link tool-card" data-section="ai-guide">
+                <div class="tool-icon">🤖</div>
+                <h3><span data-translate="nav.smartGuide">Smart Guide</span></h3>
+            </a>
+            <a href="#plans" class="nav-link tool-card" data-section="plans">
+                <div class="tool-icon">🗺️</div>
+                <h3><span data-translate="nav.plans">Plans</span></h3>
+            </a>
+        </div>
+    </section>
+
+
+
+
+    <!-- ========== NEARBY PLACES SECTION ========== -->
+    <section id="nearby" class="section">
+        <div class="section-header">
+            <h2 class="section-title" data-translate="nearby.title">Nearby Places</h2>
+            <p class="section-subtitle" data-translate="nearby.subtitle">Discover amazing places near your location</p>
+        </div>
+
+        <!-- Nearby Places Container -->
+        <div id="nearby-places-container">
+            <!-- Content will be loaded dynamically by JavaScript -->
+        </div>
+
+        <!-- Fallback: Places Grid (static content) -->
+        <div class="places-grid" style="display: none;">
+            <!-- Place Card 1 -->
+            <article class="place-card">
+                <div class="place-image">
+                    <img src="images/giza-pyramids-and-a-giant-planet-txys9s1vox8a999i.webp" height="313" width="500"/>
+                </div>
+                <div class="place-content">
+                    <h3 class="place-title" data-translate="places.pyramids.title">Pyramids of Giza</h3>
+                    <p class="place-description" data-translate="places.pyramids.desc">
+                        The last remaining wonder of the ancient world
+                    </p>
+                    <span class="place-location">📍 Giza</span>
+                </div>
+            </article>
+
+            <!-- Place Card 2 -->
+            <article class="place-card">
+                <div class="place-image">
+
+
+                    <img src="images/676903-1920x1080-desktop-1080p-luxor-egypt-wallpaper-photo.webp" height="281"
+                         width="500"/>
+                </div>
+                <div class="place-content">
+                    <h3 class="place-title" data-translate="places.sphinx.title">Great Sphinx</h3>
+                    <p class="place-description" data-translate="places.sphinx.desc">
+                        Mysterious guardian of the pyramids
+                    </p>
+                    <span class="place-location">📍 Giza</span>
+                </div>
+            </article>
+
+            <!-- Place Card 3 -->
+            <article class="place-card">
+                <div class="place-image">
+                    <img src="images/images.jpg" height="177" width="284"/>
+                </div>
+                <div class="place-content">
+                    <h3 class="place-title" data-translate="places.museum.title">Egyptian Museum</h3>
+                    <p class="place-description" data-translate="places.museum.desc">
+                        Home to Tutankhamun's treasures
+                    </p>
+                    <span class="place-location">📍 Cairo</span>
+                </div>
+            </article>
+
+            <!-- Place Card 4 -->
+            <article class="place-card">
+                <div class="place-image">
+                    <img src="images/Untitled.jpg" height="183" width="275"/>
+                </div>
+                <div class="place-content">
+                    <h3 class="place-title" data-translate="places.nile.title">Nile River</h3>
+                    <p class="place-description" data-translate="places.nile.desc">
+                        The longest river in the world
+                    </p>
+                    <span class="place-location">📍 Throughout Egypt</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ========== EXPLORE EGYPT SECTION ========== -->
+    <section id="explore" class="section">
+        <div class="section-header">
+            <h2 class="section-title" data-translate="explore.title">Explore Egypt</h2>
+            <p class="section-subtitle" data-translate="explore.subtitle">Browse by category</p>
+        </div>
+
+        <!-- Category Filter Buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-category="all" data-translate="explore.all">All</button>
+            <button class="filter-btn" data-category="ancient" data-translate="explore.ancient">Ancient Sites</button>
+            <button class="filter-btn" data-category="modern" data-translate="explore.modern">Modern Cities</button>
+            <button class="filter-btn" data-category="nature" data-translate="explore.nature">Nature</button>
+            <button class="filter-btn" data-category="beach" data-translate="explore.beach">Beaches</button>
+        </div>
+
+        <!-- Explore Grid -->
+        <div class="explore-grid">
+            <!-- Ancient Sites -->
+            <article class="explore-card" data-category="ancient">
+                <div class="explore-image">
+
+
+                    <img src="images/istockphoto-175526084-612x612.jpg" height="408" width="612"/>
+                </div>
+                <div class="explore-content">
+                    <span class="category-badge">Ancient</span>
+                    <h3 class="explore-title" data-translate="explore.luxor.title">Luxor Temple</h3>
+                    <p class="explore-description" data-translate="explore.luxor.desc">
+                        A large ancient Egyptian temple complex on the east bank of the Nile
+                    </p>
+                </div>
+            </article>
+
+            <article class="explore-card" data-category="ancient">
+                <div class="explore-image">
+
+
+                    <img src="images/Karnak-Temple-6.jpg" height="682" width="1024"/>
+                </div>
+                <div class="explore-content">
+                    <span class="category-badge">Ancient</span>
+                    <h3 class="explore-title" data-translate="explore.karnak.title">Karnak Temple</h3>
+                    <p class="explore-description" data-translate="explore.karnak.desc">
+                        The largest religious building ever constructed
+                    </p>
+                </div>
+            </article>
+
+            <!-- Modern Cities -->
+            <article class="explore-card" data-category="modern">
+                <div class="explore-image">
+
+                    <img src="images/istockphoto-171450925-612x612.jpg" height="332" width="612"/>
+                </div>
+                <div class="explore-content">
+                    <span class="category-badge">Modern</span>
+                    <h3 class="explore-title" data-translate="explore.cairo.title">Cairo City</h3>
+                    <p class="explore-description" data-translate="explore.cairo.desc">
+                        The vibrant capital of Egypt with bustling markets and modern life
+                    </p>
+                </div>
+            </article>
+
+            <article class="explore-card" data-category="modern">
+                <div class="explore-image">
+
+
+                    <img src="images/wp11896306.webp" height="311" width="500"/>
+                </div>
+                <div class="explore-content">
+                    <span class="category-badge">Modern</span>
+                    <h3 class="explore-title" data-translate="explore.alex.title">Alexandria</h3>
+                    <p class="explore-description" data-translate="explore.alex.desc">
+                        Egypt's second-largest city and Mediterranean pearl
+                    </p>
+                </div>
+            </article>
+
+            <!-- Nature -->
+            <article class="explore-card" data-category="nature">
+                <div class="explore-image">
+
+
+                    <img src="images/Siwa-Oasis-Egypt-Tours-Portal.jpg" height="600" width="1200"/>
+                </div>
+                <div class="explore-content">
+                    <span class="category-badge">Nature</span>
+                    <h3 class="explore-title" data-translate="explore.siwa.title">Siwa Oasis</h3>
+                    <p class="explore-description" data-translate="explore.siwa.desc">
+                        A peaceful desert oasis with natural springs
+                    </p>
+                </div>
+            </article>
+
+            <!-- Beaches -->
+            <article class="explore-card" data-category="beach">
+                <div class="explore-image">
+
+
+                    <img src="images/A-picture-of-one-of-the-beaches-of-the-Red-Sea-694x694.jpg" height="694"
+                         width="694"/>
+                </div>
+                <div class="explore-content">
+                    <span class="category-badge">Beach</span>
+                    <h3 class="explore-title" data-translate="explore.redsea.title">Red Sea</h3>
+                    <p class="explore-description" data-translate="explore.redsea.desc">
+                        Crystal clear waters perfect for diving and snorkeling
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+
+
+
+    <!-- Leaflet CSS -->
+    <link
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <!-- Map Container -->
+
+
+    <!-- ========== MAP SECTION ========== -->
+    <section id="map" class="section map-section">
+        <h1 class="text-center">Explore Egypt</h1>
+        <p class="text-center">
+            <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5246765.280911796!2d33.27734136198609!3d26.898047757173526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14368976c35c36e9%3A0x2c45a00925c4c444!2z2YXYtdix!5e0!3m2!1sar!2seg!4v1769882517722!5m2!1sar!2segy"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </p>
+    </section>
+
+
+
+
+    <!-- ========== AI TOURIST GUIDE SECTION ========== -->
+    <section id="ai-guide" class="section">
+        <div class="section-header">
+            <h2 class="section-title" data-translate="ai.title">AI Tourist Guide</h2>
+            <p class="section-subtitle" data-translate="ai.subtitle">Ask me anything about Egypt tourism!</p>
+        </div>
+
+        <!-- AI Disclaimer -->
+        <div class="ai-disclaimer">
+            <p data-translate="ai.disclaimer">
+                ℹ️ This is a simple educational AI model using keyword matching.
+                It provides basic tourism information about Egypt.
+            </p>
+        </div>
+
+        <!-- Chat Container -->
+        <div class="chat-container">
+            <!-- Chat Messages Area -->
+            <div class="chat-messages" id="chat-messages">
+                <!-- Welcome Message -->
+                <div class="message bot-message">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <p data-translate="ai.welcome">
+                            Hello! I'm your AI tourist guide. Ask me about Egyptian places, history,
+                            culture, or travel tips!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input Area -->
+            <div class="chat-input-area">
+                <input
+                        type="text"
+                        id="chat-input"
+                        class="chat-input"
+                        placeholder="Type your question..."
+                        data-translate-placeholder="ai.placeholder"
+                >
+                <button id="send-btn" class="send-btn">
+                    <span>Send</span>
+                </button>
+            </div>
+
+            <!-- Quick Question Buttons -->
+            <div class="quick-questions">
+                <button class="quick-btn" data-question="pyramids">🏛️ <span data-translate="ai.q1">Pyramids</span></button>
+                <button class="quick-btn" data-question="weather">🌤️ <span data-translate="ai.q2">Weather</span></button>
+                <button class="quick-btn" data-question="food">🍽️ <span data-translate="ai.q3">Food</span></button>
+                <button class="quick-btn" data-question="safety">🛡️ <span data-translate="ai.q4">Safety</span></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PLANS SECTION ========== -->
+    <section id="plans" class="section">
+        <div class="section-header">
+            <h2 class="section-title" data-translate="plans.title">Travel Plans</h2>
+            <p class="section-subtitle" data-translate="plans.subtitle">Create your personalized trip</p>
+        </div>
+
+        <div id="plans-wizard" class="plans-wizard">
+            <!-- Question 1: Days -->
+            <div class="question-step active" data-step="1">
+                <h3 data-translate="plans.q1.title">How many days?</h3>
+                <div class="options-grid">
+                    <button class="option-btn" data-value="1">1 <span data-translate="plans.day">day</span></button>
+                    <button class="option-btn" data-value="2">2 <span data-translate="plans.days">days</span></button>
+                    <button class="option-btn" data-value="3">3 <span data-translate="plans.days">days</span></button>
+                    <button class="option-btn" data-value="5">5 <span data-translate="plans.days">days</span></button>
+                    <button class="option-btn" data-value="7">7 <span data-translate="plans.days">days</span></button>
+                </div>
+            </div>
+
+            <!-- Question 2: Budget -->
+            <div class="question-step" data-step="2">
+                <h3 data-translate="plans.q2.title">What's your budget?</h3>
+                <div class="options-grid">
+                    <button class="option-btn" data-value="low">
+                        💰 <span data-translate="plans.budget.low">Budget</span>
+                    </button>
+                    <button class="option-btn" data-value="medium">
+                        💰💰 <span data-translate="plans.budget.medium">Medium</span>
+                    </button>
+                    <button class="option-btn" data-value="high">
+                        💰💰💰 <span data-translate="plans.budget.high">Luxury</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 3: Type -->
+            <div class="question-step" data-step="3">
+                <h3 data-translate="plans.q3.title">What type of trip?</h3>
+                <div class="options-grid">
+                    <button class="option-btn" data-value="ancient">
+                        🏛️ <span data-translate="plans.type.ancient">Ancient Sites</span>
+                    </button>
+                    <button class="option-btn" data-value="beach">
+                        🏖️ <span data-translate="plans.type.beach">Beach</span>
+                    </button>
+                    <button class="option-btn" data-value="nature">
+                        🌿 <span data-translate="plans.type.nature">Nature</span>
+                    </button>
+                    <button class="option-btn" data-value="modern">
+                        🏙️ <span data-translate="plans.type.modern">Modern</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 4: Family -->
+            <div class="question-step" data-step="4">
+                <h3 data-translate="plans.q4.title">With family?</h3>
+                <div class="options-grid">
+                    <button class="option-btn" data-value="yes">
+                        👨‍👩‍👧‍👦 <span data-translate="plans.family.yes">Yes</span>
+                    </button>
+                    <button class="option-btn" data-value="no">
+                        🧳 <span data-translate="plans.family.no">No</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result -->
+        <div id="plans-result" class="plans-result" style="display: none;"></div>
+    </section>
+
+    <!-- ========== SETTINGS SECTION ========== -->
+    <section id="settings" class="section">
+        <div class="section-header">
+            <h2 class="section-title" data-translate="settings.title">Settings</h2>
+            <p class="section-subtitle" data-translate="settings.subtitle">Customize your experience</p>
+        </div>
+
+        <div class="settings-container">
+            <!-- Language Settings -->
+            <div class="settings-card">
+                <h3 data-translate="settings.lang.title">Language Preferences</h3>
+                <p data-translate="settings.lang.desc">Choose your preferred language</p>
+
+                <div class="language-options">
+                    <label class="radio-option">
+                        <input type="radio" name="language" value="en" checked>
+                        <span>🇬🇧 English</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="language" value="ar">
+                        <span>🇪🇬 العربية (Arabic)</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="language" value="fr">
+                        <span>🇫🇷 Français (French)</span>
+                    </label>
+                </div>
+
+                <label class="checkbox-option">
+                    <input type="checkbox" id="auto-detect-lang" checked>
+                    <span data-translate="settings.lang.auto">Auto-detect device language</span>
+                </label>
+            </div>
+
+            <!-- Theme Settings -->
+            <div class="settings-card">
+                <h3 data-translate="settings.theme.title">Theme Settings</h3>
+                <p data-translate="settings.theme.desc">Choose your preferred color theme</p>
+
+                <div class="theme-options">
+                    <button class="theme-option-btn active" data-theme="light">
+                        <span class="theme-icon">☀️</span>
+                        <span data-translate="settings.theme.light">Light Mode</span>
+                    </button>
+                    <button class="theme-option-btn" data-theme="dark">
+                        <span class="theme-icon">🌙</span>
+                        <span data-translate="settings.theme.dark">Dark Mode</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- About Project -->
+            <div class="settings-card">
+                <h3 data-translate="settings.about.title">About This Project</h3>
+                <p data-translate="settings.about.desc">
+                    This is a OMAR web design project for a Middle 2 school competition.
+                    Built with HTML, CSS, and JavaScript to showcase Egypt's tourism attractions.
+                </p>
+                <p data-translate="settings.about.tech">
+                    <strong>Technologies:</strong> HTML5, CSS3, Vanilla JavaScript
+                </p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Discover Egypt</h3>
+            <p data-translate="footer.tagline">Your gateway to Egypt's wonders</p>
+        </div>
+
+        <div class="footer-section">
+            <h4 data-translate="footer.contact">Contact</h4>
+            <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afc6c1c9c0efcbc6dcccc0d9caddcac8d6dfdb81cacbda">[email&#160;protected]</a></p>
+            <p>Phone: +20 123 456 789</p>
+        </div>
+
+        <div class="footer-section">
+            <h4 data-translate="footer.social">Follow Us</h4>
+            <div claشss="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Discover Egypt -    OMAR Web Design Project - Middle 2</p>
+    </div>
+</footer>
+
+<!-- ========== SEARCH MODAL ========== -->
+<div class="search-modal" id="search-modal">
+    <div class="search-modal-content">
+        <button class="search-close" id="search-close">&times;</button>
+        <h2 class="search-title" data-translate="search.title">Search Places</h2>
+        
+        <div class="search-input-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="search-input" class="search-input" placeholder="Search for places, cities..." data-translate-placeholder="search.placeholder">
+        </div>
+        
+        <div id="search-results" class="search-results"></div>
+        <div id="search-no-results" class="search-no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <p data-translate="search.no_results">No places found</p>
+        </div>
+    </div>
+</div>
+
+<!-- ========== AUTH MODALS ========== -->
+<!-- Login Modal -->
+<div class="auth-modal-overlay" id="login-modal">
+    <div class="auth-modal">
+        <button class="auth-modal-close" id="login-close">&times;</button>
+        <div class="auth-modal-header">
+            <h2 class="auth-modal-title">Log in</h2>
+            <p class="auth-modal-subtitle">Access your saved itineraries</p>
+        </div>
+        
+        <div class="auth-error" id="login-error"></div>
+        
+        <form class="auth-form" id="login-form">
+            <div class="auth-input-group">
+                <label class="auth-input-label" for="login-email">Email</label>
+                <input type="email" id="login-email" class="auth-input" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="auth-input-group">
+                <label class="auth-input-label" for="login-password">Password</label>
+                <input type="password" id="login-password" class="auth-input" placeholder="Enter your password" required>
+            </div>
+            
+            <button type="submit" class="auth-submit-btn">Log in</button>
+        </form>
+        
+        <div class="auth-divider">
+            <div class="auth-divider-line"></div>
+            <span class="auth-divider-text">or</span>
+            <div class="auth-divider-line"></div>
+        </div>
+        
+        <button class="auth-google-btn" id="google-login-btn">
+            <svg class="google-icon" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Continue with Google
+        </button>
+        
+        <div class="auth-footer">
+            Don't have an account? <a id="switch-to-signup">Sign Up</a>
+        </div>
+    </div>
+</div>
+
+<!-- Sign Up Modal -->
+<div class="auth-modal-overlay" id="signup-modal">
+    <div class="auth-modal">
+        <button class="auth-modal-close" id="signup-close">&times;</button>
+        <div class="auth-modal-header">
+            <h2 class="auth-modal-title">Sign Up</h2>
+            <p class="auth-modal-subtitle">Create a free Visit Egypt account</p>
+        </div>
+        
+        <div class="auth-error" id="signup-error"></div>
+        
+        <form class="auth-form" id="signup-form">
+            <div class="auth-input-group">
+                <label class="auth-input-label" for="signup-name">Full Name</label>
+                <input type="text" id="signup-name" class="auth-input" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="auth-input-group">
+                <label class="auth-input-label" for="signup-email">Email</label>
+                <input type="email" id="signup-email" class="auth-input" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="auth-input-group">
+                <label class="auth-input-label" for="signup-password">Password</label>
+                <input type="password" id="signup-password" class="auth-input" placeholder="Create a password (min 6 characters)" required minlength="6">
+            </div>
+            
+            <button type="submit" class="auth-submit-btn">Create Account</button>
+        </form>
+        
+        <div class="auth-divider">
+            <div class="auth-divider-line"></div>
+            <span class="auth-divider-text">or</span>
+            <div class="auth-divider-line"></div>
+        </div>
+        
+        <button class="auth-google-btn" id="google-signup-btn">
+            <svg class="google-icon" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Sign up with Google
+        </button>
+        
+        <div class="auth-footer">
+            Already have an account? <a id="switch-to-login">Log in</a>
+        </div>
+    </div>
+</div>
+
+<!-- ========== JAVASCRIPT LINKS ========== -->
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+<!-- Firebase Configuration -->
+<script src="js/firebase-config.js"></script>
+
+<!-- Leaflet JS for maps -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Translations Data -->
+<script src="data/translations.js"></script>
+
+<!-- Places Data -->
+<script src="data/places-enhanced.js"></script>
+
+<!-- Core: bootstrap first, then features -->
+<script src="js/core/app.js"></script>
+<script src="js/core/navigation.js"></script>
+<script src="js/core/theme.js"></script>
+<script src="js/core/language.js"></script>
+
+<!-- Firebase Authentication -->
+<script src="js/firebase-auth.js"></script>
+
+<!-- Features: filters, map, AI guide -->
+<script src="js/features/filters.js"></script>
+<script src="js/features/map.js"></script>
+<script src="js/features/aiGuide.js"></script>
+
+<!-- Plans Engine -->
+<script src="js/plans.js"></script>
+
+<!-- Search Engine -->
+<script src="js/search.js"></script>
+
+<!-- Utils -->
+<script src="js/utils/helpers.js"></script>
+
+
+</body>
+</html>

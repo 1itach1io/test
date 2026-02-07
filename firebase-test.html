@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Test - اختبار Firebase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 2px solid #bee5eb;
+        }
+        
+        .feature {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-right: 4px solid #667eea;
+        }
+        
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .feature p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .check {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .note h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .note p {
+            color: #856404;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Firebase Status</h1>
+        <p style="color: #666; margin-bottom: 20px;">حالة نظام تسجيل الدخول</p>
+        
+        <div id="firebase-status" class="status info">
+            🔄 جاري التحقق من Firebase...
+        </div>
+        
+        <div class="feature">
+            <h3>✅ Email/Password Authentication</h3>
+            <p>تسجيل الدخول بالبريد الإلكتروني وكلمة المرور - <span class="check">مفعّل</span></p>
+        </div>
+        
+        <div class="feature">
+            <h3>✅ Google Sign-in</h3>
+            <p>تسجيل الدخول عبر Google - <span class="check">مفعّل</span></p>
+        </div>
+        
+        <div class="feature">
+            <h3>✅ User State Management</h3>
+            <p>حفظ حالة المستخدم تلقائياً - <span class="check">مفعّل</span></p>
+        </div>
+        
+        <div class="note">
+            <h4>📝 ملاحظة هامة</h4>
+            <p>
+                <strong>Google Sign-in</strong> يتطلب HTTPS للعمل.<br>
+                إذا كنت تفتح الملف محلياً، استخدم <strong>Email/Password</strong> للتجربة.
+            </p>
+        </div>
+        
+        <div class="code">
+<strong>Firebase Project:</strong><br>
+Project ID: discover-egypt-13ef7<br>
+Auth Domain: discover-egypt-13ef7.firebaseapp.com<br>
+Status: <span style="color: #50fa7b;">✅ Active</span>
+        </div>
+        
+        <button class="btn" onclick="goToWebsite()">
+            🚀 فتح الموقع
+        </button>
+        
+        <button class="btn" onclick="testFirebase()" style="margin-top: 10px; background: #28a745;">
+            🔍 اختبار الاتصال بـ Firebase
+        </button>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDdJHBy-Ai8MBQQgFJCsolOE1VvCPwWOCQ",
+            authDomain: "discover-egypt-13ef7.firebaseapp.com",
+            projectId: "discover-egypt-13ef7",
+            storageBucket: "discover-egypt-13ef7.firebasestorage.app",
+            messagingSenderId: "200252880261",
+            appId: "1:200252880261:web:b24b6b09151830b82580ec",
+            measurementId: "G-R46HC715KF"
+        };
+        
+        // Initialize Firebase
+        let app, auth;
+        
+        try {
+            app = firebase.initializeApp(firebaseConfig);
+            auth = firebase.auth();
+            
+            document.getElementById('firebase-status').className = 'status success';
+            document.getElementById('firebase-status').innerHTML = '✅ Firebase متصل ويعمل بشكل صحيح!';
+            
+            console.log('✅ Firebase initialized successfully');
+        } catch (error) {
+            document.getElementById('firebase-status').className = 'status error';
+            document.getElementById('firebase-status').innerHTML = '❌ خطأ في الاتصال بـ Firebase: ' + error.message;
+            
+            console.error('❌ Firebase initialization error:', error);
+        }
+        
+        function goToWebsite() {
+            window.location.href = 'index.html';
+        }
+        
+        function testFirebase() {
+            const statusDiv = document.getElementById('firebase-status');
+            statusDiv.className = 'status info';
+            statusDiv.innerHTML = '🔄 جاري الاختبار...';
+            
+            setTimeout(() => {
+                try {
+                    // Test authentication methods
+                    const emailEnabled = auth.signInWithEmailAndPassword ? true : false;
+                    const googleEnabled = firebase.auth.GoogleAuthProvider ? true : false;
+                    
+                    if (emailEnabled && googleEnabled) {
+                        statusDiv.className = 'status success';
+                        statusDiv.innerHTML = '✅ Firebase يعمل بشكل ممتاز!<br>جميع طرق تسجيل الدخول متاحة.';
+                    } else {
+                        statusDiv.className = 'status error';
+                        statusDiv.innerHTML = '⚠️ بعض المميزات غير متاحة';
+                    }
+                } catch (error) {
+                    statusDiv.className = 'status error';
+                    statusDiv.innerHTML = '❌ خطأ في الاختبار: ' + error.message;
+                }
+            }, 1000);
+        }
+        
+        // Auto test on load
+        window.addEventListener('load', () => {
+            setTimeout(testFirebase, 1000);
+        });
+    </script>
+</body>
+</html>

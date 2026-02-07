@@ -1,0 +1,117 @@
+/* ==========================================
+   DISCOVER EGYPT - HOME PAGE CSS
+   Hero section styles
+   ========================================== */
+
+/* ========== HERO SECTION ========== */
+
+.hero {
+    position: relative;
+    height: 520px;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+/* صورة الخلفية */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 24px;
+    opacity: 0.95;
+}
+
+/* طبقة تعتيم */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.35),
+            rgba(0, 0, 0, 0.55)
+    );
+    z-index: 2;
+}
+
+/* المحتوى */
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: #fff;
+    max-width: 800px;
+    margin: auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========== HOME RESPONSIVE ========== */
+
+/* 📱 Mobile (768px) */
+@media (max-width: 768px) {
+    .hero {
+        height: 380px;
+        border-radius: 18px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.05rem;
+    }
+
+    .hero-content {
+        padding: 0 1rem;
+    }
+}
+
+/* Tablets responsive from layout (768px) */
+@media (max-width: 768px) {
+    .hero {
+        height: 320px;
+        border-radius: var(--radius-lg);
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* 📱 Mobile phones (480px) */
+@media (max-width: 480px) {
+    .hero {
+        height: 280px;
+    }
+
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+}
