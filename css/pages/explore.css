@@ -1,0 +1,99 @@
+/* ==========================================
+   DISCOVER EGYPT - EXPLORE PAGE CSS
+   Tools cards and grid
+   ========================================== */
+
+/* ========== TOOLS SECTION ========== */
+
+.tools-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.tools-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.tool-card {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    padding: 40px 30px;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    text-align: center;
+    transition: all var(--transition-medium);
+    box-shadow: 0 4px 15px var(--shadow-light);
+    border: 2px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.tool-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 8px 25px var(--shadow-medium);
+    border-color: var(--primary-color);
+}
+
+.tool-card .tool-icon {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    transition: transform var(--transition-fast);
+}
+
+.tool-card:hover .tool-icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.tool-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.tool-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.tool-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* ========== EXPLORE RESPONSIVE ========== */
+
+@media (max-width: 768px) {
+    .tools-buttons {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .tool-card {
+        padding: 30px 20px;
+    }
+
+    .tool-card .tool-icon {
+        font-size: 2.5rem;
+    }
+
+    .tool-card h3 {
+        font-size: 1.1rem;
+    }
+}

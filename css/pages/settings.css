@@ -1,0 +1,167 @@
+/* ==========================================
+   DISCOVER EGYPT - SETTINGS PAGE CSS
+   Settings section styles
+   ========================================== */
+
+/* ========== SETTINGS SECTION ========== */
+
+.settings-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.settings-card {
+    background-color: var(--bg-card);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 2px 10px var(--shadow-light);
+}
+
+.settings-card h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.settings-card > p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Language Options */
+.language-options,
+.theme-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.radio-option:hover {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+.radio-option input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+    color: var(--text-secondary);
+    margin-top: var(--spacing-md);
+}
+
+.checkbox-option input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Theme Options Buttons */
+.theme-options {
+    flex-direction: row;
+}
+
+.theme-option-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg);
+    background-color: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+}
+
+.theme-option-btn:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.theme-option-btn.active {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border-color: var(--primary-color);
+}
+
+.theme-option-btn .theme-icon {
+    font-size: 2rem;
+}
+
+/* ========== SETTINGS RESPONSIVE ========== */
+
+/* Tablets (768px) */
+@media (max-width: 768px) {
+    .settings-card {
+        padding: 1.5rem;
+    }
+
+    .settings-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .theme-options {
+        flex-direction: row;
+        gap: 0.75rem;
+    }
+
+    .theme-option-btn {
+        padding: 1rem;
+    }
+}
+
+/* Mobile phones (480px) */
+@media (max-width: 480px) {
+    .settings-card {
+        padding: 1.25rem;
+    }
+
+    .settings-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .settings-card > p {
+        font-size: 0.9rem;
+    }
+
+    .theme-options {
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+
+    .theme-option-btn {
+        padding: 0.85rem;
+    }
+
+    .theme-option-btn .theme-icon {
+        font-size: 1.5rem;
+    }
+
+    .radio-option {
+        padding: 0.85rem;
+        font-size: 0.9rem;
+    }
+}

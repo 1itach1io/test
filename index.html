@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover the beauty of Egypt - A student web design project">
+    <meta name="author" content="Middle 2 Student">
+    <title id="page-title">Discover Egypt - Tourism Guide</title>
+
+    <link rel="icon" type="image/png" href="images/favicon.png"/>
+    <link rel="icon" type="image/webp" href="images/giza-pyramids-frygia9m5ggjhaz1.webp"/>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/search-no-images.css">
+    <link rel="stylesheet" href="css/explore-cards.css">
+    <link rel="stylesheet" href="css/calculator.css">
+    <link rel="stylesheet" href="css/auth-styles.css">
+    <link rel="stylesheet" href="plans/plans.css">
+
+    <!-- Plans Script -->
+    <script src="js/plans.js" defer></script>
+
+    <!-- Leaflet CSS -->
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+
+<!-- ========== HEADER / NAVIGATION BAR ========== -->
+<header class="header">
+    <nav class="navbar">
+        <!-- Logo -->
+        <div class="logo">
+            <h1 data-translate="siteName">Discover Egypt</h1>
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="#home" class="nav-link active" data-section="home" data-translate="nav.home">Home</a></li>
+            <li><a href="#plans" class="nav-link" data-section="plans" data-translate="nav.plans">Plans</a></li>
+            <li><a href="#calculator" class="nav-link" data-section="calculator" data-translate="nav.calculator">Budget Calculator</a></li>
+            <li><a href="#tools" class="nav-link" data-section="tools" data-translate="nav.tools">Tools</a></li>
+            <li><a href="#settings" class="nav-link" data-section="settings">⚙</a></li>
+
+            <!-- Mobile Only Items -->
+            <li class="mobile-only-item auth-mobile-item" id="auth-mobile-item" style="display: none;">
+                <a href="login.html" class="mobile-auth-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span data-translate="auth.login">Login</span>
+                </a>
+            </li>
+            <li class="mobile-only-item">
+                <button class="mobile-search-btn" id="mobile-search-btn">
+                    <i class="fas fa-search"></i>
+                    <span data-translate="nav.search">Search</span>
+                </button>
+            </li>
+        </ul>
+
+        <!-- Right Side Controls -->
+        <div class="nav-controls">
+            <!-- Language Selector -->
+            <select id="language-selector" class="language-select">
+                <option value="en" data-translate="language.english">English</option>
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+            </select>
+
+            <!-- Auth Buttons - للمستخدمين غير المسجلين -->
+            <div class="auth-buttons" id="auth-buttons" style="display: none;">
+                <a href="login.html" class="auth-btn login-btn desktop-only">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span data-translate="auth.login">Login</span>
+                </a>
+            </div>
+
+            <!-- User Menu - للمستخدمين المسجلين -->
+            <div class="user-menu-container" id="user-menu-container" style="display: none;">
+                <button class="user-menu-btn" id="user-menu-btn" aria-label="User menu">
+                    <img class="user-photo" id="user-photo" alt="صورة المستخدم">
+                    <span class="user-display-name" id="user-display-name"></span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="user-dropdown" id="user-dropdown">
+                    <div class="user-info">
+                        <img class="user-photo-large" id="user-photo-large" alt="صورة المستخدم">
+                        <div class="user-details">
+                            <span class="user-name" id="user-name-dropdown"></span>
+                            <span class="user-email" id="user-email"></span>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" id="user-favorites">
+                        <i class="fas fa-heart"></i>
+                        <span data-translate="auth.favorites">Favorites</span>
+                    </a>
+                    <a href="my-plans.html" class="dropdown-item" id="user-my-plans">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span data-translate="auth.myPlans">My Plans</span>
+                    </a>
+                    <a href="#settings" class="dropdown-item" onclick="closeUserDropdown()">
+                        <i class="fas fa-cog"></i>
+                        <span data-translate="auth.settings">Settings</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item logout-btn" onclick="handleLogout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span data-translate="auth.logout">Logout</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search Button - Desktop Only -->
+            <button class="icon-btn search-btn desktop-only" aria-label="Search" id="desktop-search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<!-- ========== MAIN CONTENT CONTAINER ========== -->
+<main class="main-content">
+
+    <!-- ========== HOME SECTION ========== -->
+    <section id="home" class="section active">
+        <!-- Hero Section with Background -->
+
+
+        <img src="images/sunset-pyramids-giza-egypt-optimized.webp" alt="Egypt Pyramids" class="hero-bg">
+        <div class="hero-overlay"></div>
+
+        <!-- المحتوى -->
+        <div class="hero-content">
+            <h1 class="hero-title" data-translate="hero.title">Welcome to Egypt</h1>
+            <p class="hero-subtitle" data-translate="hero.subtitle">
+                Explore over 7000 years of history and culture
+            </p>
+            <button class="cta-button" data-translate="hero.cta">
+                Start
+            </button>
+        </div>
+
+
+
+
+    </section>
+
+    <!-- ============= Plans Section ===============  -->
+    <section id="plans" class="section plans-section">
+        <!-- Hero Section -->
+        <div class="plans-hero">
+            <div class="hero-bg">
+                <div class="pyramids"></div>
+                <div class="stars"></div>
+            </div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-icon">🌟</span>
+                        <span>خطط رحلتك المثالية</span>
+                        <span class="badge-icon">🌟</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="title-line">استكشف جمال</span>
+                        <span class="title-highlight">مصر الساحرة</span>
+                    </h1>
+                    <p class="hero-subtitle">رحلة عبر 7000 عام من الحضارة • 27 محافظة مصرية • تجارب لا تُنسى</p>
+
+                    <div class="quick-stats">
+                        <div class="stat">
+                            <div class="stat-number">27</div>
+                            <div class="stat-label">محافظة</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">200+</div>
+                            <div class="stat-label">معلم سياحي</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">مناطق</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">ذكريات</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Planning Section -->
+        <div class="planning-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>ابدأ التخطيط لرحلتك</h2>
+                    <p>اختر تفضيلاتك وسنصمم لك برنامجاً مخصصاً</p>
+                </div>
+
+                <!-- Step 1: Region Selection -->
+                <div class="planning-step active" id="step1">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h3>اختر المنطقة</h3>
+                    </div>
+                    <div class="regions-showcase" id="regionsShowcase">
+                        <!-- Will be populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Step 2: Governorate Selection -->
+                <div class="planning-step" id="step2">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h3>اختر المحافظة</h3>
+                    </div>
+                    <div class="governorates-grid" id="governoratesGrid">
+                        <!-- Will be populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Step 3: Trip Details -->
+                <div class="planning-step" id="step3">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h3>حدد تفاصيل الرحلة</h3>
+                    </div>
+
+                    <div class="trip-details">
+                        <div class="detail-section">
+                            <h4><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg> المدة</h4>
+                            <div class="duration-options">
+                                <button class="option-card" data-days="1">
+                                    <span class="option-value">1</span>
+                                    <span class="option-label">يوم</span>
+                                </button>
+                                <button class="option-card" data-days="2">
+                                    <span class="option-value">2</span>
+                                    <span class="option-label">يوم</span>
+                                </button>
+                                <button class="option-card active" data-days="3">
+                                    <span class="option-value">3</span>
+                                    <span class="option-label">أيام</span>
+                                </button>
+                                <button class="option-card" data-days="5">
+                                    <span class="option-value">5</span>
+                                    <span class="option-label">أيام</span>
+                                </button>
+                                <button class="option-card" data-days="7">
+                                    <span class="option-value">7</span>
+                                    <span class="option-label">أيام</span>
+                                </button>
+                                <button class="option-card" data-days="10">
+                                    <span class="option-value">10</span>
+                                    <span class="option-label">أيام</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h4><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> عدد المسافرين</h4>
+                            <div class="travelers-selector">
+                                <button class="counter-btn" onclick="plansApp.changeTravelers(-1)">-</button>
+                                <div class="counter-display">
+                                    <span class="counter-value" id="travelersCount">2</span>
+                                    <span class="counter-label">مسافر</span>
+                                </div>
+                                <button class="counter-btn" onclick="plansApp.changeTravelers(1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="detail-section full-width">
+                            <h4><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg> مستوى الميزانية</h4>
+                            <div class="budget-options">
+                                <div class="budget-card" data-budget="budget">
+                                    <div class="budget-icon">💰</div>
+                                    <div class="budget-name">اقتصادي</div>
+                                    <div class="budget-desc">للمسافرين بميزانية محدودة</div>
+                                    <div class="budget-price" data-price-type="budget">~500 EGP/day</div>
+                                </div>
+                                <div class="budget-card active" data-budget="moderate">
+                                    <div class="budget-icon">💰💰</div>
+                                    <div class="budget-name">متوسط</div>
+                                    <div class="budget-desc">توازن مثالي بين السعر والجودة</div>
+                                    <div class="budget-price" data-price-type="moderate">~1200 EGP/day</div>
+                                    <div class="recommended-badge">الأكثر شيوعاً</div>
+                                </div>
+                                <div class="budget-card" data-budget="luxury">
+                                    <div class="budget-icon">💰💰💰</div>
+                                    <div class="budget-name">فاخر</div>
+                                    <div class="budget-desc">تجربة استثنائية من الدرجة الأولى</div>
+                                    <div class="budget-price" data-price-type="luxury">~3500 EGP/day</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-section full-width">
+                            <h4><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l-5.5 9h11z M12 22l5.5-9h-11z"/></svg> الاهتمامات (اختر واحد أو أكثر)</h4>
+                            <div class="interests-grid">
+                                <button class="interest-card active" data-interest="history">
+                                    <div class="interest-icon">🏛️</div>
+                                    <div class="interest-name">آثار فرعونية</div>
+                                    <div class="interest-count">80+ معلم</div>
+                                </button>
+                                <button class="interest-card" data-interest="islamic">
+                                    <div class="interest-icon">🕌</div>
+                                    <div class="interest-name">عمارة إسلامية</div>
+                                    <div class="interest-count">60+ مسجد</div>
+                                </button>
+                                <button class="interest-card" data-interest="beach">
+                                    <div class="interest-icon">🏖️</div>
+                                    <div class="interest-name">شواطئ وبحار</div>
+                                    <div class="interest-count">40+ شاطئ</div>
+                                </button>
+                                <button class="interest-card" data-interest="desert">
+                                    <div class="interest-icon">🏜️</div>
+                                    <div class="interest-name">صحراء وسفاري</div>
+                                    <div class="interest-count">15+ واحة</div>
+                                </button>
+                                <button class="interest-card" data-interest="culture">
+                                    <div class="interest-icon">🎨</div>
+                                    <div class="interest-name">ثقافة محلية</div>
+                                    <div class="interest-count">100+ سوق</div>
+                                </button>
+                                <button class="interest-card" data-interest="food">
+                                    <div class="interest-icon">🍽️</div>
+                                    <div class="interest-name">طعام وتذوق</div>
+                                    <div class="interest-count">200+ مطعم</div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="generate-btn" onclick="plansApp.generatePlan()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span>أنشئ برنامجي المخصص الآن</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection" style="display:none">
+            <div class="container">
+                <div id="planResults"></div>
+            </div>
+        </div>
+
+        <!-- Compare Section -->
+        <div class="compare-section-wrapper">
+            <div class="container">
+                <div class="section-header">
+                    <h2>قارن بين المحافظات</h2>
+                    <p>اختر محافظتين أو أكثر للمقارنة بينهما</p>
+                </div>
+
+                <!-- Governorate Selector -->
+                <div class="compare-selector">
+                    <div class="selector-grid" id="compareSelectorGrid">
+                        <!-- Will be populated by JS -->
+                    </div>
+                    <button class="compare-btn" onclick="app.showComparison()" id="compareBtn" disabled>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                        </svg>
+                        <span>قارن المحافظات المختارة</span>
+                    </button>
+                </div>
+
+                <!-- Comparison Results -->
+                <div id="compareContainer" class="compare-results" style="display:none;">
+                    <!-- Will be populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Loader -->
+        <div class="loader" id="loader" style="display:none">
+            <div class="loader-content">
+                <div class="sphinx-loader">
+                    <div class="sphinx-body"></div>
+                    <div class="sphinx-head"></div>
+                </div>
+                <p class="loader-text">جاري تصميم رحلتك المثالية...</p>
+                <div class="loader-progress">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============= Tools ===============  -->
+    <section id="tools" class="section tools">
+        <div class="section-header">
+            <h1 class="section-title" data-translate="tools.title">Tools</h1>
+            <p class="section-subtitle" data-translate="tools.subtitle">Explore our tourism tools</p>
+        </div>
+
+        <div class="tools-buttons">
+            <a href="#explore" class="nav-link tool-card" data-section="explore">
+                <div class="tool-icon">🗺️</div>
+                <h3><span data-translate="nav.exploreEgypt">Explore Egypt</span></h3>
+            </a>
+            <a href="#map" class="nav-link tool-card" data-section="map">
+                <div class="tool-icon">🌍</div>
+                <h3><span data-translate="nav.map">Map</span></h3>
+            </a>
+            <a href="#ai-guide" class="nav-link tool-card" data-section="ai-guide">
+                <div class="tool-icon">🤖</div>
+                <h3><span data-translate="nav.smartGuide">Smart Guide</span></h3>
+            </a>
+            <a href="#calculator" class="nav-link tool-card" data-section="calculator">
+                <div class="tool-icon">🧮</div>
+                <h3><span data-translate="nav.calculator">Budget Calculator</span></h3>
+            </a>
+        </div>
+    </section>
+
+    <!-- ========== EXPLORE EGYPT SECTION ========== -->
+    <section id="explore" class="section">
+        <div class="section-header">
+            <h2 class="section-title" data-translate="explore.title">Explore Egypt</h2>
+            <p class="section-subtitle" data-translate="explore.subtitle">Browse by category</p>
+        </div>
+
+        <!-- Category Filter Buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-category="all" data-translate="explore.all">All</button>
+            <button class="filter-btn" data-category="ancient" data-translate="explore.ancient">Ancient Sites</button>
+            <button class="filter-btn" data-category="nature" data-translate="explore.nature">Nature</button>
+            <button class="filter-btn" data-category="beach" data-translate="explore.beach">Beaches</button>
+            <button class="filter-btn" data-category="museum">Museums</button>
+            <button class="filter-btn" data-category="religious">Religious</button>
+            <button class="filter-btn" data-category="historical">Historical</button>
+            <button class="filter-btn" data-category="modern" data-translate="explore.modern">Modern</button>
+            <button class="filter-btn" data-category="cultural">Cultural</button>
+        </div>
+
+        <!-- Dynamic Cards Container - ALL 55 places loaded here -->
+        <div class="explore-cards-grid" id="explore-cards-container">
+            <!-- Cards will be loaded dynamically by explore-dynamic.js -->
+            <div style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                <p>Loading places...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MAP SECTION ========== -->
+    <section id="map" class="section map-section">
+        <h1 class="text-center">Explore Egypt</h1>
+        <p class="text-center">
+            <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5246765.280911796!2d33.27734136198609!3d26.898047757173526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14368976c35c36e9%3A0x2c45a00925c4c444!2z2YXYtdix!5e0!3m2!1sar!2seg!4v1769882517722!5m2!1sar!2segy"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </p>
+    </section>
+
+
+
+
+    <!-- ========== AI TOURIST GUIDE SECTION ========== -->
+    <section id="ai-guide" class="section">
+        <div class="section-header">
+            <h2 class="section-title" data-translate="ai.title">AI Tourist Guide</h2>
+            <p class="section-subtitle" data-translate="ai.subtitle">Ask me anything about Egypt tourism!</p>
+        </div>
+
+        <!-- AI Disclaimer -->
+        <div class="ai-disclaimer">
+            <p data-translate="ai.disclaimer">
+                ℹ️ This is a simple educational AI model using keyword matching.
+                It provides basic tourism information about Egypt.
+            </p>
+        </div>
+
+        <!-- Chat Container -->
+        <div class="chat-container">
+            <!-- Chat Messages Area -->
+            <div class="chat-messages" id="chat-messages">
+                <!-- Welcome Message -->
+                <div class="message bot-message">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <p data-translate="ai.welcome">
+                            Hello! I'm your AI tourist guide. Ask me about Egyptian places, history,
+                            culture, or travel tips!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input Area -->
+            <div class="chat-input-area">
+                <input
+                        type="text"
+                        id="chat-input"
+                        class="chat-input"
+                        placeholder="Type your question..."
+                        data-translate-placeholder="ai.placeholder"
+                >
+                <button id="send-btn" class="send-btn">
+                    <span>Send</span>
+                </button>
+            </div>
+
+            <!-- Quick Question Buttons -->
+            <div class="quick-questions">
+                <button class="quick-btn" data-question="pyramids">🏛️ <span data-translate="ai.q1">Pyramids</span></button>
+                <button class="quick-btn" data-question="weather">🌤️ <span data-translate="ai.q2">Weather</span></button>
+                <button class="quick-btn" data-question="food">🍽️ <span data-translate="ai.q3">Food</span></button>
+                <button class="quick-btn" data-question="safety">🛡️ <span data-translate="ai.q4">Safety</span></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CALCULATOR SECTION ========== -->
+    <section id="calculator" class="section">
+        <div class="calculator-container">
+
+            <!-- العنوان الرئيسي -->
+            <div class="calculator-header">
+                <h2 class="calculator-title">
+                    <span data-translate="calculator.title">Calculate Your Trip Budget</span>
+                </h2>
+                <p class="calculator-subtitle">
+                    <span data-translate="calculator.subtitle">Realistic travel cost estimation in Egypt - 27 Governorates</span>
+                </p>
+            </div>
+
+            <!-- نموذج الإدخال -->
+            <div class="calculator-inputs">
+
+                <!-- اختيار المحافظة -->
+                <div class="input-group">
+                    <label for="governorateSelect" class="input-label">
+                        <span data-translate="calculator.governorate">Governorate</span>
+                    </label>
+                    <select id="governorateSelect" class="input-select">
+                        <option value="" data-translate="calculator.selectGovernorate">-- Select Governorate --</option>
+                    </select>
+                </div>
+
+                <!-- عدد الأيام -->
+                <div class="input-group">
+                    <label for="daysInput" class="input-label">
+                        <span data-translate="calculator.days">Number of Days</span>
+                    </label>
+                    <input type="number" id="daysInput" class="input-number" min="1" max="30" value="3">
+                </div>
+
+                <!-- عدد الأشخاص -->
+                <div class="input-group">
+                    <label for="peopleInput" class="input-label">
+                        <span data-translate="calculator.people">Number of People</span>
+                    </label>
+                    <input type="number" id="peopleInput" class="input-number" min="1" max="10" value="2">
+                </div>
+
+                <!-- اختيار العملة -->
+                <div class="input-group">
+                    <label for="currencySelect" class="input-label">
+                        <span data-translate="calculator.currency">Currency</span>
+                    </label>
+                    <select id="currencySelect" class="input-select">
+                        <option value="EGP">EGP - جنيه مصري</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- النتائج -->
+            <div class="calculator-results" id="calculatorResults">
+
+                <!-- Context ذكي -->
+                <div class="smart-context" id="smartContext">
+                    <span class="context-icon">💡</span>
+                    <span class="context-text" id="contextText">
+                        <span data-translate="calculator.selectMessage">Select a governorate to see the estimate</span>
+                    </span>
+                </div>
+
+                <!-- تفاصيل التكلفة -->
+                <div class="results-breakdown">
+
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">
+                            <span class="label-icon">🏨</span>
+                            <span data-translate="calculator.accommodation">Accommodation</span>
+                        </span>
+                        <span class="breakdown-value" id="accommodationCost">0</span>
+                    </div>
+
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">
+                            <span class="label-icon">🍽️</span>
+                            <span data-translate="calculator.food">Food</span>
+                        </span>
+                        <span class="breakdown-value" id="foodCost">0</span>
+                    </div>
+
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">
+                            <span class="label-icon">🚗</span>
+                            <span data-translate="calculator.transport">Transportation</span>
+                        </span>
+                        <span class="breakdown-value" id="transportCost">0</span>
+                    </div>
+
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">
+                            <span class="label-icon">🎭</span>
+                            <span data-translate="calculator.activities">Activities</span>
+                        </span>
+                        <span class="breakdown-value" id="activitiesCost">0</span>
+                    </div>
+
+                </div>
+
+                <!-- المجموع الكلي -->
+                <div class="results-total">
+                    <div class="total-label">
+                        <span data-translate="calculator.totalCost">Estimated Total Cost</span>
+                    </div>
+                    <div class="total-value" id="totalCost">0 <span class="currency-symbol">EGP</span></div>
+                </div>
+
+                <!-- معلومات إضافية -->
+                <div class="results-info">
+                    <div class="info-item">
+                        <span class="info-label">
+                            <span data-translate="calculator.perPerson">Per person</span>
+                        </span>
+                        <span class="info-value" id="perPersonCost">0</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">
+                            <span data-translate="calculator.perDay">Per day</span>
+                        </span>
+                        <span class="info-value" id="perDayCost">0</span>
+                    </div>
+                </div>
+
+                <!-- ملاحظة الأسعار التقديرية -->
+                <div class="disclaimer-note">
+                    <span class="disclaimer-icon">ℹ️</span>
+                    <span class="disclaimer-text">
+                        <span data-translate="calculator.disclaimer">Prices are estimates and may vary by season and travel style</span>
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== SETTINGS SECTION ========== -->
+    <section id="settings" class="section">
+        <div class="section-header">
+            <h2 class="section-title" data-translate="settings.title">Settings</h2>
+            <p class="section-subtitle" data-translate="settings.subtitle">Customize your experience</p>
+        </div>
+
+        <div class="settings-container">
+            <!-- Language Settings -->
+            <div class="settings-card">
+                <h3 data-translate="settings.lang.title">Language Preferences</h3>
+                <p data-translate="settings.lang.desc">Choose your preferred language</p>
+
+                <div class="language-options">
+                    <label class="radio-option">
+                        <input type="radio" name="language" value="en" checked>
+                        <span>🇬🇧 English</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="language" value="ar">
+                        <span>🇪🇬 العربية (Arabic)</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="language" value="fr">
+                        <span>🇫🇷 Français (French)</span>
+                    </label>
+                </div>
+
+                <label class="checkbox-option">
+                    <input type="checkbox" id="auto-detect-lang" checked>
+                    <span data-translate="settings.lang.auto">Auto-detect device language</span>
+                </label>
+            </div>
+
+            <!-- Theme Settings -->
+            <div class="settings-card">
+                <h3 data-translate="settings.theme.title">Theme Settings</h3>
+                <p data-translate="settings.theme.desc">Choose your preferred color theme</p>
+
+                <div class="theme-options">
+                    <button class="theme-option-btn active" data-theme="light">
+                        <span class="theme-icon">☀️</span>
+                        <span data-translate="settings.theme.light">Light Mode</span>
+                    </button>
+                    <button class="theme-option-btn" data-theme="dark">
+                        <span class="theme-icon">🌙</span>
+                        <span data-translate="settings.theme.dark">Dark Mode</span>
+                    </button>
+                </div>
+
+                <label class="checkbox-option">
+                    <input type="checkbox" id="auto-detect-theme" checked>
+                    <span data-translate="settings.theme.auto">Auto-detect device theme</span>
+                </label>
+            </div>
+
+            <!-- Accessibility Settings -->
+            <div class="settings-card">
+                <h3 data-translate="settings.accessibility.title">Accessibility</h3>
+                <p data-translate="settings.accessibility.desc">Customize accessibility features</p>
+
+                <label class="checkbox-option">
+                    <input type="checkbox" id="reduced-motion">
+                    <span data-translate="settings.accessibility.reducedMotion">Reduce motion</span>
+                </label>
+
+                <label class="checkbox-option">
+                    <input type="checkbox" id="high-contrast">
+                    <span data-translate="settings.accessibility.highContrast">High contrast mode</span>
+                </label>
+            </div>
+
+            <!-- About Project -->
+            <div class="settings-card">
+                <h3 data-translate="settings.about.title">About This Project</h3>
+                <p data-translate="settings.about.desc">
+                    This is a OMAR web design project for a Middle 2 school competition.
+                    Built with HTML, CSS, and JavaScript to showcase Egypt's tourism attractions.
+                </p>
+                <p data-translate="settings.about.tech">
+                    <strong>Technologies:</strong> HTML5, CSS3, Vanilla JavaScript
+                </p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3 data-translate="siteName">Discover Egypt</h3>
+            <p data-translate="footer.tagline">Your gateway to Egypt's wonders</p>
+        </div>
+
+        <div class="footer-section">
+            <h4 data-translate="footer.contact">Contact</h4>
+            <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afc6c1c9c0efcbc6dcccc0d9caddcac8d6dfdb81cacbda">[email&#160;protected]</a></p>
+            <p>Phone: +20 123 456 789</p>
+        </div>
+
+        <div class="footer-section">
+            <h4 data-translate="footer.social">Follow Us</h4>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Discover Egypt -    OMAR Web Design Project - Middle 2</p>
+    </div>
+</footer>
+
+<!-- ========== SEARCH MODAL ========== -->
+<div class="search-modal" id="search-modal">
+    <div class="search-modal-content">
+        <button class="search-close" id="search-close">&times;</button>
+        <h2 class="search-title" data-translate="search.title">Search Places</h2>
+
+        <div class="search-input-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="search-input" class="search-input" placeholder="Search for places, cities..." data-translate-placeholder="search.placeholder">
+        </div>
+
+        <div id="search-results" class="search-results"></div>
+        <div id="search-no-results" class="search-no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <p data-translate="search.no_results">No places found</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========== JAVASCRIPT LINKS ========== -->
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics-compat.js"></script>
+
+<!-- Leaflet JS for maps -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Translations Data -->
+<script src="data/translations.js"></script>
+
+<!-- Places Data -->
+<script src="data/places-enhanced.js"></script>
+
+<!-- نظام المصادقة - النسخة المبسطة -->
+<script src="js/auth/firebase-config.js"></script>
+<!-- Auth UI Scripts - معطلة لأننا نستخدم صفحة منفصلة الآن
+<script src="js/auth/auth-translations.js"></script>
+<script src="js/auth/activity-tracker.js"></script>
+<script src="js/auth/auth-manager.js"></script>
+<script src="js/auth/auth-ui.js"></script>
+-->
+
+<!-- Core: bootstrap first, then features -->
+<script src="js/core/app.js"></script>
+<script src="js/core/navigation.js"></script>
+<script src="js/core/theme.js"></script>
+<script src="js/core/language.js"></script>
+
+<!-- Language Fixes -->
+<script src="js/language-fixes.js"></script>
+
+<!-- Complete Translation System -->
+<script src="js/complete-translations.js"></script>
+
+<!-- Plans Section Translation -->
+<script src="js/plans-translations.js"></script>
+
+<!-- Features: filters, map, AI guide -->
+<script src="js/features/filters.js"></script>
+<script src="js/features/map.js"></script>
+<script src="js/features/aiGuide.js"></script>
+
+<!-- Explore Dynamic Cards (No Images) -->
+<script src="js/explore-dynamic.js"></script>
+
+<!-- Search Engine (No Images Version) -->
+<script src="js/search-no-images.js"></script>
+
+<!-- Budget Calculator -->
+<script src="js/calculator.js"></script>
+
+<!-- Utils -->
+<script src="js/utils/helpers.js"></script>
+
+<!-- Auth Integration Script -->
+<script src="js/auth-integration.js"></script>
+
+<!-- Debug Script - يمكن حذفه في الإنتاج -->
+<script src="js/debug.js"></script>
+
+<!-- Plans Script -->
+<script src="plans/plans.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اكتشف مصر 🇪🇬 | خطط رحلتك في 27 محافظة</title>
+    <link rel="stylesheet" href="plans.css">
+
+    <!-- Override CSS لإخفاء الهيدر والفوتر الداخلي -->
+    <style>
+        /* إخفاء الهيدر والفوتر لتجنب التكرار */
+        body > header.header {
+            display: none !important;
+        }
+        body > footer.footer {
+            display: none !important;
+        }
+
+        /* تعديل spacing للتعويض */
+        .main {
+            padding-top: 0 !important;
+        }
+        .hero {
+            margin-top: 0 !important;
+            padding-top: 80px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 50 50">
+                    <path d="M25 8L10 16L25 24L40 16L25 8Z" fill="#D4AF37" stroke="#FFD700" stroke-width="2"/>
+                    <path d="M10 32L25 40L40 32M10 24L25 32L40 24" stroke="#D4AF37" fill="none" stroke-width="2.5"/>
+                    <circle cx="25" cy="18" r="2.5" fill="#FFD700"/>
+                    <path d="M15 20L20 16M35 20L30 16" stroke="#D4AF37" stroke-width="1.5"/>
+                </svg>
+                <div class="logo-text">
+                    <h1>اكتشف مصر</h1>
+                    <span>27 محافظة مصرية</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <div class="lang-switch">
+                    <button class="lang-btn active" data-lang="ar">🇪🇬 ع</button>
+                    <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+                    <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
+                </div>
+                <select id="currency" class="currency-select">
+                    <option value="EGP" selected>🇪🇬 جنيه مصري EGP</option>
+                    <option value="USD">🇺🇸 دولار USD</option>
+                    <option value="EUR">🇪🇺 يورو EUR</option>
+                    <option value="GBP">🇬🇧 جنيه GBP</option>
+                    <option value="SAR">🇸🇦 ريال SAR</option>
+                    <option value="AED">🇦🇪 درهم AED</option>
+                </select>
+                <a href="../my-plans.html" class="my-plans-btn" style="display: flex; align-items: center; gap: 8px; padding: 10px 20px; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; margin-left: 10px; transition: all 0.3s;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    <span id="myPlansText">خططي</span>
+                </a>
+                <button class="user-btn" id="userBtn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                    <span id="userName">حسابي</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg">
+                <div class="pyramids"></div>
+                <div class="stars"></div>
+            </div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-icon">🌟</span>
+                        <span>خطط رحلتك المثالية</span>
+                        <span class="badge-icon">🌟</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="title-line">استكشف جمال</span>
+                        <span class="title-highlight">مصر الساحرة</span>
+                    </h1>
+                    <p class="hero-subtitle">رحلة عبر 7000 عام من الحضارة • 27 محافظة مصرية • تجارب لا تُنسى</p>
+
+                    <div class="quick-stats">
+                        <div class="stat">
+                            <div class="stat-number">27</div>
+                            <div class="stat-label">محافظة</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">200+</div>
+                            <div class="stat-label">معلم سياحي</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">مناطق</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">ذكريات</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Planning Section -->
+        <section class="planning-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>ابدأ التخطيط لرحلتك</h2>
+                    <p>اختر تفضيلاتك وسنصمم لك برنامجاً مخصصاً</p>
+                </div>
+
+                <!-- Step 1: Region Selection -->
+                <div class="planning-step active" id="step1">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h3>اختر المنطقة</h3>
+                    </div>
+                    <div class="regions-showcase" id="regionsShowcase">
+                        <!-- Will be populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Step 2: Governorate Selection -->
+                <div class="planning-step" id="step2">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h3>اختر المحافظة</h3>
+                    </div>
+                    <div class="governorates-grid" id="governoratesGrid">
+                        <!-- Will be populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Step 3: Trip Details -->
+                <div class="planning-step" id="step3">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h3>حدد تفاصيل الرحلة</h3>
+                    </div>
+
+                    <div class="trip-details">
+                        <div class="detail-section">
+                            <h4><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg> المدة</h4>
+                            <div class="duration-options">
+                                <button class="option-card" data-days="1">
+                                    <span class="option-value">1</span>
+                                    <span class="option-label">يوم</span>
+                                </button>
+                                <button class="option-card" data-days="2">
+                                    <span class="option-value">2</span>
+                                    <span class="option-label">يوم</span>
+                                </button>
+                                <button class="option-card active" data-days="3">
+                                    <span class="option-value">3</span>
+                                    <span class="option-label">أيام</span>
+                                </button>
+                                <button class="option-card" data-days="5">
+                                    <span class="option-value">5</span>
+                                    <span class="option-label">أيام</span>
+                                </button>
+                                <button class="option-card" data-days="7">
+                                    <span class="option-value">7</span>
+                                    <span class="option-label">أيام</span>
+                                </button>
+                                <button class="option-card" data-days="10">
+                                    <span class="option-value">10</span>
+                                    <span class="option-label">أيام</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h4><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> عدد المسافرين</h4>
+                            <div class="travelers-selector">
+                                <button class="counter-btn" onclick="app.changeTravelers(-1)">-</button>
+                                <div class="counter-display">
+                                    <span class="counter-value" id="travelersCount">2</span>
+                                    <span class="counter-label">مسافر</span>
+                                </div>
+                                <button class="counter-btn" onclick="app.changeTravelers(1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="detail-section full-width">
+                            <h4><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg> مستوى الميزانية</h4>
+                            <div class="budget-options">
+                                <div class="budget-card" data-budget="budget">
+                                    <div class="budget-icon">💰</div>
+                                    <div class="budget-name">اقتصادي</div>
+                                    <div class="budget-desc">للمسافرين بميزانية محدودة</div>
+                                    <div class="budget-price" data-price-type="budget">~500 £/يوم</div>
+                                </div>
+                                <div class="budget-card active" data-budget="moderate">
+                                    <div class="budget-icon">💰💰</div>
+                                    <div class="budget-name">متوسط</div>
+                                    <div class="budget-desc">توازن مثالي بين السعر والجودة</div>
+                                    <div class="budget-price" data-price-type="moderate">~1200 £/يوم</div>
+                                    <div class="recommended-badge">الأكثر شيوعاً</div>
+                                </div>
+                                <div class="budget-card" data-budget="luxury">
+                                    <div class="budget-icon">💰💰💰</div>
+                                    <div class="budget-name">فاخر</div>
+                                    <div class="budget-desc">تجربة استثنائية من الدرجة الأولى</div>
+                                    <div class="budget-price" data-price-type="luxury">~3500 £/يوم</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-section full-width">
+                            <h4><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l-5.5 9h11z M12 22l5.5-9h-11z"/></svg> الاهتمامات (اختر واحد أو أكثر)</h4>
+                            <div class="interests-grid">
+                                <button class="interest-card active" data-interest="history">
+                                    <div class="interest-icon">🏛️</div>
+                                    <div class="interest-name">آثار فرعونية</div>
+                                    <div class="interest-count">80+ معلم</div>
+                                </button>
+                                <button class="interest-card" data-interest="islamic">
+                                    <div class="interest-icon">🕌</div>
+                                    <div class="interest-name">عمارة إسلامية</div>
+                                    <div class="interest-count">60+ مسجد</div>
+                                </button>
+                                <button class="interest-card" data-interest="beach">
+                                    <div class="interest-icon">🏖️</div>
+                                    <div class="interest-name">شواطئ وبحار</div>
+                                    <div class="interest-count">40+ شاطئ</div>
+                                </button>
+                                <button class="interest-card" data-interest="desert">
+                                    <div class="interest-icon">🏜️</div>
+                                    <div class="interest-name">صحراء وسفاري</div>
+                                    <div class="interest-count">15+ واحة</div>
+                                </button>
+                                <button class="interest-card" data-interest="culture">
+                                    <div class="interest-icon">🎨</div>
+                                    <div class="interest-name">ثقافة محلية</div>
+                                    <div class="interest-count">100+ سوق</div>
+                                </button>
+                                <button class="interest-card" data-interest="food">
+                                    <div class="interest-icon">🍽️</div>
+                                    <div class="interest-name">طعام وتذوق</div>
+                                    <div class="interest-count">200+ مطعم</div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="generate-btn" onclick="app.generatePlan()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span>أنشئ برنامجي المخصص الآن</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection" style="display:none">
+            <div class="container">
+                <div id="planResults"></div>
+            </div>
+        </section>
+
+        <!-- Compare Section -->
+        <section class="compare-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>قارن بين المحافظات</h2>
+                    <p>اختر محافظتين أو أكثر للمقارنة بينهما</p>
+                </div>
+
+                <!-- Governorate Selector -->
+                <div class="compare-selector">
+                    <div class="selector-grid" id="compareSelectorGrid">
+                        <!-- Will be populated by JS -->
+                    </div>
+                    <button class="compare-btn" onclick="app.showComparison()" id="compareBtn" disabled>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                        </svg>
+                        <span>قارن المحافظات المختارة</span>
+                    </button>
+                </div>
+
+                <!-- Comparison Results -->
+                <div id="compareContainer" class="compare-results" style="display:none;">
+                    <!-- Will be populated by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Actions -->
+    <div class="floating-actions">
+        <button class="fab" onclick="app.scrollToTop()" title="العودة للأعلى">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="sphinx-loader">
+                <div class="sphinx-body"></div>
+                <div class="sphinx-head"></div>
+            </div>
+            <p class="loader-text">جاري تصميم رحلتك المثالية...</p>
+            <div class="loader-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>اكتشف مصر</h4>
+                    <p>منصتك الأولى لتخطيط الرحلات السياحية في مصر</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <a href="#hero">الرئيسية</a>
+                    <a href="#planning">التخطيط</a>
+                    <a href="#compare">المقارنة</a>
+                </div>
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <p>📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fe97909891be9a978d9d91889b8cd39b99878e8ad09d9193">[email&#160;protected]</a></p>
+                    <p>📱 +20 123 456 7890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 اكتشف مصر - جميع الحقوق محفوظة | صُنع بـ ❤️ في مصر</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="plans.js"></script>
+</body>
+</html>

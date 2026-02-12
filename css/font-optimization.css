@@ -1,0 +1,72 @@
+/* ==========================================
+   تحسينات الخطوط - Font Optimization
+   ========================================== */
+
+/* تعريف الخطوط الثلاثة المستخدمة فقط */
+
+/* الخط الأول: للنصوص العامة */
+body,
+p,
+span,
+div,
+li,
+a {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* الخط الثاني: للعناوين */
+h1, h2, h3, h4, h5, h6,
+.heading,
+.title {
+    font-family: Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+/* أحجام العناوين */
+h1 { font-size: 2.5rem; line-height: 1.2; }
+h2 { font-size: 2rem; line-height: 1.3; }
+h3 { font-size: 1.75rem; line-height: 1.4; }
+h4 { font-size: 1.5rem; line-height: 1.4; }
+h5 { font-size: 1.25rem; line-height: 1.5; }
+h6 { font-size: 1.1rem; line-height: 1.5; }
+
+/* الخط الثالث: للأكواد فقط */
+code,
+pre,
+kbd,
+samp {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 0.9em;
+}
+
+/* تحسين الوضوح */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* للشاشات عالية الدقة */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+}
+
+/* الاستجابة للشاشات الصغيرة */
+@media (max-width: 768px) {
+    html { font-size: 14px; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+    html { font-size: 13px; }
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+}

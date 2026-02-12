@@ -1,0 +1,212 @@
+/* ==========================================
+   DISCOVER EGYPT - EXPLORE CARDS WITHOUT IMAGES
+   Modern card design focused on content
+   ========================================== */
+
+/* ========== EXPLORE CARDS CONTAINER ========== */
+
+.explore-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+/* ========== EXPLORE CARD ========== */
+
+.explore-card {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 25px;
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    box-shadow: 0 4px 15px var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-height: 200px;
+}
+
+.explore-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 30px var(--shadow-medium);
+    border-color: var(--primary-color);
+}
+
+.explore-card.hidden {
+    display: none;
+}
+
+/* ========== CARD ICON ========== */
+
+.explore-card-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 10px;
+    transition: transform var(--transition-fast);
+}
+
+.explore-card:hover .explore-card-icon {
+    transform: scale(1.15) rotate(5deg);
+}
+
+/* ========== CARD CONTENT ========== */
+
+.explore-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.explore-card-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* ========== CARD META ========== */
+
+.explore-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.explore-card-category {
+    background: var(--primary-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.explore-card-location {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* ========== CARD DESCRIPTION ========== */
+
+.explore-card-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    flex: 1;
+}
+
+/* ========== CARD RATING ========== */
+
+.explore-card-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    margin-top: auto;
+}
+
+.rating-number {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 0.95rem;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablets (768px) */
+@media (max-width: 768px) {
+    .explore-cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 0 15px;
+    }
+
+    .explore-card {
+        padding: 20px;
+        min-height: 180px;
+    }
+
+    .explore-card-icon {
+        font-size: 2.5rem;
+    }
+
+    .explore-card-title {
+        font-size: 1.2rem;
+    }
+
+    .explore-card-description {
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile (480px) */
+@media (max-width: 480px) {
+    .explore-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    .explore-card {
+        padding: 18px;
+        min-height: 160px;
+    }
+
+    .explore-card-icon {
+        font-size: 2.2rem;
+    }
+
+    .explore-card-title {
+        font-size: 1.1rem;
+    }
+
+    .explore-card-meta {
+        font-size: 0.85rem;
+        gap: 8px;
+    }
+
+    .explore-card-description {
+        font-size: 0.875rem;
+    }
+}
+
+/* ========== DARK MODE SUPPORT ========== */
+
+[data-theme="dark"] .explore-card {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+    border-color: #404040;
+}
+
+[data-theme="dark"] .explore-card:hover {
+    border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .explore-card-title {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .explore-card-description {
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .explore-card-location {
+    color: #888888;
+}
+
+/* ========== RTL SUPPORT ========== */
+
+[dir="rtl"] .explore-card-meta {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .explore-card-rating {
+    flex-direction: row-reverse;
+}
