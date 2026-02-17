@@ -1,12 +1,11 @@
 /* ==========================================
    DISCOVER EGYPT - FILTERS.JS
-   Category filtering
+   Category filtering for dynamic cards
    ========================================== */
 
 // ========== EXPLORE FILTERS ==========
 function initializeFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const exploreCards = document.querySelectorAll('.explore-card');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -17,16 +16,39 @@ function initializeFilters() {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
 
-            // Filter cards
-            exploreCards.forEach(card => {
-                const cardCategory = card.getAttribute('data-category');
-
-                if (category === 'all' || cardCategory === category) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
+            // Filter cards dynamically
+            filterExploreCards(category);
         });
     });
 }
+
+// ========== Filter Cards Function ==========
+function filterExploreCards(category) {
+    const exploreCards = document.querySelectorAll('.explore-card');
+    
+    exploreCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+
+        if (category === 'all' || cardCategory === category) {
+            card.style.display = 'block';
+            card.classList.remove('hidden');
+            // Animate in
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 10);
+        } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                card.style.display = 'none';
+                card.classList.add('hidden');
+            }, 300);
+        }
+    });
+}
+
+// Re-initialize filters when cards are reloaded
+document.addEventListener('cardsLoaded', () => {
+    initializeFilters();
+});

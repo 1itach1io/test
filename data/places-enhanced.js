@@ -1,4 +1,6 @@
-const placesEnhanced = {
+// Places Data - Egypt Tourism
+var placesData = 
+{
     "places": [
         {
             "id": "p001",
@@ -11,7 +13,7 @@ const placesEnhanced = {
             "description": "The last remaining wonder of the ancient world, built over 4,500 years ago.",
             "descriptionAr": "آخر عجائب الدنيا السبع القديمة الباقية، بنيت منذ أكثر من 4500 عام.",
             "descriptionFr": "La dernière des sept merveilles du monde antique encore debout.",
-            "image": "images/giza-pyramids-and-a-giant-planet-txys9s1vox8a999i.webp",
+            "image": "https://i.pinimg.com/736x/84/53/32/845332348dd4d07737fc92d8372fc45e.jpg",
             "rating": 4.9,
             "popularity": "high"
         },
@@ -41,7 +43,7 @@ const placesEnhanced = {
             "description": "The largest religious building ever constructed, a vast temple complex.",
             "descriptionAr": "أكبر مبنى ديني تم بناؤه على الإطلاق، مجمع معابد ضخم.",
             "descriptionFr": "Le plus grand édifice religieux jamais construit.",
-            "image": "images/Karnak-Temple-6-optimized.webp",
+            "image": "images/Karnak-Temple-6.jpg",
             "rating": 4.9,
             "popularity": "high"
         },
@@ -56,7 +58,7 @@ const placesEnhanced = {
             "description": "A remote desert oasis with ancient ruins, salt lakes, and unique Berber culture.",
             "descriptionAr": "واحة صحراوية نائية بها آثار قديمة وبحيرات ملحية وثقافة بربرية فريدة.",
             "descriptionFr": "Une oasis désertique éloignée avec des ruines anciennes et une culture berbère unique.",
-            "image": "images/Siwa-Oasis-Egypt-Tours-Portal-optimized.webp",
+            "image": "images/Siwa-Oasis-Egypt-Tours-Portal.jpg",
             "rating": 4.7,
             "popularity": "medium"
         },
@@ -146,7 +148,7 @@ const placesEnhanced = {
             "description": "Massive rock-cut temples of Ramesses II, relocated to save from flooding.",
             "descriptionAr": "معابد ضخمة منحوتة في الصخر لرمسيس الثاني، تم نقلها لإنقاذها من الفيضان.",
             "descriptionFr": "Temples massifs taillés dans la roche de Ramsès II.",
-            "image": "images/sunset-pyramids-giza-egypt-optimized.webp",
+            "image": "images/sunset-pyramids-giza-egypt.jpg",
             "rating": 4.9,
             "popularity": "high"
         },
@@ -176,7 +178,7 @@ const placesEnhanced = {
             "description": "Less crowded pyramid site featuring the Bent and Red Pyramids.",
             "descriptionAr": "موقع أهرامات أقل ازدحاماً يضم الهرم المنحني والهرم الأحمر.",
             "descriptionFr": "Site pyramidal moins fréquenté avec la pyramide rhomboïdale et rouge.",
-            "image": "images/download-optimized.webp",
+            "image": "images/download.png",
             "rating": 4.6,
             "popularity": "low"
         },
@@ -191,7 +193,7 @@ const placesEnhanced = {
             "description": "Well-preserved temple complex with famous zodiac ceiling and Hathor sanctuary.",
             "descriptionAr": "مجمع معابد محفوظ جيداً مع سقف الأبراج الشهير ومقدس حتحور.",
             "descriptionFr": "Complexe de temples bien préservé avec le célèbre zodiaque.",
-            "image": "images/Karnak-Temple-6-optimized.webp",
+            "image": "images/Karnak-Temple-6.jpg",
             "rating": 4.7,
             "popularity": "medium"
         },
@@ -206,7 +208,7 @@ const placesEnhanced = {
             "description": "Sacred ancient site with Temple of Seti I featuring exquisite hieroglyphic carvings.",
             "descriptionAr": "موقع مقدس قديم مع معبد سيتي الأول بنقوش هيروغليفية رائعة.",
             "descriptionFr": "Site ancien sacré avec le Temple de Séthi Ier.",
-            "image": "images/Karnak-Temple-6-optimized.webp",
+            "image": "images/Karnak-Temple-6.jpg",
             "rating": 4.7,
             "popularity": "low"
         },
@@ -221,7 +223,7 @@ const placesEnhanced = {
             "description": "Best-preserved ancient temple in Egypt, dedicated to falcon god Horus.",
             "descriptionAr": "أفضل معبد قديم محفوظ في مصر، مكرس لإله الصقر حورس.",
             "descriptionFr": "Temple antique le mieux préservé d'Égypte, dédié au dieu faucon Horus.",
-            "image": "images/Karnak-Temple-6-optimized.webp",
+            "image": "images/Karnak-Temple-6.jpg",
             "rating": 4.8,
             "popularity": "medium"
         },
@@ -236,7 +238,7 @@ const placesEnhanced = {
             "description": "Unique double temple dedicated to Sobek and Horus overlooking the Nile.",
             "descriptionAr": "معبد مزدوج فريد مكرس لسوبك وحورس يطل على النيل.",
             "descriptionFr": "Temple double unique dédié à Sobek et Horus surplombant le Nil.",
-            "image": "images/Karnak-Temple-6-optimized.webp",
+            "image": "images/Karnak-Temple-6.jpg",
             "rating": 4.7,
             "popularity": "medium"
         },
@@ -281,7 +283,7 @@ const placesEnhanced = {
             "description": "Stunning terraced mortuary temple of Egypt's famous female pharaoh.",
             "descriptionAr": "معبد جنائزي متدرج مذهل للفرعونة المصرية الشهيرة.",
             "descriptionFr": "Temple funéraire à terrasses de la célèbre pharaonne.",
-            "image": "images/Karnak-Temple-6-optimized.webp",
+            "image": "images/Karnak-Temple-6.jpg",
             "rating": 4.8,
             "popularity": "high"
         },
@@ -641,7 +643,7 @@ const placesEnhanced = {
             "description": "Remote oasis with medieval Islamic architecture and mud-brick villages.",
             "descriptionAr": "واحة نائية مع عمارة إسلامية من العصور الوسطى وقرى من الطوب اللبن.",
             "descriptionFr": "Oasis éloignée avec architecture islamique médiévale.",
-            "image": "images/Siwa-Oasis-Egypt-Tours-Portal-optimized.webp",
+            "image": "images/Siwa-Oasis-Egypt-Tours-Portal.jpg",
             "rating": 4.6,
             "popularity": "low"
         },
@@ -746,7 +748,7 @@ const placesEnhanced = {
             "description": "Vast necropolis with Step Pyramid of Djoser, oldest complete stone structure.",
             "descriptionAr": "مقبرة واسعة مع هرم زوسر المدرج، أقدم بناء حجري كامل.",
             "descriptionFr": "Vaste nécropole avec la pyramide à degrés de Djéser.",
-            "image": "images/download-optimized.webp",
+            "image": "images/download.png",
             "rating": 4.8,
             "popularity": "medium"
         },
@@ -826,8 +828,6 @@ const placesEnhanced = {
             "popularity": "low"
         }
     ]
-};
-
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = placesEnhanced;
 }
+
+;

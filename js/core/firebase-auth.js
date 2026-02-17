@@ -4,7 +4,7 @@
    ========================================== */
 
 import { auth, db } from '../../firebase/firebase-config.js';
-import {
+import { 
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     signInWithPopup,
@@ -17,12 +17,12 @@ import {
     browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-import {
-    doc,
-    setDoc,
+import { 
+    doc, 
+    setDoc, 
     getDoc,
     updateDoc,
-    serverTimestamp
+    serverTimestamp 
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // Google Auth Provider
@@ -42,7 +42,7 @@ async function saveUserData(user, additionalData = {}) {
     try {
         const userRef = doc(db, 'users', user.uid);
         const userDoc = await getDoc(userRef);
-
+        
         const userData = {
             uid: user.uid,
             email: user.email,
@@ -79,7 +79,7 @@ async function getUserData(uid) {
     try {
         const userRef = doc(db, 'users', uid);
         const userDoc = await getDoc(userRef);
-
+        
         if (userDoc.exists()) {
             return userDoc.data();
         }
@@ -101,22 +101,22 @@ export async function signUpWithEmail(email, password, displayName) {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-
+        
         // Update profile with display name
         await updateProfile(user, {
             displayName: displayName,
             photoURL: `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=4F46E5&color=fff`
         });
-
+        
         // Save user data to Firestore
         await saveUserData(user, { displayName });
-
+        
         return { success: true, user };
     } catch (error) {
         console.error('Sign up error:', error);
-        return {
-            success: false,
-            error: getErrorMessage(error.code)
+        return { 
+            success: false, 
+            error: getErrorMessage(error.code) 
         };
     }
 }
@@ -128,16 +128,16 @@ export async function signInWithEmail(email, password) {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-
+        
         // Update user data
         await saveUserData(user);
-
+        
         return { success: true, user };
     } catch (error) {
         console.error('Sign in error:', error);
-        return {
-            success: false,
-            error: getErrorMessage(error.code)
+        return { 
+            success: false, 
+            error: getErrorMessage(error.code) 
         };
     }
 }
@@ -149,16 +149,16 @@ export async function signInWithGoogle() {
     try {
         const result = await signInWithPopup(auth, googleProvider);
         const user = result.user;
-
+        
         // Save user data to Firestore
         await saveUserData(user);
-
+        
         return { success: true, user };
     } catch (error) {
         console.error('Google sign in error:', error);
-        return {
-            success: false,
-            error: getErrorMessage(error.code)
+        return { 
+            success: false, 
+            error: getErrorMessage(error.code) 
         };
     }
 }
@@ -172,9 +172,9 @@ export async function signOutUser() {
         return { success: true };
     } catch (error) {
         console.error('Sign out error:', error);
-        return {
-            success: false,
-            error: getErrorMessage(error.code)
+        return { 
+            success: false, 
+            error: getErrorMessage(error.code) 
         };
     }
 }
@@ -188,9 +188,9 @@ export async function resetPassword(email) {
         return { success: true };
     } catch (error) {
         console.error('Password reset error:', error);
-        return {
-            success: false,
-            error: getErrorMessage(error.code)
+        return { 
+            success: false, 
+            error: getErrorMessage(error.code) 
         };
     }
 }
@@ -239,7 +239,7 @@ function getErrorMessage(errorCode) {
         'auth/popup-closed-by-user': 'تم إغلاق النافذة المنبثقة / Popup closed by user',
         'auth/cancelled-popup-request': 'تم إلغاء الطلب / Request cancelled'
     };
-
+    
     return errorMessages[errorCode] || 'حدث خطأ غير متوقع / An unexpected error occurred';
 }
 
@@ -279,7 +279,7 @@ export async function updateUserProfile(updates) {
     try {
         const user = auth.currentUser;
         if (!user) throw new Error('No user logged in');
-
+        
         // Update Firebase Auth profile
         if (updates.displayName || updates.photoURL) {
             await updateProfile(user, {
@@ -287,20 +287,20 @@ export async function updateUserProfile(updates) {
                 photoURL: updates.photoURL || user.photoURL
             });
         }
-
+        
         // Update Firestore document
         const userRef = doc(db, 'users', user.uid);
         await updateDoc(userRef, {
             ...updates,
             updatedAt: serverTimestamp()
         });
-
+        
         return { success: true };
     } catch (error) {
         console.error('Error updating profile:', error);
-        return {
-            success: false,
-            error: error.message
+        return { 
+            success: false, 
+            error: error.message 
         };
     }
 }
@@ -312,7 +312,7 @@ export async function getUserStats(uid) {
     try {
         const userData = await getUserData(uid);
         if (!userData) return null;
-
+        
         // Here you can add more stats from different collections
         return {
             memberSince: userData.createdAt,

@@ -7,13 +7,13 @@
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    الأسعار الأساسية (Base Prices) - بالجنيه المصري
-   ⚠️ بدون تغيير
+   تم تعديل الأسعار لتكون أكثر واقعية
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const BASE_PRICES = {
-    accommodation: 1200,    // فندق 3 نجوم / ليلة
-    food: 250,             // طعام / يوم / شخص
-    transportation: 60,     // مواصلات / يوم / شخص
-    activities: 300        // أنشطة سياحية / يوم
+    accommodation: 400,     // فندق 3 نجوم / ليلة (معدل واقعي ومنطقي)
+    food: 150,             // طعام / يوم / شخص (منخفض ومعقول)
+    transportation: 40,     // مواصلات / يوم / شخص (مخفض)
+    activities: 150        // أنشطة سياحية / يوم (معقول)
 };
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -21,22 +21,22 @@ const BASE_PRICES = {
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const CATEGORY_MULTIPLIERS = {
     A: {  // فئة مرتفعة - سياحية/عالمية
-        accommodation: 1.4,
-        food: 1.3,
-        transportation: 1.4,
-        activities: 1.6
+        accommodation: 1.3,
+        food: 1.2,
+        transportation: 1.3,
+        activities: 1.5
     },
     B: {  // فئة متوسطة
-        accommodation: 1.1,
+        accommodation: 1.0,
         food: 1.0,
-        transportation: 1.1,
-        activities: 1.2
+        transportation: 1.0,
+        activities: 1.1
     },
     C: {  // فئة منخفضة
-        accommodation: 0.8,
-        food: 0.8,
-        transportation: 0.7,
-        activities: 0.6
+        accommodation: 0.7,
+        food: 0.7,
+        transportation: 0.6,
+        activities: 0.5
     }
 };
 
@@ -86,7 +86,7 @@ const GOVERNORATES = {
         name: { ar: 'أسوان', en: 'Aswan', fr: 'Assouan' },
         category: 'A'
     },
-
+    
     // ═══ فئة B - متوسطة ═══
     matrouh: {
         name: { ar: 'مطروح', en: 'Matrouh', fr: 'Matruh' },
@@ -112,7 +112,7 @@ const GOVERNORATES = {
         name: { ar: 'دمياط', en: 'Damietta', fr: 'Damiette' },
         category: 'B'
     },
-
+    
     // ═══ فئة C - منخفضة (الدلتا + الصعيد + الوادي الجديد + شمال سيناء) ═══
     // الدلتا
     beheira: {
@@ -143,7 +143,7 @@ const GOVERNORATES = {
         name: { ar: 'القليوبية', en: 'Qalyubia', fr: 'Qalyubia' },
         category: 'C'
     },
-
+    
     // الصعيد
     beni_suef: {
         name: { ar: 'بني سويف', en: 'Beni Suef', fr: 'Beni Souef' },
@@ -165,7 +165,7 @@ const GOVERNORATES = {
         name: { ar: 'قنا', en: 'Qena', fr: 'Qéna' },
         category: 'C'
     },
-
+    
     // أخرى
     new_valley: {
         name: { ar: 'الوادي الجديد', en: 'New Valley', fr: 'Nouvelle Vallée' },
@@ -184,7 +184,7 @@ const GOVERNORATES = {
 const EXCHANGE_RATES = {
     // الجنيه المصري (أساسي)
     EGP: 1,
-
+    
     // العملات الرئيسية
     USD: 0.0200,   // دولار أمريكي
     EUR: 0.0185,   // يورو
@@ -192,7 +192,7 @@ const EXCHANGE_RATES = {
     CHF: 0.0178,   // فرنك سويسري
     JPY: 2.92,     // ين ياباني
     CNY: 0.145,    // يوان صيني
-
+    
     // عملات الخليج
     SAR: 0.0750,   // ريال سعودي
     AED: 0.0734,   // درهم إماراتي
@@ -200,11 +200,11 @@ const EXCHANGE_RATES = {
     QAR: 0.0728,   // ريال قطري
     BHD: 0.0075,   // دينار بحريني
     OMR: 0.0077,   // ريال عماني
-
+    
     // عملات عربية
     JOD: 0.0142,   // دينار أردني
     TRY: 0.68,     // ليرة تركية
-
+    
     // عملات أمريكا
     CAD: 0.0278,   // دولار كندي
     BRL: 0.118,    // ريال برازيلي
@@ -212,7 +212,7 @@ const EXCHANGE_RATES = {
     ARS: 20.3,     // بيزو أرجنتيني
     CLP: 19.5,     // بيزو تشيلي
     COP: 87.5,     // بيزو كولومبي
-
+    
     // عملات آسيا
     INR: 1.67,     // روبية هندية
     THB: 0.71,     // بات تايلندي
@@ -222,7 +222,7 @@ const EXCHANGE_RATES = {
     KRW: 27.5,     // وون كوري
     IDR: 325,      // روبية إندونيسية
     PHP: 1.14,     // بيزو فلبيني
-
+    
     // عملات أوروبا
     SEK: 0.218,    // كرونة سويدية
     NOK: 0.220,    // كرونة نرويجية
@@ -231,7 +231,7 @@ const EXCHANGE_RATES = {
     CZK: 0.465,    // كرونة تشيكية
     HUF: 7.38,     // فورنت مجري
     RON: 0.092,    // ليو روماني
-
+    
     // عملات أخرى
     AUD: 0.0315,   // دولار أسترالي
     NZD: 0.0338,   // دولار نيوزيلندي
@@ -303,9 +303,9 @@ const SMART_CONTEXT = {
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 function getLongStayContext(discount, days) {
     if (discount >= 1.0) return null; // لا يوجد خصم
-
+    
     const discountPercent = Math.round((1 - discount) * 100);
-
+    
     return {
         ar: `✨ تم تطبيق خصم ${discountPercent}% على الإقامة للمدة الطويلة (${days} يوم)`,
         en: `✨ ${discountPercent}% long-stay discount applied for accommodation (${days} days)`,
@@ -332,34 +332,34 @@ function calculateBudget() {
     if (!AppState.selectedGovernorate) {
         return null;
     }
-
+    
     const governorate = GOVERNORATES[AppState.selectedGovernorate];
     if (!governorate) {
         return null;
     }
-
+    
     const category = governorate.category;
     const multipliers = CATEGORY_MULTIPLIERS[category];
     const days = AppState.days;
     const people = AppState.people;
-
+    
     // 🆕 حساب الإقامة مع خصم الإقامة الطويلة
     const longStayDiscount = getAccommodationDiscount(days);
     const accommodationCost = BASE_PRICES.accommodation * multipliers.accommodation * days * longStayDiscount;
-
+    
     // باقي الحسابات كما هي
     const foodCost = BASE_PRICES.food * multipliers.food * days * people;
     const transportationCost = BASE_PRICES.transportation * multipliers.transportation * days * people;
     const activitiesCost = BASE_PRICES.activities * multipliers.activities * days;
-
+    
     const totalEGP = accommodationCost + foodCost + transportationCost + activitiesCost;
-
+    
     // التحويل للعملة المختارة
     const exchangeRate = EXCHANGE_RATES[AppState.currency];
     const total = totalEGP * exchangeRate;
     const perPerson = total / people;
     const perDay = total / days;
-
+    
     return {
         accommodation: accommodationCost * exchangeRate,
         food: foodCost * exchangeRate,
@@ -404,34 +404,34 @@ function addUpdateAnimation(elementId) {
 function updateSmartContext(category, longStayDiscount, days) {
     const contextElement = document.getElementById('smartContext');
     const textElement = document.getElementById('contextText');
-
+    
     if (!contextElement || !textElement) return;
-
+    
     // إزالة الكلاسات السابقة
     contextElement.className = 'smart-context';
-
+    
     // إضافة الكلاس المناسب
-    const contextClass = category === 'A' ? 'context-high' :
+    const contextClass = category === 'A' ? 'context-high' : 
                         category === 'B' ? 'context-medium' : 'context-low';
     contextElement.classList.add(contextClass);
-
+    
     // تحديث النص الأساسي
     const contextText = SMART_CONTEXT[category];
     textElement.innerHTML = '';
-
+    
     Object.keys(contextText).forEach(lang => {
         const span = document.createElement('span');
         span.setAttribute('data-lang', lang);
         span.textContent = contextText[lang];
         textElement.appendChild(span);
     });
-
+    
     // 🆕 إضافة معلومات الخصم إذا كان موجوداً
     const longStayInfo = getLongStayContext(longStayDiscount, days);
     if (longStayInfo) {
         const br = document.createElement('br');
         textElement.appendChild(br);
-
+        
         Object.keys(longStayInfo).forEach(lang => {
             const span = document.createElement('span');
             span.setAttribute('data-lang', lang);
@@ -441,7 +441,7 @@ function updateSmartContext(category, longStayDiscount, days) {
             textElement.appendChild(span);
         });
     }
-
+    
     // إضافة animation
     contextElement.classList.add('updating');
     setTimeout(() => {
@@ -454,13 +454,13 @@ function updateSmartContext(category, longStayDiscount, days) {
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 function updateResults() {
     const results = calculateBudget();
-
+    
     if (!results) {
         return;
     }
-
+    
     const currencySymbol = CURRENCY_INFO[AppState.currency]?.symbol || AppState.currency;
-
+    
     // 🆕 إضافة animation لكل عنصر
     addUpdateAnimation('accommodationCost');
     addUpdateAnimation('foodCost');
@@ -469,20 +469,20 @@ function updateResults() {
     addUpdateAnimation('totalCost');
     addUpdateAnimation('perPersonCost');
     addUpdateAnimation('perDayCost');
-
+    
     // تحديث التفاصيل
     document.getElementById('accommodationCost').textContent = formatNumber(results.accommodation) + ' ' + currencySymbol;
     document.getElementById('foodCost').textContent = formatNumber(results.food) + ' ' + currencySymbol;
     document.getElementById('transportCost').textContent = formatNumber(results.transportation) + ' ' + currencySymbol;
     document.getElementById('activitiesCost').textContent = formatNumber(results.activities) + ' ' + currencySymbol;
-
+    
     // تحديث المجموع
     document.getElementById('totalCost').innerHTML = formatNumber(results.total) + ' <span class="currency-symbol">' + currencySymbol + '</span>';
-
+    
     // تحديث المعلومات الإضافية
     document.getElementById('perPersonCost').textContent = formatNumber(results.perPerson) + ' ' + currencySymbol;
     document.getElementById('perDayCost').textContent = formatNumber(results.perDay) + ' ' + currencySymbol;
-
+    
     // 🆕 تحديث Context الذكي مع معلومات الخصم
     updateSmartContext(results.category, results.longStayDiscount, AppState.days);
 }
@@ -493,22 +493,22 @@ function updateResults() {
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 function populateGovernorates() {
     const select = document.getElementById('governorateSelect');
-
+    
     // مسح الخيارات الحالية
     const selectGovernorateText = window.translations?.[AppState.language]?.calculator?.selectGovernorate || 'اختر المحافظة';
     const categoryText = window.translations?.[AppState.language]?.calculator?.category || 'فئة';
     select.innerHTML = `<option value="">${selectGovernorateText}</option>`;
-
+    
     // ترتيب المحافظات حسب الفئة
     const sorted = Object.entries(GOVERNORATES).sort((a, b) => {
         const categoryOrder = { 'A': 1, 'B': 2, 'C': 3 };
         return categoryOrder[a[1].category] - categoryOrder[b[1].category];
     });
-
+    
     sorted.forEach(([key, governorate]) => {
         const option = document.createElement('option');
         option.value = key;
-        option.textContent = governorate.name[AppState.language] +
+        option.textContent = governorate.name[AppState.language] + 
                            ` (${categoryText} ${governorate.category})`;
         select.appendChild(option);
     });
@@ -521,17 +521,17 @@ function populateGovernorates() {
 function populateCurrencies() {
     const select = document.getElementById('currencySelect');
     select.innerHTML = '';
-
+    
     // العملات الرئيسية أولاً
     const mainCurrencies = ['EGP', 'USD', 'EUR', 'GBP', 'SAR', 'AED', 'KWD', 'QAR'];
     const otherCurrencies = Object.keys(EXCHANGE_RATES).filter(c => !mainCurrencies.includes(c)).sort();
-
+    
     [...mainCurrencies, ...otherCurrencies].forEach(currency => {
         const option = document.createElement('option');
         option.value = currency;
         const info = CURRENCY_INFO[currency];
-        option.textContent = info ?
-            `${currency} - ${info.name[AppState.language]}` :
+        option.textContent = info ? 
+            `${currency} - ${info.name[AppState.language]}` : 
             currency;
         select.appendChild(option);
     });
@@ -547,12 +547,12 @@ function detectLanguage() {
     // 2. document.documentElement.lang
     // 3. document.body.dataset.language
     // 4. الافتراضي: ar
-
-    const lang = window.siteLanguage ||
-                 document.documentElement.lang ||
-                 document.body.dataset.language ||
+    
+    const lang = window.siteLanguage || 
+                 document.documentElement.lang || 
+                 document.body.dataset.language || 
                  'ar';
-
+    
     AppState.language = lang.toLowerCase().substring(0, 2);
 }
 
@@ -568,7 +568,7 @@ function initEventListeners() {
             updateResults();
         }
     });
-
+    
     // تغيير عدد الأيام - تحديث فوري
     document.getElementById('daysInput').addEventListener('input', (e) => {
         AppState.days = parseInt(e.target.value) || 1;
@@ -576,7 +576,7 @@ function initEventListeners() {
             updateResults();
         }
     });
-
+    
     // تغيير عدد الأشخاص - تحديث فوري
     document.getElementById('peopleInput').addEventListener('input', (e) => {
         AppState.people = parseInt(e.target.value) || 1;
@@ -584,7 +584,7 @@ function initEventListeners() {
             updateResults();
         }
     });
-
+    
     // تغيير العملة - تحديث فوري
     document.getElementById('currencySelect').addEventListener('change', (e) => {
         AppState.currency = e.target.value;
@@ -603,12 +603,12 @@ function watchParentChanges() {
     const observer = new MutationObserver(() => {
         // CSS سيتعامل مع الـ theme تلقائياً
     });
-
+    
     observer.observe(document.documentElement, {
         attributes: true,
         attributeFilter: ['data-theme', 'class', 'lang']
     });
-
+    
     observer.observe(document.body, {
         attributes: true,
         attributeFilter: ['data-theme', 'class', 'data-language']
@@ -625,6 +625,17 @@ function init() {
     populateCurrencies();
     initEventListeners();
     watchParentChanges();
+    
+    // Listen for language changes
+    document.addEventListener('languageChange', function(e) {
+        console.log('🔄 Language changed, updating calculator...');
+        AppState.language = e.detail.lang || 'en';
+        populateGovernorates();
+        populateCurrencies();
+        if (AppState.selectedGovernorate) {
+            updateResults();
+        }
+    });
 }
 
 // تشغيل عند تحميل الصفحة

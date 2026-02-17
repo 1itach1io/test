@@ -1,0 +1,629 @@
+/* ═══════════════════════════════════════════════════════════════════
+   INTERACTIVE PLANS SYSTEM STYLES
+   تصميم نظام الخطط التفاعلي الجديد - تصميم حديث وجذاب
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════════
+   WIZARD CONTAINER
+   ══════════════════════════════════════════════════════════════════ */
+
+.interactive-plans-wizard {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    animation: fadeInUp 0.6s ease;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PROGRESS BAR
+   ══════════════════════════════════════════════════════════════════ */
+
+.wizard-progress-container {
+    margin-bottom: 50px;
+}
+
+.wizard-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(212, 175, 55, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.wizard-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #d4af37 0%, #f7ce68 100%);
+    border-radius: 10px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.wizard-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.wizard-progress-text {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    opacity: 0.7;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   QUESTION HEADER
+   ══════════════════════════════════════════════════════════════════ */
+
+.wizard-question-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.wizard-question-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.wizard-question-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   OPTIONS GRID
+   ══════════════════════════════════════════════════════════════════ */
+
+.wizard-options {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.wizard-options.single-choice {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.wizard-options.multiple-choice {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   OPTION CARDS
+   ══════════════════════════════════════════════════════════════════ */
+
+.wizard-option {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.wizard-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.wizard-option:hover::before {
+    opacity: 1;
+}
+
+.wizard-option:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    border-color: rgba(212, 175, 55, 0.5);
+}
+
+.wizard-option.selected {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(247, 206, 104, 0.15) 100%);
+    border-color: #d4af37;
+    border-width: 3px;
+}
+
+.wizard-option.selected::after {
+    content: '✓';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #d4af37 0%, #f7ce68 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a1a1a;
+    font-weight: 700;
+    font-size: 18px;
+    animation: checkPop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes checkPop {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   OPTION CONTENT
+   ══════════════════════════════════════════════════════════════════ */
+
+.wizard-option-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    display: block;
+    text-align: center;
+}
+
+.wizard-option-content {
+    text-align: center;
+}
+
+.wizard-option-label {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.wizard-option-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+.wizard-option-range {
+    font-size: 15px;
+    font-weight: 600;
+    color: #d4af37;
+    margin-top: 8px;
+}
+
+.wizard-option-check {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 28px;
+    height: 28px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: transparent;
+    transition: all 0.3s ease;
+}
+
+.wizard-option.selected .wizard-option-check {
+    background: linear-gradient(135deg, #d4af37 0%, #f7ce68 100%);
+    border-color: #d4af37;
+    color: #1a1a1a;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   NAVIGATION BUTTONS
+   ══════════════════════════════════════════════════════════════════ */
+
+.wizard-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.wizard-btn {
+    padding: 16px 36px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.wizard-btn-back {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+.wizard-btn-back:hover {
+    background: var(--hover-bg);
+    transform: translateX(-4px);
+}
+
+.wizard-btn-next {
+    background: linear-gradient(135deg, #d4af37 0%, #f7ce68 100%);
+    color: #1a1a1a;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+}
+
+.wizard-btn-next:hover:not(:disabled) {
+    transform: translateX(4px);
+    box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
+}
+
+.wizard-btn-next:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   FINAL PLAN DISPLAY
+   ══════════════════════════════════════════════════════════════════ */
+
+.final-plan-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    animation: fadeInUp 0.8s ease;
+}
+
+.final-plan-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.success-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+    animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.final-plan-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.final-plan-subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   RECOMMENDED GOVERNORATES
+   ══════════════════════════════════════════════════════════════════ */
+
+.recommended-governorates {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.recommended-gov-card {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.recommended-gov-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #d4af37 0%, #f7ce68 100%);
+}
+
+.recommended-gov-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    border-color: #d4af37;
+}
+
+.rec-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #d4af37 0%, #f7ce68 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    color: #1a1a1a;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.rec-emoji {
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.rec-gov-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.rec-gov-region {
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 25px;
+    opacity: 0.7;
+}
+
+.rec-highlights {
+    margin-bottom: 25px;
+}
+
+.rec-highlight {
+    display: block;
+    font-size: 14px;
+    color: var(--text-primary);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.rec-highlight:last-child {
+    border-bottom: none;
+}
+
+.rec-budget {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.rec-budget-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.rec-budget-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #d4af37;
+}
+
+.rec-view-details {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #d4af37 0%, #f7ce68 100%);
+    color: #1a1a1a;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.rec-view-details:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ACTION BUTTONS
+   ══════════════════════════════════════════════════════════════════ */
+
+.final-plan-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.plan-action-btn {
+    padding: 16px 32px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.plan-action-btn.save-plan {
+    background: linear-gradient(135deg, #28a745 0%, #34ce57 100%);
+    color: white;
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+}
+
+.plan-action-btn.save-plan:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(40, 167, 69, 0.4);
+}
+
+.plan-action-btn.export-plan {
+    background: linear-gradient(135deg, #007bff 0%, #0099ff 100%);
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+}
+
+.plan-action-btn.export-plan:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(0, 123, 255, 0.4);
+}
+
+.plan-action-btn.start-over {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+.plan-action-btn.start-over:hover {
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ══════════════════════════════════════════════════════════════════ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+   ══════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .wizard-question-title {
+        font-size: 24px;
+    }
+
+    .wizard-options.single-choice,
+    .wizard-options.multiple-choice {
+        grid-template-columns: 1fr;
+    }
+
+    .wizard-option {
+        padding: 20px;
+    }
+
+    .wizard-option-icon {
+        font-size: 40px;
+    }
+
+    .wizard-navigation {
+        flex-direction: column;
+    }
+
+    .wizard-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .recommended-governorates {
+        grid-template-columns: 1fr;
+    }
+
+    .final-plan-title {
+        font-size: 28px;
+    }
+
+    .final-plan-actions {
+        flex-direction: column;
+    }
+
+    .plan-action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   DARK MODE SUPPORT
+   ══════════════════════════════════════════════════════════════════ */
+
+[data-theme="dark"] .wizard-option {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .wizard-option:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .wizard-option.selected {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(247, 206, 104, 0.2) 100%);
+}
+
+[data-theme="dark"] .recommended-gov-card {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .recommended-gov-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   RTL SUPPORT
+   ══════════════════════════════════════════════════════════════════ */
+
+[dir="rtl"] .wizard-btn i:first-child {
+    order: 2;
+}
+
+[dir="rtl"] .wizard-btn i:last-child {
+    order: 0;
+}
+
+[dir="rtl"] .rec-badge {
+    right: auto;
+    left: 20px;
+}
+
+[dir="rtl"] .wizard-option.selected::after {
+    right: auto;
+    left: 15px;
+}

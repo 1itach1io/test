@@ -1,0 +1,319 @@
+/* ═══════════════════════════════════════════════════════════════════
+   AI GUIDE - ENHANCED STYLES
+   تحسينات المرشد الذكي
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Typing Indicator */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 0;
+}
+
+.typing-dots {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.typing-dots span,
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color, #d4af37);
+    border-radius: 50%;
+    animation: typing-bounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dots span:nth-child(1),
+.typing-indicator span:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.typing-dots span:nth-child(2),
+.typing-indicator span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes typing-bounce {
+    0%, 80%, 100% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Bot Message Typing State */
+.bot-message.typing {
+    opacity: 0.8;
+}
+
+/* Smooth Message Appearance */
+.message {
+    animation: messageSlideIn 0.3s ease-out;
+}
+
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced Chat Messages */
+.chat-messages {
+    scroll-behavior: smooth;
+    padding-bottom: 20px;
+}
+
+/* User Message Enhancement */
+.user-message {
+    animation: messageSlideInRight 0.3s ease-out;
+}
+
+@keyframes messageSlideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Bot Message Enhancement */
+.bot-message {
+    animation: messageSlideInLeft 0.3s ease-out;
+}
+
+@keyframes messageSlideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Message Content Styling */
+.message-content p {
+    margin: 0;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Avatar Styling */
+.message-avatar {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    border-radius: 50%;
+    background: var(--card-bg, #fff);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Quick Question Buttons Enhancement */
+.quick-btn {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.quick-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.quick-btn:active {
+    transform: translateY(0);
+}
+
+/* Send Button Enhancement */
+.send-btn {
+    transition: all 0.3s ease;
+}
+
+.send-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+}
+
+.send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Clear Conversation Button (if added) */
+.clear-conversation-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.clear-conversation-btn:hover {
+    background: #f44336;
+    color: white;
+    border-color: #f44336;
+    transform: rotate(90deg);
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .message-avatar {
+    background: var(--card-bg-dark, #2a2a2a);
+    box-shadow: 0 2px 4px rgba(255,255,255,0.1);
+}
+
+[data-theme="dark"] .typing-indicator span {
+    background: var(--primary-color-dark, #f0d16d);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .message-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+    
+    .typing-indicator span {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+/* Loading State for API Calls */
+.api-loading {
+    position: relative;
+}
+
+.api-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--primary-color, #d4af37) 50%, 
+        transparent 100%);
+    animation: loading-bar 1.5s infinite;
+}
+
+@keyframes loading-bar {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Error Message Styling */
+.message.error-message {
+    background: #ffebee;
+    border-left: 4px solid #f44336;
+}
+
+[data-theme="dark"] .message.error-message {
+    background: rgba(244, 67, 54, 0.1);
+    border-left-color: #ff5252;
+}
+
+/* Success Message Styling */
+.message.success-message {
+    background: #e8f5e9;
+    border-left: 4px solid #4caf50;
+}
+
+[data-theme="dark"] .message.success-message {
+    background: rgba(76, 175, 80, 0.1);
+    border-left-color: #69f0ae;
+}
+
+/* Fade In Animation for Initial Messages */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.chat-messages > .message:first-child {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* ========================================
+   CRITICAL FIX: Chat Messages Visibility
+   ======================================== */
+
+/* Ensure chat messages are always visible */
+.chat-messages .message,
+.chat-messages .user-message,
+.chat-messages .bot-message {
+    opacity: 1 !important;
+    display: flex !important;
+    visibility: visible !important;
+    transform: none;
+}
+
+/* Chat message structure */
+#chat-messages .message {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Message avatar */
+#chat-messages .message-avatar {
+    font-size: 24px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Message content */
+#chat-messages .message-content {
+    flex: 1;
+    opacity: 1;
+    visibility: visible;
+}
+
+#chat-messages .message-content p {
+    margin: 0;
+    line-height: 1.6;
+}
+

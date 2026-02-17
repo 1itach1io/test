@@ -1,0 +1,88 @@
+/* ==========================================
+   إصلاح زر تسجيل الدخول
+   Fix Login Button Display
+   ========================================== */
+
+/* التأكد من ظهور زر تسجيل الدخول دائماً */
+.auth-buttons {
+    display: flex !important;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* زر تسجيل الدخول */
+.auth-btn.login-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    background: linear-gradient(135deg, #d4af37 0%, #f2d06b 100%);
+    color: #1a1a1a;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.auth-btn.login-btn:hover {
+    background: linear-gradient(135deg, #f2d06b 0%, #d4af37 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+}
+
+.auth-btn.login-btn:active {
+    transform: translateY(0);
+}
+
+.auth-btn.login-btn i {
+    font-size: 1rem;
+}
+
+/* التأكد من ظهوره على جميع الأحجام */
+@media (max-width: 768px) {
+    .auth-btn.login-btn {
+        display: inline-flex !important;
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-btn.login-btn {
+        padding: 0.35rem 0.85rem;
+        font-size: 0.85rem;
+    }
+    
+    .auth-btn.login-btn span {
+        display: inline !important;
+    }
+}
+
+/* إخفاء قائمة المستخدم إذا لم يكن مسجل دخول */
+.user-menu-container {
+    display: none !important;
+}
+
+.user-menu-container.active {
+    display: flex !important;
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .auth-btn.login-btn {
+    background: linear-gradient(135deg, #d4af37 0%, #f2d06b 100%);
+    color: #1a1a1a;
+}
+
+[data-theme="dark"] .auth-btn.login-btn:hover {
+    background: linear-gradient(135deg, #f2d06b 0%, #d4af37 100%);
+}
+
+/* RTL Support */
+[dir="rtl"] .auth-btn.login-btn {
+    flex-direction: row-reverse;
+}

@@ -1,0 +1,164 @@
+/* TRAVEL PLANNER MODAL STYLES */
+
+.travel-planner-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.travel-planner-modal.active {
+    opacity: 1;
+}
+
+.travel-planner-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+}
+
+.travel-planner-modal-content {
+    position: relative;
+    width: 95%;
+    height: 95vh;
+    max-width: 1400px;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+.travel-planner-modal.active .travel-planner-modal-content {
+    transform: scale(1);
+}
+
+.travel-planner-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.travel-planner-close-btn:hover {
+    background: #d4af37;
+    transform: rotate(90deg);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+#travel-planner-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 20px;
+}
+
+/* RTL Support */
+[dir="rtl"] .travel-planner-close-btn {
+    right: auto;
+    left: 15px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .travel-planner-modal-content {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
+    
+    #travel-planner-iframe {
+        border-radius: 0;
+    }
+    
+    .travel-planner-close-btn {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+    
+    [dir="rtl"] .travel-planner-close-btn {
+        right: auto;
+        left: 10px;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .travel-planner-modal-content {
+        background: #1a1a1a;
+    }
+}
+
+/* Animation for smooth appearance */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalContentSlideIn {
+    from {
+        transform: scale(0.9) translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.travel-planner-modal.active {
+    animation: modalFadeIn 0.3s ease;
+}
+
+.travel-planner-modal.active .travel-planner-modal-content {
+    animation: modalContentSlideIn 0.3s ease;
+}
+
+/* Loading state for iframe */
+#travel-planner-iframe {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Ensure modal is above everything */
+.travel-planner-modal {
+    z-index: 999999 !important;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+    overflow: hidden;
+}

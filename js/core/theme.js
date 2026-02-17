@@ -1,6 +1,6 @@
 /* ==========================================
    DISCOVER EGYPT - THEME.JS
-   Dark/Light mode toggle with system detection
+   Enhanced Dark/Light mode with smooth transitions
    ========================================== */
 
 // ========== THEME TOGGLE (Dark/Light Mode) ==========
@@ -14,22 +14,23 @@ function initializeTheme() {
 
     // Detect system preference
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-
+    
     // Check for auto-detect preference
     const autoDetect = localStorage.getItem('autoDetectTheme') !== 'false';
     if (autoDetectThemeCheckbox) {
         autoDetectThemeCheckbox.checked = autoDetect;
     }
-
+    
     // Get saved theme or use system preference
     let savedTheme = localStorage.getItem('theme');
-
+    
     // If no saved theme or auto-detect is enabled, use system preference
     if (!savedTheme || autoDetect) {
         savedTheme = prefersDarkScheme.matches ? 'dark' : 'light';
     }
-
-    setTheme(savedTheme);
+    
+    // Apply theme immediately on load
+    setTheme(savedTheme, false);
 
     // Listen for system theme changes
     prefersDarkScheme.addEventListener('change', (e) => {
@@ -58,7 +59,7 @@ function initializeTheme() {
             // Update active state
             themeOptionBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-
+            
             // Disable auto-detect when manually selecting theme
             if (autoDetectThemeCheckbox) {
                 autoDetectThemeCheckbox.checked = false;
@@ -71,7 +72,7 @@ function initializeTheme() {
     if (autoDetectThemeCheckbox) {
         autoDetectThemeCheckbox.addEventListener('change', function() {
             localStorage.setItem('autoDetectTheme', this.checked);
-
+            
             if (this.checked) {
                 // Re-detect system theme
                 const newTheme = prefersDarkScheme.matches ? 'dark' : 'light';
@@ -87,7 +88,7 @@ function initializeTheme() {
         if (reducedMotion) {
             document.documentElement.classList.add('reduced-motion');
         }
-
+        
         reducedMotionCheckbox.addEventListener('change', function() {
             localStorage.setItem('reducedMotion', this.checked);
             if (this.checked) {
@@ -105,7 +106,7 @@ function initializeTheme() {
         if (highContrast) {
             document.documentElement.classList.add('high-contrast');
         }
-
+        
         highContrastCheckbox.addEventListener('change', function() {
             localStorage.setItem('highContrast', this.checked);
             if (this.checked) {
@@ -116,14 +117,17 @@ function initializeTheme() {
         });
     }
 
-    // Function to set theme
+    // Function to set theme with smooth transition
     function setTheme(theme, isManual = false) {
+        // Add transitioning class for smooth animation
+        document.documentElement.classList.add('theme-transitioning');
+        
         // Set theme attribute on HTML element
         document.documentElement.setAttribute('data-theme', theme);
 
         // Save to localStorage
         localStorage.setItem('theme', theme);
-
+        
         // Mark if user manually changed theme
         if (isManual) {
             localStorage.setItem('theme-manual', 'true');
@@ -138,6 +142,24 @@ function initializeTheme() {
             }
         });
 
+        // Remove transitioning class after animation
+        setTimeout(() => {
+            document.documentElement.classList.remove('theme-transitioning');
+        }, 300);
+
         console.log(`Theme changed to: ${theme}`);
     }
+
+    // Add CSS for smooth transition
+    const style = document.createElement('style');
+    style.textContent = `
+        .theme-transitioning,
+        .theme-transitioning * {
+            transition: background-color 0.3s ease,
+                        color 0.3s ease,
+                        border-color 0.3s ease,
+                        box-shadow 0.3s ease !important;
+        }
+    `;
+    document.head.appendChild(style);
 }

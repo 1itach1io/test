@@ -253,46 +253,46 @@
     .search-modal {
         padding-top: 40px;
     }
-
+    
     .search-modal-content {
         width: 95%;
         padding: 25px 20px;
     }
-
+    
     .search-title {
         font-size: 1.5rem;
         margin-bottom: 18px;
     }
-
+    
     .search-input {
         padding: 14px 18px 14px 45px;
         font-size: 1rem;
     }
-
+    
     .search-icon {
         left: 15px;
         font-size: 1.1rem;
     }
-
+    
     .search-results {
         max-height: 350px;
     }
-
+    
     .search-result-item {
         padding: 15px;
         gap: 15px;
     }
-
+    
     .search-result-icon {
         font-size: 2rem;
         width: 50px;
         height: 50px;
     }
-
+    
     .search-result-name {
         font-size: 1.05rem;
     }
-
+    
     .search-result-description {
         font-size: 0.85rem;
     }
@@ -304,7 +304,7 @@
         padding-top: 20px;
         align-items: flex-start;
     }
-
+    
     .search-modal-content {
         width: 100%;
         min-height: 100vh;
@@ -312,61 +312,61 @@
         padding: 20px 15px;
         margin: 0;
     }
-
+    
     .search-close {
         top: 15px;
         right: 15px;
         font-size: 1.8rem;
     }
-
+    
     .search-title {
         font-size: 1.3rem;
         margin-bottom: 15px;
         padding-right: 40px;
     }
-
+    
     .search-input {
         padding: 12px 15px 12px 40px;
         font-size: 0.95rem;
     }
-
+    
     .search-icon {
         left: 12px;
         font-size: 1rem;
     }
-
+    
     .search-results {
         max-height: calc(100vh - 150px);
     }
-
+    
     .search-result-item {
         padding: 12px;
         gap: 12px;
     }
-
+    
     .search-result-icon {
         font-size: 1.8rem;
         width: 45px;
         height: 45px;
     }
-
+    
     .search-result-name {
         font-size: 1rem;
     }
-
+    
     .search-result-description {
         font-size: 0.8rem;
     }
-
+    
     .search-result-details {
         gap: 8px;
         font-size: 0.8rem;
     }
-
+    
     .search-no-results i {
         font-size: 2.5rem;
     }
-
+    
     .search-no-results p {
         font-size: 1rem;
     }
@@ -396,11 +396,11 @@
     [dir="rtl"] .search-icon {
         right: 15px;
     }
-
+    
     [dir="rtl"] .search-input {
         padding: 14px 45px 14px 18px;
     }
-
+    
     [dir="rtl"] .search-close {
         left: 20px;
     }
@@ -410,15 +410,15 @@
     [dir="rtl"] .search-icon {
         right: 12px;
     }
-
+    
     [dir="rtl"] .search-input {
         padding: 12px 40px 12px 15px;
     }
-
+    
     [dir="rtl"] .search-close {
         left: 15px;
     }
-
+    
     [dir="rtl"] .search-title {
         padding-right: 0;
         padding-left: 40px;
@@ -428,33 +428,33 @@
 /* ========== DARK MODE ========== */
 
 [data-theme="dark"] .search-modal-content {
-    background: #1a1a1a;
+    background: var(--bg-primary);
 }
 
 [data-theme="dark"] .search-input {
-    background: #2a2a2a;
-    border-color: #404040;
-    color: #ffffff;
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
 }
 
 [data-theme="dark"] .search-result-item {
-    background: #2a2a2a;
+    background: var(--bg-secondary);
     border-color: transparent;
 }
 
 [data-theme="dark"] .search-result-item:hover {
-    background: #333333;
+    background: var(--bg-card);
     border-color: var(--primary-color);
 }
 
 [data-theme="dark"] .search-result-name {
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 [data-theme="dark"] .search-result-description {
-    color: #b0b0b0;
+    color: var(--text-secondary);
 }
 
 [data-theme="dark"] .search-result-governorate {
-    color: #888888;
+    color: var(--text-muted);
 }

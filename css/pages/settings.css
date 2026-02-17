@@ -23,12 +23,14 @@
 .settings-card h3 {
     color: var(--text-primary);
     font-size: 1.5rem;
+    font-weight: 700;  /* نص أسمك */
     margin-bottom: var(--spacing-sm);
 }
 
 .settings-card > p {
-    color: var(--text-secondary);
+    color: var(--text-primary);  /* أسود بدلاً من رمادي */
     margin-bottom: var(--spacing-lg);
+    font-weight: 500;  /* نص أوضح */
 }
 
 /* Language Options */
@@ -49,6 +51,8 @@
     border-radius: var(--radius-md);
     cursor: pointer;
     transition: all var(--transition-fast);
+    font-weight: 600;  /* نص أسمك */
+    color: var(--text-primary);  /* تأكيد اللون الأسود */
 }
 
 .radio-option:hover {
@@ -67,8 +71,9 @@
     align-items: center;
     gap: var(--spacing-sm);
     cursor: pointer;
-    color: var(--text-secondary);
+    color: var(--text-primary);  /* أسود بدلاً من رمادي */
     margin-top: var(--spacing-md);
+    font-weight: 600;  /* نص أسمك */
 }
 
 .checkbox-option input[type="checkbox"] {

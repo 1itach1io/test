@@ -1,0 +1,289 @@
+/* ═══════════════════════════════════════════════════════════════════
+   USER PROFILE - ENHANCED STYLING
+   تصميم محسّن لواجهة البروفايل مع عرض أفضل للمعلومات
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ========== User Profile Header ========== */
+.user-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px 12px 0 0;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.user-photo-large {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #d4af37;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.user-photo-large:hover {
+    transform: scale(1.05);
+}
+
+.user-profile-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.user-profile-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.user-profile-email {
+    font-size: 14px;
+    color: #6c757d;
+    margin: 0;
+    direction: ltr;
+    text-align: left;
+}
+
+.user-auth-method {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #495057;
+    background: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid #dee2e6;
+    width: fit-content;
+    margin-top: 4px;
+}
+
+.user-auth-method i {
+    font-size: 11px;
+    color: #d4af37;
+}
+
+/* ========== Dropdown Menu Items Container ========== */
+.dropdown-menu-items {
+    padding: 8px 0;
+}
+
+/* ========== Dropdown Items Enhanced ========== */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    color: #495057;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+}
+
+.dropdown-item:hover {
+    background: #f8f9fa;
+    color: #d4af37;
+    padding-left: 24px;
+}
+
+.dropdown-item:active {
+    background: #e9ecef;
+}
+
+.dropdown-item i {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+    color: #6c757d;
+    transition: color 0.2s ease;
+}
+
+.dropdown-item:hover i {
+    color: #d4af37;
+}
+
+/* ========== Logout Button Specific Styling ========== */
+.logout-btn {
+    color: #dc3545 !important;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.logout-btn:hover {
+    background: #fff5f5 !important;
+    color: #c82333 !important;
+}
+
+.logout-btn i {
+    color: #dc3545 !important;
+}
+
+.logout-btn:hover i {
+    color: #c82333 !important;
+}
+
+/* ========== Plans Badge ========== */
+.plans-badge {
+    margin-left: auto;
+    background: #d4af37;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 12px;
+    min-width: 24px;
+    text-align: center;
+}
+
+/* ========== Dropdown Divider ========== */
+.dropdown-divider {
+    height: 1px;
+    background: #dee2e6;
+    margin: 8px 0;
+}
+
+/* ========== User Menu Button - Small Photo ========== */
+.user-photo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #d4af37;
+    box-shadow: 0 2px 6px rgba(212, 175, 55, 0.2);
+}
+
+.user-display-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2c3e50;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ========== Arabic RTL Support ========== */
+[dir="rtl"] .user-profile-email {
+    text-align: right;
+}
+
+[dir="rtl"] .dropdown-item {
+    text-align: right;
+}
+
+[dir="rtl"] .dropdown-item:hover {
+    padding-right: 24px;
+    padding-left: 20px;
+}
+
+[dir="rtl"] .plans-badge {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* ========== Mobile Responsive ========== */
+@media (max-width: 768px) {
+    .user-profile-header {
+        padding: 16px;
+        gap: 12px;
+    }
+    
+    .user-photo-large {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .user-profile-name {
+        font-size: 16px;
+    }
+    
+    .user-profile-email {
+        font-size: 13px;
+    }
+    
+    .user-auth-method {
+        font-size: 11px;
+        padding: 4px 10px;
+    }
+    
+    .dropdown-item {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+    
+    .user-display-name {
+        max-width: 100px;
+        font-size: 14px;
+    }
+}
+
+/* ========== Dark Mode Support ========== */
+.dark-mode .user-profile-header {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    border-bottom-color: #4a5568;
+}
+
+.dark-mode .user-profile-name {
+    color: #f8f9fa;
+}
+
+.dark-mode .user-profile-email {
+    color: #adb5bd;
+}
+
+.dark-mode .user-auth-method {
+    background: #34495e;
+    color: #adb5bd;
+    border-color: #4a5568;
+}
+
+.dark-mode .dropdown-item {
+    color: #e9ecef;
+}
+
+.dark-mode .dropdown-item:hover {
+    background: #2c3e50;
+    color: #d4af37;
+}
+
+.dark-mode .dropdown-item i {
+    color: #adb5bd;
+}
+
+.dark-mode .dropdown-divider {
+    background: #4a5568;
+}
+
+.dark-mode .logout-btn:hover {
+    background: #3d1c1c !important;
+}
+
+/* ========== Animation ========== */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.user-dropdown.show {
+    animation: fadeInDown 0.3s ease-out;
+}

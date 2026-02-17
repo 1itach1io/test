@@ -1,227 +1,31 @@
 /* ==========================================
    DISCOVER EGYPT - BASE CSS
-   Reset + Variables + Typography
+   Import Design System + Legacy Compatibility
    ========================================== */
 
-/* ========== CSS VARIABLES (Custom Properties) ========== */
-/* This allows easy theme switching between light and dark modes */
+/* Import Design System */
+@import url('design-system.css');
+
+/* ========== LEGACY VARIABLE COMPATIBILITY ========== */
+/* Map old variable names to new design system */
 
 :root {
-    /* Light Mode Colors (Default) - محسّنة للتباين الأفضل */
-    --primary-color: #c19a2e;          /* Gold - أغمق قليلاً */
-    --secondary-color: #7a3a10;        /* Saddle Brown - أغمق */
-    --accent-color: #d62c1a;           /* Red accent - أغمق */
-
-    --bg-primary: #ffffff;             /* White background */
-    --bg-secondary: #f5f5f5;           /* Light gray - أفضل تباين */
-    --bg-card: #ffffff;                /* Card background */
-
-    --text-primary: #1a1a1a;           /* أسود تقريباً - أفضل قراءة */
-    --text-secondary: #4a4a4a;         /* رمادي داكن - أوضح */
-    --text-light: #ffffff;             /* White text */
-
-    --border-color: #d0d0d0;           /* حدود أوضح */
-    --shadow-light: rgba(0, 0, 0, 0.08);
-    --shadow-medium: rgba(0, 0, 0, 0.12);
-    --shadow-heavy: rgba(0, 0, 0, 0.25);
-
-    /* Spacing */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 1.5rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 3rem;
-
-    /* Border Radius */
-    --radius-sm: 4px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
-    --radius-xl: 20px;
-
-    /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-medium: 0.3s ease;
-    --transition-slow: 0.5s ease;
-}
-
-/* Dark Mode Variables - محسّنة للتباين الأفضل */
-[data-theme="dark"] {
-    --bg-primary: #0f0f0f;             /* أسود عميق */
-    --bg-secondary: #1a1a1a;           /* رمادي داكن جداً */
-    --bg-card: #1f1f1f;                /* خلفية الكروت */
-
-    --text-primary: #ffffff;           /* أبيض نقي - أفضل قراءة */
-    --text-secondary: #e0e0e0;         /* رمادي فاتح - تباين ممتاز */
-
-    --border-color: #404040;           /* حدود واضحة */
-    --shadow-light: rgba(0, 0, 0, 0.4);
-    --shadow-medium: rgba(0, 0, 0, 0.5);
-    --shadow-heavy: rgba(0, 0, 0, 0.7);
-}
-
-/* ========== RESET & BASE STYLES ========== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    line-height: 1.7; /* تحسين القراءة */
-    transition: background-color var(--transition-medium),
-    color var(--transition-medium);
-}
-
-/* تعريف الخطوط الثلاثة المستخدمة */
-/* 1. Segoe UI - للنصوص العامة */
-/* 2. Tahoma - بديل للنصوص */
-/* 3. Georgia - للعناوين الكبيرة */
-
-h1, h2, h3 {
-    font-family: Georgia, serif;
-    font-weight: 600;
-    line-height: 1.3;
-}
-
-code, pre {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-}
-
-/* RTL Support for Arabic */
-[dir="rtl"] {
-    direction: rtl;
-    text-align: right;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    /* تحسين أداء تحميل الصور */
-    loading: lazy;
-    /* تحسين جودة العرض */
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-}
-
-/* تأثير تحميل ناعم للصور */
-img:not([src]) {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: color var(--transition-fast);
-}
-
-button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all var(--transition-fast);
-}
-
-ul {
-    list-style: none;
-}
-
-/* ========== UTILITY CLASSES ========== */
-
-.hidden {
-    display: none !important;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.mt-1 { margin-top: var(--spacing-sm); }
-.mt-2 { margin-top: var(--spacing-md); }
-.mt-3 { margin-top: var(--spacing-lg); }
-
-.mb-1 { margin-bottom: var(--spacing-sm); }
-.mb-2 { margin-bottom: var(--spacing-md); }
-.mb-3 { margin-bottom: var(--spacing-lg); }
-
-/* ========== ACCESSIBILITY (إمكانية الوصول المحسّنة) ========== */
-
-/* Focus states for keyboard navigation */
-a:focus,
-button:focus,
-input:focus,
-select:focus {
-    outline: 3px solid var(--primary-color); /* أوضح */
-    outline-offset: 3px; /* مسافة أكبر */
-}
-
-/* زر "تخطي إلى المحتوى" لمستخدمي لوحة المفاتيح */
-.skip-to-content {
-    position: absolute;
-    top: -100px;
-    left: 0;
-    background: var(--primary-color);
-    color: var(--text-light);
-    padding: 10px 20px;
-    z-index: 10000;
-    text-decoration: none;
-    border-radius: 0 0 5px 0;
-}
-
-.skip-to-content:focus {
-    top: 0;
-}
-
-/* تحسين الوضوح للعناصر التفاعلية */
-button:hover,
-a:hover {
-    opacity: 0.9;
-}
-
-/* Reduce motion for users who prefer it */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation: none !important;
-        transition: none !important;
-    }
-}
-
-/* ========== تحسينات الأداء ========== */
-
-/* Lazy Loading للصور */
-img[loading="lazy"] {
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-img[loading="lazy"].loaded {
-    opacity: 1;
-}
-
-/* تحسين Rendering */
-.will-change {
-    will-change: transform;
-}
-
-/* تقليل Repaints */
-.no-select {
-    user-select: none;
-    -webkit-user-select: none;
+    /* Legacy spacing - mapped to new system */
+    --spacing-xs: var(--space-2);
+    --spacing-sm: var(--space-4);
+    --spacing-md: var(--space-6);
+    --spacing-lg: var(--space-8);
+    --spacing-xl: var(--space-12);
+    
+    /* Legacy colors - use design system colors */
+    --text-light: var(--text-on-dark);
+    --border-color: var(--border-primary);
+    --shadow-light: var(--shadow-sm);
+    --shadow-medium: var(--shadow-md);
+    --shadow-heavy: var(--shadow-lg);
+    
+    /* Legacy transitions - use design system */
+    --transition-fast: var(--transition-fast);
+    --transition-medium: var(--transition-base);
+    --transition-slow: var(--transition-slow);
 }

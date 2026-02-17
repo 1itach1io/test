@@ -48,14 +48,14 @@ function initializeNavigation() {
         });
     });
 
-    // CTA Button - Navigate to Tools section
+    // CTA Button - Navigate to Plans section
     const ctaButton = document.querySelector('.cta-button');
     if (ctaButton) {
         ctaButton.addEventListener('click', function() {
-            // Find and click the Tools navigation link
-            const toolsLink = document.querySelector('[data-section="tools"]');
-            if (toolsLink) {
-                toolsLink.click();
+            // Find and click the Plans navigation link
+            const plansLink = document.querySelector('[data-section="plans"]');
+            if (plansLink) {
+                plansLink.click();
             }
         });
     }
@@ -63,7 +63,7 @@ function initializeNavigation() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const toolButtons = document.querySelectorAll('.tool-btn');
+    const toolButtons = document.querySelectorAll('.tool-card');  // ✅ تم الإصلاح
     const sections = document.querySelectorAll('.section');
 
     toolButtons.forEach(btn => {
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ========== UTILITY FUNCTIONS ==========
 
 // Initialize Tools Section
-function initializeTools() {
+function initializeTools() {  // ✅ تم التصحيح إلى camelCase
     console.log('✅ Tools section initialized');
     // Navigation is handled by initializeNavigation()
     // This function can be extended for additional tools features

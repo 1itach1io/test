@@ -189,3 +189,9 @@ function initializeAIGuide() {
         });
     });
 }
+
+// Initialize AI Guide on page load
+document.addEventListener('DOMContentLoaded', () => {
+    initializeAIGuide();
+    console.log('✅ AI Guide initialized');
+});

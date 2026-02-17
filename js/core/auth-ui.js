@@ -12,13 +12,13 @@ class AuthUI {
     if (typeof translations !== 'undefined') {
       this.translations = translations;
     }
-
+    
     // Check if user is logged in
     this.checkUserStatus();
-
+    
     // Render auth button
     this.render();
-
+    
     // Listen for language changes
     document.addEventListener('languageChange', (e) => {
       this.currentLang = e.detail.lang;
@@ -41,7 +41,7 @@ class AuthUI {
 
   render() {
     let container = document.getElementById('auth-btn-container');
-
+    
     if (!container) {
       container = document.createElement('div');
       container.id = 'auth-btn-container';
@@ -60,7 +60,7 @@ class AuthUI {
 
   renderLoginButton() {
     const loginText = this.getTranslation('auth.login');
-
+    
     return `
       <button class="auth-btn auth-btn-login" id="login-btn">
         <span class="auth-btn-icon">🔐</span>
@@ -102,10 +102,10 @@ class AuthUI {
   showLoginModal() {
     // هذه الدالة ستُطور لاحقاً لعرض نموذج تسجيل الدخول
     console.log('Login modal will be implemented soon...');
-
+    
     // مؤقتاً: محاكاة تسجيل الدخول للاختبار
     const demoLogin = confirm('هل تريد تسجيل الدخول كمستخدم تجريبي؟');
-
+    
     if (demoLogin) {
       this.login({
         name: 'محمد أحمد',
@@ -119,24 +119,24 @@ class AuthUI {
     this.user = userData;
     localStorage.setItem('egyptUser', JSON.stringify(userData));
     this.render();
-
+    
     // Dispatch event for other components
-    document.dispatchEvent(new CustomEvent('userLogin', {
-      detail: { user: userData }
+    document.dispatchEvent(new CustomEvent('userLogin', { 
+      detail: { user: userData } 
     }));
-
+    
     // Show welcome message
     this.showWelcomeMessage();
   }
 
   logout() {
     const confirmLogout = confirm(this.getTranslation('auth.logout') + '?');
-
+    
     if (confirmLogout) {
       this.user = null;
       localStorage.removeItem('egyptUser');
       this.render();
-
+      
       // Dispatch event for other components
       document.dispatchEvent(new CustomEvent('userLogout'));
     }
@@ -145,7 +145,7 @@ class AuthUI {
   showWelcomeMessage() {
     const welcomeText = this.getTranslation('auth.welcome');
     const userName = this.user.name || 'User';
-
+    
     // Create temporary welcome message
     const message = document.createElement('div');
     message.className = 'welcome-message';
@@ -163,9 +163,9 @@ class AuthUI {
       animation: slideIn 0.3s ease;
       font-weight: 600;
     `;
-
+    
     document.body.appendChild(message);
-
+    
     // Remove after 3 seconds
     setTimeout(() => {
       message.style.animation = 'slideOut 0.3s ease';
@@ -175,10 +175,10 @@ class AuthUI {
 
   getTranslation(key) {
     if (!this.translations) return key;
-
+    
     const keys = key.split('.');
     let value = this.translations[this.currentLang];
-
+    
     for (const k of keys) {
       if (value && value[k]) {
         value = value[k];
@@ -186,7 +186,7 @@ class AuthUI {
         return key;
       }
     }
-
+    
     return value;
   }
 
@@ -212,7 +212,7 @@ style.textContent = `
       opacity: 1;
     }
   }
-
+  
   @keyframes slideOut {
     from {
       transform: translateX(0);

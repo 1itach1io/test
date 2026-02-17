@@ -124,13 +124,14 @@
     font-size: 1.3rem;
     color: var(--text-primary);
     margin-bottom: var(--spacing-sm);
-    font-weight: 600;
+    font-weight: 700;  /* نص أسمك */
 }
 
 .place-description {
-    color: var(--text-secondary);
+    color: var(--text-primary);  /* أسود بدلاً من رمادي */
     margin-bottom: var(--spacing-sm);
-    line-height: 1.5;
+    line-height: 1.6;
+    font-weight: 500;  /* نص أوضح */
 }
 
 .place-location {

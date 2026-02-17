@@ -3,11 +3,11 @@
    User interface for authentication and search
    ========================================== */
 
-import {
-    signUpWithEmail,
-    signInWithEmail,
-    signInWithGoogle,
-    signOutUser,
+import { 
+    signUpWithEmail, 
+    signInWithEmail, 
+    signInWithGoogle, 
+    signOutUser, 
     resetPassword,
     onAuthChange,
     getCurrentUser,
@@ -24,28 +24,28 @@ let currentUserData = null;
 
 export function initializeAuthUI() {
     console.log('🔐 Starting Auth UI initialization...');
-
+    
     try {
         // Initialize auth state listener
         console.log('   📡 Setting up auth state listener...');
         initAuthStateListener();
-
+        
         // Initialize login buttons
         console.log('   🔘 Setting up login buttons...');
         initLoginButtons();
-
+        
         // Initialize logout buttons
         console.log('   🔘 Setting up logout buttons...');
         initLogoutButtons();
-
+        
         // Initialize search functionality
         console.log('   🔍 Setting up search functionality...');
         initSearchFunctionality();
-
+        
         // Initialize mobile menu auth
         console.log('   📱 Setting up mobile auth...');
         initMobileAuth();
-
+        
         console.log('✅ Auth UI initialization complete!');
     } catch (error) {
         console.error('❌ Auth UI initialization failed:', error);
@@ -61,7 +61,7 @@ function initAuthStateListener() {
     onAuthChange((user, userData) => {
         currentUser = user;
         currentUserData = userData;
-
+        
         if (user) {
             console.log('User logged in:', user.email);
             showUserUI(user, userData);
@@ -78,20 +78,20 @@ function showUserUI(user, userData) {
     const userMenu = document.getElementById('user-menu');
     const userName = document.getElementById('user-name');
     const userAvatar = document.getElementById('user-avatar');
-
+    
     if (loginBtn) loginBtn.style.display = 'none';
     if (userMenu) userMenu.style.display = 'block';
-
+    
     const displayName = user.displayName || userData?.displayName || user.email.split('@')[0];
-    const photoURL = user.photoURL || userData?.photoURL ||
+    const photoURL = user.photoURL || userData?.photoURL || 
         `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=4F46E5&color=fff`;
-
+    
     if (userName) userName.textContent = displayName;
     if (userAvatar) {
         userAvatar.src = photoURL;
         userAvatar.alt = displayName;
     }
-
+    
     // Mobile UI
     const mobileAuthItem = document.getElementById('mobile-auth-item');
     const mobileUserItem = document.getElementById('mobile-user-item');
@@ -99,11 +99,11 @@ function showUserUI(user, userData) {
     const mobileUserName = document.getElementById('mobile-user-name');
     const mobileUserEmail = document.getElementById('mobile-user-email');
     const mobileUserAvatar = document.getElementById('mobile-user-avatar');
-
+    
     if (mobileAuthItem) mobileAuthItem.style.display = 'none';
     if (mobileUserItem) mobileUserItem.style.display = 'block';
     if (mobileLogoutItem) mobileLogoutItem.style.display = 'block';
-
+    
     if (mobileUserName) mobileUserName.textContent = displayName;
     if (mobileUserEmail) mobileUserEmail.textContent = user.email;
     if (mobileUserAvatar) {
@@ -116,15 +116,15 @@ function showLoginUI() {
     // Desktop UI
     const loginBtn = document.getElementById('login-btn');
     const userMenu = document.getElementById('user-menu');
-
+    
     if (loginBtn) loginBtn.style.display = 'flex';
     if (userMenu) userMenu.style.display = 'none';
-
+    
     // Mobile UI
     const mobileAuthItem = document.getElementById('mobile-auth-item');
     const mobileUserItem = document.getElementById('mobile-user-item');
     const mobileLogoutItem = document.getElementById('mobile-logout-item');
-
+    
     if (mobileAuthItem) mobileAuthItem.style.display = 'block';
     if (mobileUserItem) mobileUserItem.style.display = 'none';
     if (mobileLogoutItem) mobileLogoutItem.style.display = 'none';
@@ -144,7 +144,7 @@ function initLoginButtons() {
             openAuthModal();
         });
     }
-
+    
     // Mobile login button
     const mobileLoginBtn = document.getElementById('mobile-login-btn');
     console.log('   📱 Mobile login button:', mobileLoginBtn ? 'Found ✓' : 'Not found ✗');
@@ -161,13 +161,13 @@ function openAuthModal() {
     const modal = createAuthModal();
     document.body.appendChild(modal);
     console.log('✅ Modal created and added to DOM');
-
+    
     // Animate in
     setTimeout(() => {
         modal.classList.add('active');
         console.log('✅ Modal animated in');
     }, 10);
-
+    
     // Prevent body scroll
     document.body.style.overflow = 'hidden';
 }
@@ -176,14 +176,14 @@ function createAuthModal() {
     const modal = document.createElement('div');
     modal.className = 'auth-modal';
     modal.id = 'auth-modal';
-
+    
     modal.innerHTML = `
         <div class="auth-modal-overlay"></div>
         <div class="auth-modal-content">
             <button class="auth-modal-close" aria-label="Close">
                 <i class="fas fa-times"></i>
             </button>
-
+            
             <div class="auth-tabs">
                 <button class="auth-tab active" data-tab="login">
                     <span data-translate="auth.login">تسجيل الدخول</span>
@@ -192,37 +192,37 @@ function createAuthModal() {
                     <span data-translate="auth.signup">إنشاء حساب</span>
                 </button>
             </div>
-
+            
             <!-- Login Form -->
             <form class="auth-form active" id="login-form">
                 <h2 data-translate="auth.welcomeBack">مرحباً بعودتك!</h2>
-
+                
                 <div class="form-group">
                     <label for="login-email" data-translate="auth.email">البريد الإلكتروني</label>
-                    <input type="email" id="login-email" required
+                    <input type="email" id="login-email" required 
                            placeholder="your@email.com">
                 </div>
-
+                
                 <div class="form-group">
                     <label for="login-password" data-translate="auth.password">كلمة المرور</label>
-                    <input type="password" id="login-password" required
+                    <input type="password" id="login-password" required 
                            placeholder="••••••••">
                 </div>
-
+                
                 <button type="button" class="forgot-password-btn" data-translate="auth.forgotPassword">
                     نسيت كلمة المرور؟
                 </button>
-
+                
                 <div class="auth-error" id="login-error"></div>
-
+                
                 <button type="submit" class="auth-submit-btn">
                     <span data-translate="auth.login">تسجيل الدخول</span>
                 </button>
-
+                
                 <div class="auth-divider">
                     <span data-translate="auth.orContinueWith">أو المتابعة بواسطة</span>
                 </div>
-
+                
                 <button type="button" class="google-btn">
                     <svg width="18" height="18" viewBox="0 0 18 18">
                         <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/>
@@ -233,40 +233,40 @@ function createAuthModal() {
                     <span data-translate="auth.continueWithGoogle">المتابعة بواسطة Google</span>
                 </button>
             </form>
-
+            
             <!-- Signup Form -->
             <form class="auth-form" id="signup-form">
                 <h2 data-translate="auth.createAccount">إنشاء حساب جديد</h2>
-
+                
                 <div class="form-group">
                     <label for="signup-name" data-translate="auth.name">الاسم</label>
-                    <input type="text" id="signup-name" required
+                    <input type="text" id="signup-name" required 
                            placeholder="Your Name">
                 </div>
-
+                
                 <div class="form-group">
                     <label for="signup-email" data-translate="auth.email">البريد الإلكتروني</label>
-                    <input type="email" id="signup-email" required
+                    <input type="email" id="signup-email" required 
                            placeholder="your@email.com">
                 </div>
-
+                
                 <div class="form-group">
                     <label for="signup-password" data-translate="auth.password">كلمة المرور</label>
-                    <input type="password" id="signup-password" required
+                    <input type="password" id="signup-password" required 
                            placeholder="••••••••">
                     <small class="form-hint" data-translate="auth.passwordHint">6 أحرف على الأقل</small>
                 </div>
-
+                
                 <div class="auth-error" id="signup-error"></div>
-
+                
                 <button type="submit" class="auth-submit-btn">
                     <span data-translate="auth.signup">إنشاء حساب</span>
                 </button>
-
+                
                 <div class="auth-divider">
                     <span data-translate="auth.orContinueWith">أو المتابعة بواسطة</span>
                 </div>
-
+                
                 <button type="button" class="google-btn">
                     <svg width="18" height="18" viewBox="0 0 18 18">
                         <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/>
@@ -279,10 +279,10 @@ function createAuthModal() {
             </form>
         </div>
     `;
-
+    
     // Add event listeners
     setupModalListeners(modal);
-
+    
     return modal;
 }
 
@@ -290,38 +290,38 @@ function setupModalListeners(modal) {
     // Close button
     const closeBtn = modal.querySelector('.auth-modal-close');
     const overlay = modal.querySelector('.auth-modal-overlay');
-
+    
     closeBtn.addEventListener('click', () => closeAuthModal(modal));
     overlay.addEventListener('click', () => closeAuthModal(modal));
-
+    
     // Tab switching
     const tabs = modal.querySelectorAll('.auth-tab');
     const forms = modal.querySelectorAll('.auth-form');
-
+    
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             tabs.forEach(t => t.classList.remove('active'));
             forms.forEach(f => f.classList.remove('active'));
-
+            
             tab.classList.add('active');
             const formId = tab.dataset.tab === 'login' ? 'login-form' : 'signup-form';
             modal.querySelector(`#${formId}`).classList.add('active');
         });
     });
-
+    
     // Form submissions
     const loginForm = modal.querySelector('#login-form');
     const signupForm = modal.querySelector('#signup-form');
-
+    
     loginForm.addEventListener('submit', handleLogin);
     signupForm.addEventListener('submit', handleSignup);
-
+    
     // Google sign in buttons
     const googleBtns = modal.querySelectorAll('.google-btn');
     googleBtns.forEach(btn => {
         btn.addEventListener('click', handleGoogleSignIn);
     });
-
+    
     // Forgot password
     const forgotPasswordBtn = modal.querySelector('.forgot-password-btn');
     forgotPasswordBtn.addEventListener('click', handleForgotPassword);
@@ -339,25 +339,25 @@ function closeAuthModal(modal) {
 
 async function handleLogin(e) {
     e.preventDefault();
-
+    
     const email = document.getElementById('login-email').value.trim();
     const password = document.getElementById('login-password').value;
     const errorDiv = document.getElementById('login-error');
     const submitBtn = e.target.querySelector('.auth-submit-btn');
-
+    
     // Validate
     if (!isValidEmail(email)) {
         showError(errorDiv, 'البريد الإلكتروني غير صالح / Invalid email');
         return;
     }
-
+    
     // Show loading
     submitBtn.disabled = true;
     submitBtn.textContent = 'جاري تسجيل الدخول...';
-
+    
     // Sign in
     const result = await signInWithEmail(email, password);
-
+    
     if (result.success) {
         showSuccess(errorDiv, 'تم تسجيل الدخول بنجاح! / Login successful!');
         setTimeout(() => {
@@ -373,36 +373,36 @@ async function handleLogin(e) {
 
 async function handleSignup(e) {
     e.preventDefault();
-
+    
     const name = document.getElementById('signup-name').value.trim();
     const email = document.getElementById('signup-email').value.trim();
     const password = document.getElementById('signup-password').value;
     const errorDiv = document.getElementById('signup-error');
     const submitBtn = e.target.querySelector('.auth-submit-btn');
-
+    
     // Validate
     if (name.length < 2) {
         showError(errorDiv, 'الاسم قصير جداً / Name is too short');
         return;
     }
-
+    
     if (!isValidEmail(email)) {
         showError(errorDiv, 'البريد الإلكتروني غير صالح / Invalid email');
         return;
     }
-
+    
     if (!isValidPassword(password)) {
         showError(errorDiv, 'كلمة المرور يجب أن تكون 6 أحرف على الأقل / Password must be at least 6 characters');
         return;
     }
-
+    
     // Show loading
     submitBtn.disabled = true;
     submitBtn.textContent = 'جاري إنشاء الحساب...';
-
+    
     // Sign up
     const result = await signUpWithEmail(email, password, name);
-
+    
     if (result.success) {
         showSuccess(errorDiv, 'تم إنشاء الحساب بنجاح! / Account created successfully!');
         setTimeout(() => {
@@ -419,14 +419,14 @@ async function handleSignup(e) {
 async function handleGoogleSignIn() {
     const modal = document.getElementById('auth-modal');
     const googleBtns = modal.querySelectorAll('.google-btn');
-
+    
     googleBtns.forEach(btn => {
         btn.disabled = true;
         btn.textContent = 'جاري الاتصال...';
     });
-
+    
     const result = await signInWithGoogle();
-
+    
     if (result.success) {
         setTimeout(() => {
             if (modal) closeAuthModal(modal);
@@ -444,21 +444,21 @@ async function handleGoogleSignIn() {
                 <span data-translate="auth.continueWithGoogle">المتابعة بواسطة Google</span>
             `;
         });
-
+        
         alert(result.error);
     }
 }
 
 async function handleForgotPassword() {
     const email = document.getElementById('login-email').value.trim();
-
+    
     if (!email || !isValidEmail(email)) {
         alert('الرجاء إدخال بريدك الإلكتروني أولاً / Please enter your email address first');
         return;
     }
-
+    
     const result = await resetPassword(email);
-
+    
     if (result.success) {
         alert(`تم إرسال رابط إعادة تعيين كلمة المرور إلى ${email} / Password reset link sent to ${email}`);
     } else {
@@ -476,26 +476,26 @@ function initLogoutButtons() {
     if (userMenuBtn) {
         userMenuBtn.addEventListener('click', toggleUserDropdown);
     }
-
+    
     // Desktop dropdown logout
     const logoutBtn = document.getElementById('logout-btn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', handleLogout);
     }
-
+    
     // Mobile logout button
     const mobileLogoutBtn = document.getElementById('mobile-logout-btn');
     if (mobileLogoutBtn) {
         mobileLogoutBtn.addEventListener('click', handleLogout);
     }
-
+    
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
         const dropdown = document.getElementById('user-dropdown');
         const menuBtn = document.getElementById('user-menu-btn');
-
-        if (dropdown && menuBtn &&
-            !dropdown.contains(e.target) &&
+        
+        if (dropdown && menuBtn && 
+            !dropdown.contains(e.target) && 
             !menuBtn.contains(e.target)) {
             dropdown.classList.remove('active');
         }
@@ -512,7 +512,7 @@ function toggleUserDropdown() {
 async function handleLogout() {
     if (confirm('هل تريد تسجيل الخروج؟ / Do you want to logout?')) {
         const result = await signOutUser();
-
+        
         if (result.success) {
             console.log('Logged out successfully');
             // Close dropdown if open
@@ -547,7 +547,7 @@ function initSearchFunctionality() {
             openSearchModal();
         });
     }
-
+    
     // Mobile search button
     const mobileSearchBtn = document.getElementById('mobile-search-btn');
     console.log('   📱 Mobile search button:', mobileSearchBtn ? 'Found ✓' : 'Not found ✗');
@@ -564,7 +564,7 @@ function openSearchModal() {
     const modal = createSearchModal();
     document.body.appendChild(modal);
     console.log('✅ Search modal created and added to DOM');
-
+    
     // Animate in
     setTimeout(() => {
         modal.classList.add('active');
@@ -572,7 +572,7 @@ function openSearchModal() {
         if (searchInput) searchInput.focus();
         console.log('✅ Search modal animated in');
     }, 10);
-
+    
     // Prevent body scroll
     document.body.style.overflow = 'hidden';
 }
@@ -581,22 +581,22 @@ function createSearchModal() {
     const modal = document.createElement('div');
     modal.className = 'search-modal';
     modal.id = 'search-modal';
-
+    
     modal.innerHTML = `
         <div class="search-modal-overlay"></div>
         <div class="search-modal-content">
             <div class="search-header">
                 <div class="search-input-wrapper">
                     <i class="fas fa-search"></i>
-                    <input type="text" class="search-input"
-                           placeholder="Search destinations, places, activities..."
+                    <input type="text" class="search-input" 
+                           placeholder="Search destinations, places, activities..." 
                            data-translate-placeholder="search.placeholder">
                 </div>
                 <button class="search-close-btn" aria-label="Close">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-
+            
             <div class="search-body">
                 <div class="search-suggestions" id="search-suggestions">
                     <h3 data-translate="search.popular">Popular Searches</h3>
@@ -621,12 +621,12 @@ function createSearchModal() {
                         </button>
                     </div>
                 </div>
-
+                
                 <div class="search-results" id="search-results" style="display: none;">
                     <h3 data-translate="search.results">Search Results</h3>
                     <div class="results-list" id="results-list"></div>
                 </div>
-
+                
                 <div class="search-empty" id="search-empty" style="display: none;">
                     <i class="fas fa-search"></i>
                     <p data-translate="search.noResults">No results found</p>
@@ -634,9 +634,9 @@ function createSearchModal() {
             </div>
         </div>
     `;
-
+    
     setupSearchListeners(modal);
-
+    
     return modal;
 }
 
@@ -645,24 +645,24 @@ function setupSearchListeners(modal) {
     const overlay = modal.querySelector('.search-modal-overlay');
     const searchInput = modal.querySelector('.search-input');
     const suggestionTags = modal.querySelectorAll('.suggestion-tag');
-
+    
     // Close handlers
     closeBtn.addEventListener('click', () => closeSearchModal(modal));
     overlay.addEventListener('click', () => closeSearchModal(modal));
-
+    
     // Search input handler
     let searchTimeout;
     searchInput.addEventListener('input', (e) => {
         clearTimeout(searchTimeout);
         const query = e.target.value.trim();
-
+        
         if (query.length >= 2) {
             searchTimeout = setTimeout(() => performSearch(query), 300);
         } else {
             showSuggestions();
         }
     });
-
+    
     // Suggestion tags
     suggestionTags.forEach(tag => {
         tag.addEventListener('click', () => {
@@ -671,7 +671,7 @@ function setupSearchListeners(modal) {
             performSearch(query);
         });
     });
-
+    
     // Keyboard shortcuts
     modal.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
@@ -690,7 +690,7 @@ function showSuggestions() {
     const suggestions = document.getElementById('search-suggestions');
     const results = document.getElementById('search-results');
     const empty = document.getElementById('search-empty');
-
+    
     if (suggestions) suggestions.style.display = 'block';
     if (results) results.style.display = 'none';
     if (empty) empty.style.display = 'none';
@@ -701,11 +701,11 @@ async function performSearch(query) {
     const results = document.getElementById('search-results');
     const empty = document.getElementById('search-empty');
     const resultsList = document.getElementById('results-list');
-
+    
     if (suggestions) suggestions.style.display = 'none';
     if (results) results.style.display = 'block';
     if (empty) empty.style.display = 'none';
-
+    
     // Show loading
     if (resultsList) {
         resultsList.innerHTML = `
@@ -715,15 +715,15 @@ async function performSearch(query) {
             </div>
         `;
     }
-
+    
     try {
         // Load places data
         const response = await fetch('/data/places.json');
         const data = await response.json();
-
+        
         // Search in places
         const searchResults = searchPlaces(data, query);
-
+        
         displaySearchResults(searchResults);
     } catch (error) {
         console.error('Search error:', error);
@@ -735,7 +735,7 @@ async function performSearch(query) {
 function searchPlaces(data, query) {
     const lowerQuery = query.toLowerCase();
     const results = [];
-
+    
     // Search in all governorates and places
     for (const governorate of data.governorates) {
         // Check governorate name
@@ -746,7 +746,7 @@ function searchPlaces(data, query) {
                 data: governorate
             });
         }
-
+        
         // Check places in this governorate
         for (const place of governorate.places) {
             if (place.name.toLowerCase().includes(lowerQuery) ||
@@ -761,7 +761,7 @@ function searchPlaces(data, query) {
             }
         }
     }
-
+    
     return results.slice(0, 10); // Limit to 10 results
 }
 
@@ -769,13 +769,13 @@ function displaySearchResults(results) {
     const resultsList = document.getElementById('results-list');
     const empty = document.getElementById('search-empty');
     const resultsDiv = document.getElementById('search-results');
-
+    
     if (results.length === 0) {
         if (resultsDiv) resultsDiv.style.display = 'none';
         if (empty) empty.style.display = 'block';
         return;
     }
-
+    
     if (resultsList) {
         resultsList.innerHTML = results.map(result => {
             if (result.type === 'governorate') {
@@ -807,7 +807,7 @@ function displaySearchResults(results) {
                 `;
             }
         }).join('');
-
+        
         // Add click handlers
         const resultItems = resultsList.querySelectorAll('.search-result-item');
         resultItems.forEach(item => {
@@ -819,15 +819,15 @@ function displaySearchResults(results) {
 function handleResultClick(item) {
     const governorate = item.dataset.governorate;
     const place = item.dataset.place;
-
+    
     // Close search modal
     const modal = document.getElementById('search-modal');
     if (modal) closeSearchModal(modal);
-
+    
     // Navigate to explore section
     const exploreLink = document.querySelector('[data-section="explore"]');
     if (exploreLink) exploreLink.click();
-
+    
     // If it's a specific place, you can highlight it or scroll to it
     // This requires the explore section to be initialized
     setTimeout(() => {

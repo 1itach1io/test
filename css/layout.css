@@ -37,10 +37,17 @@
 
 .nav-link {
     color: var(--text-primary);
-    font-weight: 500;
+    font-weight: 700;  /* نص أسمك للوضوح */
+    font-size: 1rem;
     padding: 0.5rem 1rem;
     border-radius: var(--radius-md);
     transition: all var(--transition-fast);
+}
+
+/* تأكيد لون النص في Light Mode */
+[data-theme="light"] .nav-link {
+    color: #000000;  /* أسود صريح */
+    font-weight: 700;
 }
 
 .nav-link:hover {
@@ -183,7 +190,7 @@
     gap: 0.75rem;
     border: none;
     background: transparent;
-    color: #ef4444;
+    color: var(--error-color);
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
@@ -306,14 +313,15 @@
 
 .section-subtitle {
     font-size: 1.1rem;
-    color: var(--text-secondary);
+    color: var(--text-primary);  /* أسود بدلاً من رمادي */
+    font-weight: 600;  /* نص أسمك */
 }
 
 /* ========== FOOTER ========== */
 
 .footer {
     background-color: var(--bg-card);
-    color: var(--text-secondary);
+    color: var(--text-primary);  /* أسود بدلاً من رمادي */
     padding: var(--spacing-xl) var(--spacing-md);
     margin-top: var(--spacing-xl);
     border-top: 1px solid var(--border-color);
@@ -332,6 +340,12 @@
 .footer-section h4 {
     color: var(--text-primary);
     margin-bottom: var(--spacing-md);
+    font-weight: 700;  /* نص أسمك */
+}
+
+.footer-section p {
+    color: var(--text-primary);  /* أسود */
+    font-weight: 500;  /* نص أوضح */
 }
 
 .footer-section ul {
@@ -341,8 +355,9 @@
 }
 
 .footer-section a {
-    color: var(--text-secondary);
+    color: var(--text-primary);  /* أسود */
     transition: color var(--transition-fast);
+    font-weight: 500;  /* نص أوضح */
 }
 
 .footer-section a:hover {
@@ -363,7 +378,8 @@
     text-align: center;
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--border-color);
-    color: var(--text-secondary);
+    color: var(--text-primary);  /* أسود */
+    font-weight: 600;  /* نص أسمك */
 }
 
 /* ========== LAYOUT RESPONSIVE ========== */

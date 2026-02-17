@@ -1,0 +1,242 @@
+/* ==========================================
+   DISCOVER EGYPT - TEXT CONTRAST FIX
+   إصلاح تباين النصوص في البطاقات
+   ========================================== */
+
+/* ========== تأكيد ألوان واضحة للبطاقات ========== */
+
+/* Light Mode - الوضع الفاتح */
+[data-theme="light"] .explore-card-title,
+.explore-card-title {
+    color: #111827 !important;  /* أسود داكن جداً - متطابق مع --text-primary */
+    font-weight: 700;
+}
+
+[data-theme="light"] .explore-card-location,
+.explore-card-location {
+    color: #1f2937 !important;  /* رمادي داكن - متطابق مع --text-secondary */
+}
+
+[data-theme="light"] .explore-card-description,
+.explore-card-description {
+    color: #374151 !important;  /* رمادي داكن للوصف - متطابق مع --text-tertiary */
+}
+
+/* Dark Mode - الوضع الداكن */
+[data-theme="dark"] .explore-card-title {
+    color: #f8fafc !important;  /* أبيض فاتح */
+    font-weight: 700;
+}
+
+[data-theme="dark"] .explore-card-location {
+    color: #cbd5e1 !important;  /* رمادي فاتح */
+}
+
+[data-theme="dark"] .explore-card-description {
+    color: #94a3b8 !important;  /* رمادي متوسط */
+}
+
+/* ========== تأكيد خلفية البطاقات ========== */
+
+/* Light Mode */
+[data-theme="light"] .explore-card,
+.explore-card {
+    background: #ffffff !important;  /* أبيض نقي */
+}
+
+/* Dark Mode */
+[data-theme="dark"] .explore-card {
+    background: rgba(30, 41, 59, 0.8) !important;  /* داكن شفاف */
+}
+
+/* ========== Hover Effects ========== */
+
+/* في Light Mode - العنوان يتحول للذهبي عند التمرير */
+[data-theme="light"] .explore-card:hover .explore-card-title,
+.explore-card:hover .explore-card-title {
+    background: linear-gradient(135deg, #d4af37, #c89b3c) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+/* في Dark Mode - العنوان يبقى واضحاً */
+[data-theme="dark"] .explore-card:hover .explore-card-title {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+/* ========== شارة الفئة ========== */
+.explore-card-category-badge {
+    background: rgba(0, 0, 0, 0.75) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .explore-card-category-badge {
+    background: rgba(251, 191, 36, 0.25) !important;
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: #fbbf24 !important;
+}
+
+/* ========== التقييم ========== */
+.rating-number {
+    color: #d4af37 !important;  /* ذهبي واضح */
+    font-weight: 700;
+}
+
+[data-theme="dark"] .rating-number {
+    color: #fbbf24 !important;  /* ذهبي أفتح في Dark Mode */
+}
+
+/* ========== ضمان التباين العالي ========== */
+
+/* High Contrast Mode */
+.high-contrast .explore-card-title {
+    color: #000000 !important;
+    font-weight: 900;
+}
+
+.high-contrast .explore-card-location,
+.high-contrast .explore-card-description {
+    color: #1a1a1a !important;
+    font-weight: 600;
+}
+
+[data-theme="dark"].high-contrast .explore-card-title {
+    color: #ffffff !important;
+    font-weight: 900;
+}
+
+[data-theme="dark"].high-contrast .explore-card-location,
+[data-theme="dark"].high-contrast .explore-card-description {
+    color: #f0f0f0 !important;
+    font-weight: 600;
+}
+
+/* ========== تحسينات شاملة للتباين في Light Mode ========== */
+
+/* Navbar & Header */
+[data-theme="light"] .nav-link {
+    color: #111827 !important;
+    font-weight: 600;
+}
+
+[data-theme="light"] .nav-link:hover {
+    color: #d4af37 !important;
+}
+
+/* Section Titles */
+[data-theme="light"] .section-title,
+[data-theme="light"] .hero-title {
+    color: #111827 !important;
+    font-weight: 800;
+}
+
+[data-theme="light"] .section-subtitle,
+[data-theme="light"] .hero-subtitle {
+    color: #1f2937 !important;
+}
+
+/* Stats Cards */
+[data-theme="light"] .stat-number {
+    color: #d4af37 !important;
+    font-weight: 800;
+}
+
+[data-theme="light"] .stat-label {
+    color: #374151 !important;
+    font-weight: 600;
+}
+
+/* Calculator */
+[data-theme="light"] .calculator-container label,
+[data-theme="light"] .input-group label {
+    color: #111827 !important;
+    font-weight: 600;
+}
+
+[data-theme="light"] .total-label,
+[data-theme="light"] .info-label {
+    color: #374151 !important;
+}
+
+[data-theme="light"] .total-value,
+[data-theme="light"] .info-value {
+    color: #111827 !important;
+    font-weight: 800;
+}
+
+/* Pricing Cards */
+[data-theme="light"] .plan-card h3,
+[data-theme="light"] .pricing-card h3 {
+    color: #111827 !important;
+    font-weight: 800;
+}
+
+[data-theme="light"] .plan-price,
+[data-theme="light"] .pricing-price {
+    color: #d4af37 !important;
+    font-weight: 900;
+}
+
+[data-theme="light"] .plan-features li,
+[data-theme="light"] .pricing-features li {
+    color: #374151 !important;
+}
+
+/* Footer */
+[data-theme="light"] .footer h3,
+[data-theme="light"] .footer h4 {
+    color: #111827 !important;
+    font-weight: 700;
+}
+
+[data-theme="light"] .footer p,
+[data-theme="light"] .footer a {
+    color: #374151 !important;
+}
+
+[data-theme="light"] .footer a:hover {
+    color: #d4af37 !important;
+}
+
+/* Buttons */
+[data-theme="light"] .filter-btn {
+    color: #111827 !important;
+    font-weight: 600;
+}
+
+/* Forms */
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+    color: #111827 !important;
+}
+
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder {
+    color: #6b7280 !important;
+}
+
+/* AI Guide */
+[data-theme="light"] .message.user {
+    color: #111827 !important;
+    font-weight: 600;
+}
+
+[data-theme="light"] .message.assistant {
+    color: #374151 !important;
+}
+
+/* Settings Cards */
+[data-theme="light"] .settings-card h3 {
+    color: #111827 !important;
+    font-weight: 700;
+}
+
+[data-theme="light"] .settings-card p {
+    color: #374151 !important;
+}

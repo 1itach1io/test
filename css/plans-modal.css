@@ -1,0 +1,191 @@
+/* ═══════════════════════════════════════════════════════════════════
+   PLAN MODAL STYLES - Enhanced Details View
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Plan Detail Sections */
+.plan-detail-section {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.plan-detail-section:last-child {
+    border-bottom: none;
+}
+
+.plan-detail-section h3 {
+    font-size: 1.5rem;
+    color: var(--dark-text);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.plan-detail-section h4 {
+    font-size: 1.1rem;
+    color: var(--dark-text);
+    margin-bottom: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.plan-detail-desc {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.plan-detail-section p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Plan Actions */
+.plan-detail-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.plan-action-btn {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.plan-action-btn.primary {
+    background: linear-gradient(135deg, #d4af37, #c49a2d);
+    color: white;
+}
+
+.plan-action-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.plan-action-btn:not(.primary) {
+    background: white;
+    border: 2px solid #d4af37;
+    color: #d4af37;
+}
+
+.plan-action-btn:not(.primary):hover {
+    background: #fef9f0;
+}
+
+/* Modal Scroll Styling */
+.plan-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.plan-modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.plan-modal-content::-webkit-scrollbar-thumb {
+    background: #d4af37;
+    border-radius: 4px;
+}
+
+.plan-modal-content::-webkit-scrollbar-thumb:hover {
+    background: #c49a2d;
+}
+
+/* Highlight Effect for Search Results */
+@keyframes highlight {
+    0% { background: #fef9f0; }
+    50% { background: #f4e4c1; }
+    100% { background: white; }
+}
+
+.governorate-card.highlight {
+    animation: highlight 2s ease-in-out;
+}
+
+/* Loading State */
+.plan-modal.loading .plan-modal-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+}
+
+.plan-modal.loading .plan-modal-body::after {
+    content: '⏳';
+    font-size: 3rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+    .plan-modal-content {
+        margin: 20px;
+        max-width: calc(100% - 40px);
+    }
+    
+    .plan-modal-header {
+        padding: 20px;
+    }
+    
+    .plan-modal-body {
+        padding: 20px;
+    }
+    
+    .plan-detail-section h3 {
+        font-size: 1.3rem;
+    }
+    
+    .plan-detail-section h4 {
+        font-size: 1rem;
+    }
+    
+    .plan-detail-actions {
+        flex-direction: column;
+    }
+    
+    .plan-action-btn {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .plan-modal-content {
+        margin: 10px;
+        max-width: calc(100% - 20px);
+        max-height: calc(100vh - 20px);
+    }
+    
+    .plan-modal-header {
+        padding: 15px;
+    }
+    
+    .plan-modal-body {
+        padding: 15px;
+    }
+    
+    .plan-modal-close {
+        width: 35px;
+        height: 35px;
+        font-size: 1.3rem;
+    }
+}

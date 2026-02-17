@@ -37,26 +37,26 @@ let currentUser = null; // لا تسجيل دخول تلقائي - يبدأ ال
 
 // ========== Demo Users ==========
 const demoUsers = [
-    {
-        email: 'admin@discover-egypt.com',
-        password: 'admin123',
-        name: 'المدير',
+    { 
+        email: 'admin@discover-egypt.com', 
+        password: 'admin123', 
+        name: 'المدير', 
         role: 'admin',
-        avatar: '👨‍💼'
+        avatar: '👨‍💼' 
     },
-    {
-        email: 'user@discover-egypt.com',
-        password: 'user123',
-        name: 'مستخدم تجريبي',
+    { 
+        email: 'user@discover-egypt.com', 
+        password: 'user123', 
+        name: 'مستخدم تجريبي', 
         role: 'user',
-        avatar: '👤'
+        avatar: '👤' 
     }
 ];
 
 // ========== Initialize Auth UI ==========
 export function initAuth() {
     console.log('🔐 Initializing Simple Auth System...');
-
+    
     // Check for saved session ONLY on page load
     const savedUser = JSON.parse(localStorage.getItem('discover_egypt_user') || 'null');
     if (savedUser) {
@@ -65,20 +65,20 @@ export function initAuth() {
     } else {
         console.log('👋 No saved session - user starts logged out');
     }
-
+    
     // Render user area
     renderUserArea();
-
+    
     // Setup event listeners
     setupLoginButton();
     setupLogoutButton();
     setupSearchButton();
-
+    
     // Firebase auth observer
     if (firebaseAvailable && auth) {
         auth.onAuthStateChanged(handleAuthStateChange);
     }
-
+    
     console.log('✅ Auth system ready');
 }
 
@@ -87,31 +87,31 @@ function renderUserArea() {
     // Desktop login button
     const loginBtn = document.getElementById('login-btn');
     const userMenu = document.getElementById('user-menu');
-
+    
     // Mobile elements
     const mobileAuthItem = document.getElementById('mobile-auth-item');
     const mobileUserItem = document.getElementById('mobile-user-item');
     const mobileLogoutItem = document.getElementById('mobile-logout-item');
-
+    
     if (currentUser) {
         // User is logged in
         console.log('👤 User logged in:', currentUser.name);
-
+        
         // Desktop
         if (loginBtn) loginBtn.style.display = 'none';
         if (userMenu) {
             userMenu.style.display = 'block';
-
+            
             const userName = document.getElementById('user-name');
             const userAvatar = document.getElementById('user-avatar');
-
+            
             if (userName) userName.textContent = currentUser.name || currentUser.email;
             if (userAvatar) {
-                userAvatar.src = currentUser.photoURL ||
+                userAvatar.src = currentUser.photoURL || 
                     `https://ui-avatars.com/api/?name=${encodeURIComponent(currentUser.name)}&background=4F46E5&color=fff`;
             }
         }
-
+        
         // Mobile
         if (mobileAuthItem) mobileAuthItem.style.display = 'none';
         if (mobileUserItem) {
@@ -119,24 +119,24 @@ function renderUserArea() {
             const mobileName = document.getElementById('mobile-user-name');
             const mobileEmail = document.getElementById('mobile-user-email');
             const mobileAvatar = document.getElementById('mobile-user-avatar');
-
+            
             if (mobileName) mobileName.textContent = currentUser.name || currentUser.email;
             if (mobileEmail) mobileEmail.textContent = currentUser.email;
             if (mobileAvatar) {
-                mobileAvatar.src = currentUser.photoURL ||
+                mobileAvatar.src = currentUser.photoURL || 
                     `https://ui-avatars.com/api/?name=${encodeURIComponent(currentUser.name)}&background=4F46E5&color=fff`;
             }
         }
         if (mobileLogoutItem) mobileLogoutItem.style.display = 'block';
-
+        
     } else {
         // User is logged out
         console.log('👋 No user logged in');
-
+        
         // Desktop
         if (loginBtn) loginBtn.style.display = 'flex';
         if (userMenu) userMenu.style.display = 'none';
-
+        
         // Mobile
         if (mobileAuthItem) mobileAuthItem.style.display = 'block';
         if (mobileUserItem) mobileUserItem.style.display = 'none';
@@ -148,14 +148,14 @@ function renderUserArea() {
 function setupLoginButton() {
     const loginBtn = document.getElementById('login-btn');
     const mobileLoginBtn = document.getElementById('mobile-login-btn');
-
+    
     if (loginBtn) {
         loginBtn.addEventListener('click', () => {
             console.log('🖱️ Login button clicked');
             openLoginModal();
         });
     }
-
+    
     if (mobileLoginBtn) {
         // Set initial content
         mobileLoginBtn.innerHTML = `
@@ -174,11 +174,11 @@ function setupLoginButton() {
 function setupLogoutButton() {
     const logoutBtn = document.getElementById('logout-btn');
     const mobileLogoutBtn = document.getElementById('mobile-logout-btn');
-
+    
     if (logoutBtn) {
         logoutBtn.addEventListener('click', handleLogout);
     }
-
+    
     if (mobileLogoutBtn) {
         mobileLogoutBtn.addEventListener('click', handleLogout);
     }
@@ -187,14 +187,14 @@ function setupLogoutButton() {
 function setupSearchButton() {
     const desktopSearch = document.getElementById('desktop-search-btn');
     const mobileSearch = document.getElementById('mobile-search-btn');
-
+    
     if (desktopSearch) {
         desktopSearch.addEventListener('click', () => {
             console.log('🔍 Search clicked');
             openSearchModal();
         });
     }
-
+    
     if (mobileSearch) {
         mobileSearch.addEventListener('click', () => {
             console.log('🔍 Mobile search clicked');
@@ -207,7 +207,7 @@ function setupSearchButton() {
 function openLoginModal() {
     const modal = createLoginModal();
     document.body.appendChild(modal);
-
+    
     setTimeout(() => modal.classList.add('active'), 10);
     document.body.style.overflow = 'hidden';
 }
@@ -216,34 +216,34 @@ function createLoginModal() {
     const modal = document.createElement('div');
     modal.className = 'auth-modal';
     modal.id = 'simple-auth-modal';
-
+    
     modal.innerHTML = `
         <div class="auth-modal-overlay"></div>
         <div class="auth-modal-content">
             <button class="auth-modal-close">×</button>
-
+            
             <h2 style="text-align: center; margin-bottom: 2rem;">تسجيل الدخول</h2>
-
+            
             <div id="login-error" class="auth-error" style="display: none;"></div>
-
+            
             <div class="form-group">
                 <label>البريد الإلكتروني</label>
                 <input type="email" id="auth-email" placeholder="example@email.com" />
             </div>
-
+            
             <div class="form-group">
                 <label>كلمة المرور</label>
                 <input type="password" id="auth-password" placeholder="••••••••" />
             </div>
-
+            
             <button class="auth-submit-btn" id="do-login">
                 تسجيل الدخول
             </button>
-
+            
             <div class="auth-divider">
                 <span>أو</span>
             </div>
-
+            
             <button class="google-btn" id="google-login-btn">
                 <svg width="18" height="18" viewBox="0 0 18 18">
                     <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"/>
@@ -253,7 +253,7 @@ function createLoginModal() {
                 </svg>
                 تسجيل الدخول بواسطة Google
             </button>
-
+            
             <div class="note" style="margin-top: 1.5rem; padding: 1rem; background: rgba(99, 102, 241, 0.1); border-radius: 10px; font-size: 0.9rem;">
                 <strong>حسابات تجريبية:</strong><br/>
                 <strong>مدير:</strong> admin@discover-egypt.com / admin123<br/>
@@ -261,18 +261,18 @@ function createLoginModal() {
             </div>
         </div>
     `;
-
+    
     // Setup listeners
     const closeBtn = modal.querySelector('.auth-modal-close');
     const overlay = modal.querySelector('.auth-modal-overlay');
     const loginBtn = modal.querySelector('#do-login');
     const googleBtn = modal.querySelector('#google-login-btn');
-
+    
     closeBtn.addEventListener('click', () => closeModal(modal));
     overlay.addEventListener('click', () => closeModal(modal));
     loginBtn.addEventListener('click', () => handleEmailLogin(modal));
     googleBtn.addEventListener('click', () => handleGoogleLogin(modal));
-
+    
     return modal;
 }
 
@@ -288,15 +288,15 @@ async function handleEmailLogin(modal) {
     const password = document.getElementById('auth-password').value;
     const errorDiv = document.getElementById('login-error');
     const loginBtn = document.getElementById('do-login');
-
+    
     if (!email || !password) {
         showError(errorDiv, 'الرجاء إدخال البريد الإلكتروني وكلمة المرور');
         return;
     }
-
+    
     loginBtn.disabled = true;
     loginBtn.textContent = 'جاري تسجيل الدخول...';
-
+    
     // Try Firebase first
     if (firebaseAvailable && auth) {
         try {
@@ -307,10 +307,10 @@ async function handleEmailLogin(modal) {
             console.log('Firebase login failed, trying demo accounts...');
         }
     }
-
+    
     // Try demo accounts
     const user = demoUsers.find(u => u.email === email && u.password === password);
-
+    
     if (user) {
         currentUser = {
             email: user.email,
@@ -335,7 +335,7 @@ async function handleGoogleLogin(modal) {
         alert('تسجيل الدخول بـ Google غير متاح. الرجاء استخدام الحسابات التجريبية.');
         return;
     }
-
+    
     const provider = new firebase.auth.GoogleAuthProvider();
     try {
         await auth.signInWithPopup(provider);
@@ -356,7 +356,7 @@ async function handleLogout() {
                 console.warn('Sign out error:', e);
             }
         }
-
+        
         currentUser = null;
         localStorage.removeItem('discover_egypt_user');
         renderUserArea();
@@ -391,7 +391,7 @@ function handleAuthStateChange(fbUser) {
 function openSearchModal() {
     const modal = createSearchModal();
     document.body.appendChild(modal);
-
+    
     setTimeout(() => {
         modal.classList.add('active');
         const input = modal.querySelector('.search-input');
@@ -404,7 +404,7 @@ function createSearchModal() {
     const modal = document.createElement('div');
     modal.className = 'search-modal';
     modal.id = 'simple-search-modal';
-
+    
     modal.innerHTML = `
         <div class="search-modal-overlay"></div>
         <div class="search-modal-content">
@@ -415,7 +415,7 @@ function createSearchModal() {
                 </div>
                 <button class="search-close-btn">×</button>
             </div>
-
+            
             <div class="search-body">
                 <div class="search-suggestions">
                     <h3>عمليات البحث الشائعة</h3>
@@ -437,7 +437,7 @@ function createSearchModal() {
                         </button>
                     </div>
                 </div>
-
+                
                 <div class="search-results" style="display: none;">
                     <h3>نتائج البحث</h3>
                     <div class="results-list"></div>
@@ -445,22 +445,22 @@ function createSearchModal() {
             </div>
         </div>
     `;
-
+    
     const closeBtn = modal.querySelector('.search-close-btn');
     const overlay = modal.querySelector('.search-modal-overlay');
     const searchInput = modal.querySelector('.search-input');
     const tags = modal.querySelectorAll('.suggestion-tag');
-
+    
     closeBtn.addEventListener('click', () => closeModal(modal));
     overlay.addEventListener('click', () => closeModal(modal));
-
+    
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.trim();
         if (query.length >= 2) {
             performSearch(query, modal);
         }
     });
-
+    
     tags.forEach(tag => {
         tag.addEventListener('click', () => {
             const query = tag.dataset.query;
@@ -468,68 +468,66 @@ function createSearchModal() {
             performSearch(query, modal);
         });
     });
-
+    
     return modal;
 }
 
 async function performSearch(query, modal) {
     console.log('🔍 Searching for:', query);
-
+    
     const suggestions = modal.querySelector('.search-suggestions');
     const results = modal.querySelector('.search-results');
     const resultsList = modal.querySelector('.results-list');
-
+    
     suggestions.style.display = 'none';
     results.style.display = 'block';
-
+    
     resultsList.innerHTML = '<div style="padding: 2rem; text-align: center;">جاري البحث...</div>';
-
+    
     try {
-        // Load places data
-        const response = await fetch('data/places-enhanced.json');
-        const data = await response.json();
-        const places = data.places || [];
-
+        // Load places data from global variable
+        const places = placesData.places || [];
+        
         // Search in places
         const searchTerm = query.toLowerCase();
         const currentLang = localStorage.getItem('language') || 'en';
-
+        
         const filtered = places.filter(place => {
             const nameEn = (place.name || '').toLowerCase();
             const nameAr = (place.nameAr || '').toLowerCase();
             const nameFr = (place.nameFr || '').toLowerCase();
             const governorate = (place.governorate || '').toLowerCase();
             const category = (place.category || '').toLowerCase();
-
+            
             return nameEn.includes(searchTerm) ||
                    nameAr.includes(searchTerm) ||
                    nameFr.includes(searchTerm) ||
                    governorate.includes(searchTerm) ||
                    category.includes(searchTerm);
         });
-
+        
         if (filtered.length > 0) {
             resultsList.innerHTML = filtered.slice(0, 8).map(place => {
-                const name = currentLang === 'ar' ? place.nameAr :
+                const name = currentLang === 'ar' ? place.nameAr : 
                             currentLang === 'fr' ? place.nameFr : place.name;
-                const desc = currentLang === 'ar' ? place.descriptionAr :
+                const desc = currentLang === 'ar' ? place.descriptionAr : 
                             currentLang === 'fr' ? place.descriptionFr : place.description;
-
+                
                 return `
                     <div class="search-result-item" style="
                         padding: 1rem;
                         border-bottom: 1px solid var(--border-color);
                         cursor: pointer;
                         transition: background 0.2s;
-                    " onmouseover="this.style.background='var(--bg-secondary)'"
+                    " onmouseover="this.style.background='var(--bg-secondary)'" 
                        onmouseout="this.style.background='transparent'"
                        onclick="navigateToPlace('${place.id}')">
                         <div style="display: flex; gap: 1rem; align-items: center;">
-                            <img src="${place.image}" alt="${name}"
+                            <img src="${place.image}" alt="${name}" 
                                  style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
                             <div style="flex: 1;">
                                 <h4 style="margin: 0 0 0.25rem 0; font-size: 1rem;">${name}</h4>
-                                <p style="margin: 0; font-size: 0.875rem; color: var(--text-secondary);
+                                <p style="margin: 0; font-size: 0.875rem; color: var(--text-secondary); 
                                           overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                                     ${desc.substring(0, 80)}...
                                 </p>
@@ -573,12 +571,12 @@ function navigateToPlace(placeId) {
     if (modal) {
         closeModal(modal);
     }
-
+    
     // Navigate to explore section and filter by place
     const exploreLink = document.querySelector('[data-section="explore"]');
     if (exploreLink) {
         exploreLink.click();
-
+        
         // Scroll to the place card
         setTimeout(() => {
             const placeCard = document.querySelector(`[data-place-id="${placeId}"]`);

@@ -1,0 +1,390 @@
+/* DARK MODE SUPPORT FOR TRAVEL PLANNER & SAVED PLANS */
+
+/* Dark Mode Variables */
+:root[data-theme="dark"] {
+    --planner-bg: #1a1a1a;
+    --planner-card-bg: #2a2a2a;
+    --planner-text: #e0e0e0;
+    --planner-text-light: #b0b0b0;
+    --planner-border: #3a3a3a;
+    --planner-shadow: rgba(0, 0, 0, 0.5);
+    --planner-input-bg: #333333;
+}
+
+/* Travel Planner Modal - Dark Mode */
+[data-theme="dark"] .travel-planner-modal-content {
+    background: var(--planner-bg);
+    color: var(--planner-text);
+}
+
+[data-theme="dark"] #travel-planner-iframe {
+    background: var(--planner-bg);
+}
+
+/* Saved Plans Modal - Dark Mode */
+[data-theme="dark"] .saved-plans-modal-content {
+    background: var(--planner-bg);
+    color: var(--planner-text);
+}
+
+[data-theme="dark"] .saved-plans-header {
+    background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+    color: var(--planner-text);
+    border-bottom-color: #444;
+}
+
+[data-theme="dark"] .saved-plans-body {
+    background: var(--planner-bg);
+}
+
+[data-theme="dark"] .saved-plan-card {
+    background: var(--planner-card-bg);
+    border-color: var(--planner-border);
+    color: var(--planner-text);
+}
+
+[data-theme="dark"] .saved-plan-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+}
+
+[data-theme="dark"] .plan-card-header {
+    border-bottom-color: var(--planner-border);
+}
+
+[data-theme="dark"] .plan-card-title {
+    color: var(--primary);
+}
+
+[data-theme="dark"] .plan-info-item {
+    color: var(--planner-text);
+}
+
+[data-theme="dark"] .plan-governorates {
+    background: var(--planner-input-bg);
+    color: var(--planner-text-light);
+}
+
+[data-theme="dark"] .plan-date {
+    color: var(--planner-text-light);
+}
+
+[data-theme="dark"] .btn-icon {
+    background: var(--planner-input-bg);
+    color: var(--planner-text);
+}
+
+[data-theme="dark"] .btn-icon:hover {
+    background: var(--primary);
+    color: #1a1a1a;
+}
+
+[data-theme="dark"] .no-saved-plans {
+    color: var(--planner-text);
+}
+
+[data-theme="dark"] .no-saved-plans i {
+    color: var(--planner-text-light);
+}
+
+[data-theme="dark"] .no-saved-plans h3 {
+    color: var(--planner-text);
+}
+
+[data-theme="dark"] .no-saved-plans p {
+    color: var(--planner-text-light);
+}
+
+/* Scrollbar Dark Mode */
+[data-theme="dark"] .saved-plans-body::-webkit-scrollbar-track {
+    background: var(--planner-card-bg);
+}
+
+[data-theme="dark"] .saved-plans-body::-webkit-scrollbar-thumb {
+    background: var(--primary);
+}
+
+/* Loading State Dark Mode */
+[data-theme="dark"] .saved-plans-loading {
+    color: var(--planner-text);
+}
+
+[data-theme="dark"] .saved-plans-loading i {
+    color: var(--primary);
+}
+
+[data-theme="dark"] .saved-plans-loading p {
+    color: var(--planner-text-light);
+}
+
+/* Error State Dark Mode */
+[data-theme="dark"] .saved-plans-error {
+    color: var(--planner-text);
+}
+
+/* Plans Section Dark Mode */
+[data-theme="dark"] .plans-hero {
+    background: var(--planner-bg);
+    color: var(--planner-text);
+}
+
+[data-theme="dark"] .plans-hero-badge {
+    color: var(--planner-text);
+}
+
+[data-theme="dark"] .plans-hero-title {
+    color: var(--planner-text);
+}
+
+[data-theme="dark"] .plans-hero-subtitle {
+    color: var(--planner-text-light);
+}
+
+[data-theme="dark"] .plans-stat {
+    color: var(--planner-text);
+}
+
+[data-theme="dark"] .plans-stat-label {
+    color: var(--planner-text-light);
+}
+
+/* Buttons Dark Mode */
+[data-theme="dark"] .saved-plans-btn {
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+[data-theme="dark"] .saved-plans-btn:hover {
+    background: var(--primary) !important;
+    color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .wizard-start-btn {
+    background: linear-gradient(135deg, #d4af37 0%, #f7ce68 100%) !important;
+    color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .saved-plans-count {
+    background: var(--primary) !important;
+    color: #1a1a1a !important;
+}
+
+/* Close Button Dark Mode */
+[data-theme="dark"] .saved-plans-close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--planner-text);
+}
+
+[data-theme="dark"] .saved-plans-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .travel-planner-close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--planner-text);
+}
+
+[data-theme="dark"] .travel-planner-close-btn:hover {
+    background: var(--primary);
+    color: #1a1a1a;
+}
+
+/* ================================
+   PLANNER PAGE (iframe) DARK MODE
+   ================================ */
+
+/* Body Dark Mode for Planner */
+[data-theme="dark"] body {
+    background: var(--planner-bg, #1a1a1a);
+    color: var(--planner-text, #e0e0e0);
+}
+
+/* Header Dark Mode */
+[data-theme="dark"] .header {
+    background: var(--planner-card-bg, #2a2a2a);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero Section Dark Mode */
+[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    color: var(--planner-text, #e0e0e0);
+}
+
+/* Planner Dark Mode */
+[data-theme="dark"] .planner {
+    background: var(--planner-bg, #1a1a1a);
+}
+
+/* Steps Progress Dark Mode */
+[data-theme="dark"] .steps-progress::before {
+    background: var(--planner-border, #3a3a3a);
+}
+
+[data-theme="dark"] .step-circle {
+    background: var(--planner-card-bg, #2a2a2a);
+    border-color: var(--planner-border, #3a3a3a);
+    color: var(--planner-text-light, #b0b0b0);
+}
+
+[data-theme="dark"] .step.active .step-circle {
+    background: var(--primary, #d4af37);
+    border-color: var(--primary, #d4af37);
+    color: #1a1a1a;
+}
+
+[data-theme="dark"] .step.completed .step-circle {
+    background: var(--success, #27ae60);
+    border-color: var(--success, #27ae60);
+}
+
+[data-theme="dark"] .step-label {
+    color: var(--planner-text-light, #b0b0b0);
+}
+
+[data-theme="dark"] .step.active .step-label {
+    color: var(--primary, #d4af37);
+}
+
+/* Interest/Governorate Cards Dark Mode */
+[data-theme="dark"] .interest-card,
+[data-theme="dark"] .governorate-card {
+    background: var(--planner-card-bg, #2a2a2a);
+    border-color: var(--planner-border, #3a3a3a);
+    color: var(--planner-text, #e0e0e0);
+}
+
+[data-theme="dark"] .interest-card:hover,
+[data-theme="dark"] .governorate-card:hover {
+    border-color: var(--primary, #d4af37);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+}
+
+[data-theme="dark"] .interest-card.selected,
+[data-theme="dark"] .governorate-card.selected {
+    background: var(--primary, #d4af37);
+    color: #1a1a1a;
+}
+
+/* Budget Cards Dark Mode */
+[data-theme="dark"] .budget-card {
+    background: var(--planner-card-bg, #2a2a2a);
+    border-color: var(--planner-border, #3a3a3a);
+    color: var(--planner-text, #e0e0e0);
+}
+
+[data-theme="dark"] .budget-card:hover {
+    border-color: var(--primary, #d4af37);
+}
+
+[data-theme="dark"] .budget-card.selected {
+    background: var(--primary, #d4af37);
+    color: #1a1a1a;
+}
+
+/* Form Inputs Dark Mode */
+[data-theme="dark"] .form-group input[type="number"],
+[data-theme="dark"] .search-box input {
+    background: var(--planner-input-bg, #333333);
+    border-color: var(--planner-border, #3a3a3a);
+    color: var(--planner-text, #e0e0e0);
+}
+
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .search-box input:focus {
+    border-color: var(--primary, #d4af37);
+    background: #2a2a2a;
+}
+
+[data-theme="dark"] .form-group label {
+    color: var(--planner-text, #e0e0e0);
+}
+
+/* Results Dark Mode */
+[data-theme="dark"] .results {
+    background: var(--planner-bg, #1a1a1a);
+}
+
+[data-theme="dark"] .cost-summary {
+    background: linear-gradient(135deg, #d4af37 0%, #f7ce68 100%);
+    color: #1a1a1a;
+}
+
+[data-theme="dark"] .day-card {
+    background: var(--planner-card-bg, #2a2a2a);
+    border: 1px solid var(--planner-border, #3a3a3a);
+}
+
+[data-theme="dark"] .activity {
+    background: var(--planner-input-bg, #333333);
+    border-left-color: var(--primary, #d4af37);
+}
+
+/* Loading Overlay Dark Mode */
+[data-theme="dark"] .loading-overlay {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="dark"] .loading-overlay p {
+    color: #ffffff;
+}
+
+/* Step Title Dark Mode */
+[data-theme="dark"] .step-title {
+    color: var(--planner-text, #e0e0e0);
+}
+
+/* Buttons Dark Mode */
+[data-theme="dark"] .btn-primary {
+    background: var(--primary, #d4af37);
+    color: #1a1a1a;
+}
+
+[data-theme="dark"] .btn-secondary {
+    background: transparent;
+    color: var(--planner-text, #e0e0e0);
+    border-color: var(--planner-border, #3a3a3a);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+    border-color: var(--primary, #d4af37);
+    color: var(--primary, #d4af37);
+}
+
+/* Tips Section Dark Mode */
+[data-theme="dark"] .tips-section {
+    background: var(--planner-card-bg, #2a2a2a);
+    border: 1px solid var(--planner-border, #3a3a3a);
+}
+
+[data-theme="dark"] .tips-column {
+    background: var(--planner-input-bg, #333333);
+}
+
+[data-theme="dark"] .tips-column h4 {
+    color: var(--planner-text, #e0e0e0);
+}
+
+[data-theme="dark"] .tips-column.donts h4 {
+    color: #e74c3c;
+}
+
+/* Responsive adjustments for dark mode */
+@media (max-width: 768px) {
+    [data-theme="dark"] .saved-plans-modal-content,
+    [data-theme="dark"] .travel-planner-modal-content {
+        background: var(--planner-bg);
+    }
+}
+
+/* Smooth transitions */
+.travel-planner-modal-content,
+.saved-plans-modal-content,
+.saved-plan-card,
+.interest-card,
+.governorate-card,
+.budget-card,
+.day-card,
+.btn-icon {
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}

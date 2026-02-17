@@ -72,7 +72,7 @@ function initializeLanguage() {
 
 function setLanguage(lang) {
     console.log(`🌐 setLanguage() called with: ${lang}`);
-
+    
     // Update the global variable
     window.currentLanguage = lang;
     currentLanguage = lang;
@@ -102,8 +102,8 @@ function setLanguage(lang) {
     localStorage.setItem('language', lang);
 
     // Dispatch language change event for other components
-    document.dispatchEvent(new CustomEvent('languageChange', {
-        detail: { lang: lang }
+    document.dispatchEvent(new CustomEvent('languageChange', { 
+        detail: { lang: lang } 
     }));
 
     // Apply translations if loaded
@@ -112,12 +112,7 @@ function setLanguage(lang) {
 
     if (Object.keys(translations).length > 0) {
         console.log('✅ Translations are loaded, applying...');
-        // استخدام الترجمة الشاملة
-        if (typeof applyCompleteTranslations === 'function') {
-            applyCompleteTranslations();
-        } else {
-            applyTranslations();
-        }
+        applyTranslations();
     } else {
         console.warn('⚠️ Translations not loaded yet');
     }

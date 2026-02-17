@@ -3,9 +3,6 @@
    يستورد كل الملفات / Imports all CSS
    ========================================== */
 
-/* 0. Font Optimization: تحسين الخطوط */
-@import url('font-optimization.css');
-
 /* 1. Base: Reset, Variables, Typography, Utilities, Accessibility */
 @import url('base.css');
 
@@ -40,33 +37,56 @@
 }
 
 .modal-content {
-    background-color: white;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
     padding: 20px;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     width: 300px;
     text-align: center;
+    box-shadow: 0 4px 20px var(--shadow-heavy);
 }
 
 .close {
     float: right;
     font-size: 24px;
     cursor: pointer;
+    color: var(--text-primary);
+    transition: color var(--transition-fast);
+}
+
+.close:hover {
+    color: var(--error-color);
 }
 
 .modal input {
     width: 100%;
     margin: 10px 0;
     padding: 8px;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-sm);
+}
+
+.modal input:focus {
+    outline: 2px solid var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .modal button {
     margin: 5px;
     padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--text-on-primary);
     border: none;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.modal button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-medium);
 }
 
 /* Search Input */
@@ -78,25 +98,44 @@
 
 /* Cards for Places (reusable for nearby and explore) */
 .place-card {
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
     padding: 15px;
     margin: 10px;
     width: 200px;
     text-align: center;
+    transition: all var(--transition-medium);
+}
+
+.place-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px var(--shadow-medium);
+    border-color: var(--primary-color);
 }
 
 .place-card h3 {
     margin: 0;
+    color: var(--text-primary);
 }
 
 .place-card p {
     margin: 5px 0;
+    color: var(--text-secondary);
 }
 
 /* Messages */
 #no-results, #nearby-message {
-    color: red;
+    color: var(--error-color);
+    background-color: var(--bg-secondary);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--error-color);
     text-align: center;
+    margin: var(--spacing-md) 0;
+}
+
+#no-results::before, #nearby-message::before {
+    content: "⚠️ ";
+    margin-right: 0.5rem;
 }

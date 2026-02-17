@@ -57,7 +57,7 @@
 
 .tool-card h3 {
     font-size: 1.3rem;
-    font-weight: 600;
+    font-weight: 700;  /* نص أسمك */
     color: var(--text-primary);
     margin: 0;
 }

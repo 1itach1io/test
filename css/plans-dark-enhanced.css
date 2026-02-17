@@ -1,0 +1,458 @@
+/* ═══════════════════════════════════════════════════════════════════
+   PLANS SECTION - DARK MODE ENHANCEMENTS & PLAN LINKS
+   تحسينات الوضع الداكن وروابط الخطط
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ========== Plan Link Display ========== */
+.plan-link-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8f9fa;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #dee2e6;
+    transition: all 0.3s ease;
+}
+
+.plan-link-display:hover {
+    background: #e9ecef;
+    border-color: #d4af37;
+}
+
+.plan-link-display i {
+    color: #d4af37;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.plan-link-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #495057;
+    font-size: 13px;
+    outline: none;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    user-select: all;
+}
+
+.plan-link-input:focus {
+    color: #d4af37;
+}
+
+/* ========== Enhanced Button Icons ========== */
+.plan-card-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #495057;
+}
+
+.btn-icon:hover {
+    background: #d4af37;
+    border-color: #d4af37;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.btn-icon.btn-danger:hover {
+    background: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-icon i {
+    font-size: 14px;
+}
+
+/* ========== Notification Animation ========== */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DARK MODE - ENHANCED STYLES
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ========== Plans Hero Section - Dark Mode ========== */
+[data-theme="dark"] .plans-hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+}
+
+[data-theme="dark"] .plans-hero::before {
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+}
+
+[data-theme="dark"] .plans-hero-badge {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(244, 228, 193, 0.15));
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+}
+
+[data-theme="dark"] .plans-hero-badge span {
+    color: #f7ce68;
+}
+
+[data-theme="dark"] .plans-hero-title {
+    background: linear-gradient(135deg, #f7ce68 0%, #d4af37 50%, #f7ce68 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="dark"] .plans-hero-subtitle {
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .plans-stat-number {
+    color: #f7ce68;
+    text-shadow: 0 0 20px rgba(247, 206, 104, 0.3);
+}
+
+[data-theme="dark"] .plans-stat-label {
+    color: #888;
+}
+
+/* ========== Buttons - Dark Mode ========== */
+[data-theme="dark"] .wizard-start-btn {
+    background: linear-gradient(135deg, #d4af37 0%, #f7ce68 100%);
+    color: #1a1a2e;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+[data-theme="dark"] .wizard-start-btn:hover {
+    background: linear-gradient(135deg, #f7ce68 0%, #d4af37 100%);
+    box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
+}
+
+[data-theme="dark"] .saved-plans-btn {
+    background: transparent;
+    color: #f7ce68;
+    border-color: #d4af37;
+}
+
+[data-theme="dark"] .saved-plans-btn:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: #f7ce68;
+}
+
+[data-theme="dark"] .saved-plans-count {
+    background: #d4af37;
+    color: #1a1a2e;
+}
+
+/* ========== Plan Cards - Dark Mode ========== */
+[data-theme="dark"] .saved-plan-card {
+    background: linear-gradient(135deg, #1e1e2f 0%, #252538 100%);
+    border-color: #3a3a4f;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .saved-plan-card:hover {
+    border-color: #d4af37;
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.2);
+}
+
+[data-theme="dark"] .plan-card-header {
+    background: linear-gradient(135deg, #252538 0%, #2a2a3e 100%);
+    border-bottom-color: #3a3a4f;
+}
+
+[data-theme="dark"] .plan-card-title {
+    color: #f7ce68;
+}
+
+[data-theme="dark"] .plan-card-title i {
+    color: #d4af37;
+}
+
+/* ========== Plan Link Display - Dark Mode ========== */
+[data-theme="dark"] .plan-link-display {
+    background: #2a2a3e;
+    border-color: #3a3a4f;
+}
+
+[data-theme="dark"] .plan-link-display:hover {
+    background: #30303f;
+    border-color: #d4af37;
+}
+
+[data-theme="dark"] .plan-link-display i {
+    color: #f7ce68;
+}
+
+[data-theme="dark"] .plan-link-input {
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .plan-link-input:focus {
+    color: #f7ce68;
+}
+
+/* ========== Button Icons - Dark Mode ========== */
+[data-theme="dark"] .btn-icon {
+    background: #2a2a3e;
+    border-color: #3a3a4f;
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .btn-icon:hover {
+    background: #d4af37;
+    border-color: #d4af37;
+    color: #1a1a2e;
+}
+
+[data-theme="dark"] .btn-icon.btn-danger:hover {
+    background: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+/* ========== Plan Info Items - Dark Mode ========== */
+[data-theme="dark"] .plan-info-item {
+    background: #2a2a3e;
+    border-color: #3a3a4f;
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .plan-info-item i {
+    color: #d4af37;
+}
+
+[data-theme="dark"] .plan-card-body {
+    background: #1e1e2f;
+}
+
+/* ========== Governorate Cards - Dark Mode ========== */
+[data-theme="dark"] .governorate-card {
+    background: linear-gradient(135deg, #1e1e2f 0%, #252538 100%);
+    border-color: #3a3a4f;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .governorate-card:hover {
+    border-color: #d4af37;
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.2);
+    transform: translateY(-5px);
+}
+
+[data-theme="dark"] .governorate-card-header {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(247, 206, 104, 0.1));
+    border-bottom-color: #3a3a4f;
+}
+
+[data-theme="dark"] .governorate-card-title {
+    color: #f7ce68;
+}
+
+[data-theme="dark"] .governorate-card-subtitle {
+    color: #888;
+}
+
+[data-theme="dark"] .governorate-card-desc {
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .plan-stats-item {
+    background: #2a2a3e;
+    border-color: #3a3a4f;
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .plan-stats-item i {
+    color: #d4af37;
+}
+
+[data-theme="dark"] .view-details-btn {
+    background: #d4af37;
+    color: #1a1a2e;
+}
+
+[data-theme="dark"] .view-details-btn:hover {
+    background: #f7ce68;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+/* ========== Filter Buttons - Dark Mode ========== */
+[data-theme="dark"] .plan-filter-btn {
+    background: #2a2a3e;
+    border-color: #3a3a4f;
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .plan-filter-btn:hover {
+    background: #30303f;
+    border-color: #d4af37;
+    color: #f7ce68;
+}
+
+[data-theme="dark"] .plan-filter-btn.active {
+    background: linear-gradient(135deg, #d4af37 0%, #f7ce68 100%);
+    border-color: #d4af37;
+    color: #1a1a2e;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* ========== Modals - Dark Mode ========== */
+[data-theme="dark"] .saved-plans-modal {
+    background: rgba(10, 10, 20, 0.95);
+}
+
+[data-theme="dark"] .saved-plans-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-color: #3a3a4f;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .saved-plans-header {
+    background: linear-gradient(135deg, #252538 0%, #2a2a3e 100%);
+    border-bottom-color: #3a3a4f;
+}
+
+[data-theme="dark"] .saved-plans-header h2 {
+    color: #f7ce68;
+}
+
+[data-theme="dark"] .close-saved-plans {
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .close-saved-plans:hover {
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+}
+
+[data-theme="dark"] .no-saved-plans {
+    color: #888;
+}
+
+[data-theme="dark"] .no-saved-plans h3 {
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .no-saved-plans i {
+    color: #666;
+}
+
+/* ========== Scrollbar - Dark Mode ========== */
+[data-theme="dark"] .saved-plans-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+[data-theme="dark"] .saved-plans-list::-webkit-scrollbar-track {
+    background: #1e1e2f;
+}
+
+[data-theme="dark"] .saved-plans-list::-webkit-scrollbar-thumb {
+    background: #3a3a4f;
+    border-radius: 4px;
+}
+
+[data-theme="dark"] .saved-plans-list::-webkit-scrollbar-thumb:hover {
+    background: #d4af37;
+}
+
+/* ========== Loading & Error States - Dark Mode ========== */
+[data-theme="dark"] .saved-plans-loading,
+[data-theme="dark"] .saved-plans-error {
+    color: #888;
+}
+
+[data-theme="dark"] .saved-plans-loading i {
+    color: #d4af37;
+}
+
+[data-theme="dark"] .saved-plans-error i {
+    color: #dc3545;
+}
+
+/* ========== Responsive - Dark Mode ========== */
+@media (max-width: 768px) {
+    [data-theme="dark"] .plans-hero {
+        padding: 60px 20px 50px;
+    }
+    
+    [data-theme="dark"] .plans-hero-title {
+        font-size: 2.5rem;
+    }
+    
+    [data-theme="dark"] .plans-hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    [data-theme="dark"] .plan-link-input {
+        font-size: 11px;
+    }
+    
+    [data-theme="dark"] .btn-icon {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* ========== Animations for Dark Mode ========== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== Smooth Transitions ========== */
+[data-theme="dark"] * {
+    transition: background 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}

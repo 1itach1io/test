@@ -3,41 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover the beauty of Egypt - A student web design project">
-    <meta name="author" content="Middle 2 Student">
-    <title id="page-title">Discover Egypt - Tourism Guide</title>
+    <meta name="description" content="اكتشف مصر - دليلك الشامل للسياحة في مصر. استكشف الأهرامات، المعابد الفرعونية، شواطئ البحر الأحمر، الواحات، والمتاحف. أكثر من 7000 سنة من التاريخ والحضارة.">
+    <meta name="keywords" content="مصر, سياحة مصر, الأهرامات, معابد فرعونية, البحر الأحمر, واحات مصر, السياحة في مصر, أماكن سياحية, دليل سياحي">
+    <meta name="author" content="OMAR - Middle 2 Student">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Arabic, English, French">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://discover-egypt.web.app/">
+    <meta property="og:title" content="Discover Egypt - اكتشف مصر | دليلك السياحي الشامل">
+    <meta property="og:description" content="استكشف 7000 سنة من التاريخ والحضارة. دليل شامل للأماكن السياحية في مصر مع خرائط تفاعلية ومعلومات مفصلة.">
+    <meta property="og:image" content="https://discover-egypt.web.app/images/sunset-pyramids-giza-egypt.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://discover-egypt.web.app/">
+    <meta property="twitter:title" content="Discover Egypt - اكتشف مصر">
+    <meta property="twitter:description" content="دليلك الشامل لاستكشاف الأماكن السياحية في مصر">
+    <meta property="twitter:image" content="https://discover-egypt.web.app/images/sunset-pyramids-giza-egypt.jpg">
+    
+    <!-- PWA Tags -->
+    <meta name="theme-color" content="#d4af37">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Discover Egypt">
+    
+    <title>Discover Egypt - اكتشف مصر | Tourism Guide</title>
 
-    <link rel="icon" type="image/png" href="images/favicon.png"/>
     <link rel="icon" type="image/webp" href="images/giza-pyramids-frygia9m5ggjhaz1.webp"/>
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+    <link rel="shortcut icon" type="image/webp" href="images/giza-pyramids-frygia9m5ggjhaz1.webp" />
 
-    <!-- CSS Link -->
+    <!-- ============================================
+         CRITICAL: Prevent FOUC & Performance Optimization
+         ============================================ -->
+    <!-- Preload Critical CSS -->
+    <link rel="preload" href="css/base.css" as="style">
+    <link rel="preload" href="css/design-system.css" as="style">
+    <link rel="preload" href="css/theme-enhanced.css" as="style">
+
+    <!-- Critical Inline CSS to Prevent FOUC -->
+    <style>
+        /* منع FOUC - إخفاء المحتوى حتى يتم التحميل */
+        html {
+            visibility: hidden;
+            opacity: 0;
+        }
+        
+        html.loaded {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.3s ease-in;
+        }
+        
+        /* Loading Indicator */
+        html::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        html.loaded::before {
+            display: none;
+        }
+        
+        /* Animation for loading spinner */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+
+    <!-- Font Loading & FOUC Prevention Script -->
+    <script>
+        (function() {
+            var startTime = performance.now();
+            
+            // إضافة class عند اكتمال تحميل DOM
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.documentElement.classList.add('dom-ready');
+                });
+            } else {
+                document.documentElement.classList.add('dom-ready');
+            }
+            
+            // إضافة class عند اكتمال تحميل الصفحة
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    document.documentElement.classList.add('loaded');
+                    var loadTime = performance.now() - startTime;
+                    console.log('⚡ Page loaded in:', Math.round(loadTime), 'ms');
+                }, 100);
+            });
+            
+            // Fallback - إظهار المحتوى حتى لو فشل التحميل
+            setTimeout(function() {
+                if (!document.documentElement.classList.contains('loaded')) {
+                    document.documentElement.classList.add('loaded');
+                    console.warn('⚠️ Fallback: Forced content display after timeout');
+                }
+            }, 5000);
+        })();
+    </script>
+
+    <!-- Performance Optimizer - Must be first JS file -->
+    <script src="js/performance-optimizer.js"></script>
+
+    <!-- CSS Link - New Design System -->
+    <!-- Merged Base Styles (تم دمج 5 ملفات: base, design-system, text-contrast-fix, ui-improvements, enhancements) -->
+    <link rel="stylesheet" href="css/merged-base.css">
+    <!-- Enhanced Theme System (Dark/Light Mode) -->
+    <link rel="stylesheet" href="css/theme-enhanced.css">
+    <!-- Main Styles -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/search-no-images.css">
     <link rel="stylesheet" href="css/explore-cards.css">
+    <link rel="stylesheet" href="css/explore-cards-with-images.css">
     <link rel="stylesheet" href="css/calculator.css">
+    <link rel="stylesheet" href="css/weather.css">
+    <!-- Enhanced Weather System CSS -->
+    <link rel="stylesheet" href="css/weather-enhanced.css">
     <link rel="stylesheet" href="css/auth-styles.css">
-    <link rel="stylesheet" href="plans/plans.css">
-
-    <!-- Plans Script -->
-    <script src="js/plans.js" defer></script>
-
+    <!-- AI Guide Enhanced CSS -->
+    <link rel="stylesheet" href="css/ai-guide-enhanced.css">
+    <!-- Enhanced UI/UX CSS -->
+    <link rel="stylesheet" href="css/enhanced-ui-ux.css">
+    <!-- Advanced Card Styles -->
+    <link rel="stylesheet" href="css/advanced-cards.css">
+    <!-- Mobile Optimizations -->
+    <link rel="stylesheet" href="css/mobile-optimizations.css">
+    <!-- Tablet Responsive -->
+    <link rel="stylesheet" href="css/tablet-responsive.css">
+    <link rel="stylesheet" href="css/plans-advanced.css">
+    <link rel="stylesheet" href="css/plans-modal.css">
+    <link rel="stylesheet" href="css/plans-wizard.css">
+    <link rel="stylesheet" href="css/plans-dark-enhanced.css">
+    <link rel="stylesheet" href="css/interactive-plans-system.css">
+    <!-- Travel Planner Modal CSS -->
+    <link rel="stylesheet" href="css/travel-planner-modal.css">
+    <!-- Saved Plans Modal CSS -->
+    <link rel="stylesheet" href="css/saved-plans-modal.css">
+    <!-- Planner Dark Mode CSS -->
+    <link rel="stylesheet" href="css/planner-dark-mode.css">
+    <!-- Enhanced Search & User Menu CSS -->
+    <link rel="stylesheet" href="css/search-user-enhanced.css">
+    <!-- User Profile Enhanced CSS -->
+    <link rel="stylesheet" href="css/user-profile-enhanced.css">
+    <!-- Enhanced Navbar Buttons CSS -->
+    <link rel="stylesheet" href="css/navbar-buttons-enhanced.css">
+    <!-- Login Button Fix CSS -->
+    <link rel="stylesheet" href="css/login-button-fix.css">
     <!-- Leaflet CSS -->
-    <link
-            rel="stylesheet"
-            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
+</head>
 <body>
+
+<!-- Skip to main content for accessibility -->
+<a href="#main-content" class="skip-link" data-translate="accessibility.skipToMain">Skip to main content</a>
 
 <!-- ========== HEADER / NAVIGATION BAR ========== -->
 <header class="header">
     <nav class="navbar">
         <!-- Logo -->
         <div class="logo">
-            <h1 data-translate="siteName">Discover Egypt</h1>
+            <h1 data-translate="site.title">Discover Egypt</h1>
         </div>
 
         <!-- Navigation Menu -->
@@ -45,11 +185,15 @@
             <li><a href="#home" class="nav-link active" data-section="home" data-translate="nav.home">Home</a></li>
             <li><a href="#plans" class="nav-link" data-section="plans" data-translate="nav.plans">Plans</a></li>
             <li><a href="#calculator" class="nav-link" data-section="calculator" data-translate="nav.calculator">Budget Calculator</a></li>
+            <li><a href="#weather" class="nav-link" data-section="weather" data-translate="nav.weather">Weather</a></li>
             <li><a href="#tools" class="nav-link" data-section="tools" data-translate="nav.tools">Tools</a></li>
-            <li><a href="#settings" class="nav-link" data-section="settings">⚙</a></li>
-
+            <li><a href="#settings" class="nav-link" data-section="settings">
+                <i class="fas fa-cog"></i>
+                <span class="sr-only" data-translate="nav.settings">Settings</span>
+            </a></li>
+            
             <!-- Mobile Only Items -->
-            <li class="mobile-only-item auth-mobile-item" id="auth-mobile-item" style="display: none;">
+            <li class="mobile-only-item auth-mobile-item" id="auth-mobile-item">
                 <a href="login.html" class="mobile-auth-btn">
                     <i class="fas fa-sign-in-alt"></i>
                     <span data-translate="auth.login">Login</span>
@@ -67,48 +211,62 @@
         <div class="nav-controls">
             <!-- Language Selector -->
             <select id="language-selector" class="language-select">
-                <option value="en" data-translate="language.english">English</option>
+                <option value="en">English</option>
                 <option value="ar">العربية</option>
                 <option value="fr">Français</option>
             </select>
 
             <!-- Auth Buttons - للمستخدمين غير المسجلين -->
-            <div class="auth-buttons" id="auth-buttons" style="display: none;">
-                <a href="login.html" class="auth-btn login-btn desktop-only">
+            <div class="auth-buttons" id="auth-buttons">
+                <a href="login.html" class="auth-btn login-btn">
                     <i class="fas fa-sign-in-alt"></i>
-                    <span data-translate="auth.login">Login</span>
+                    <span data-translate="auth.login">تسجيل الدخول</span>
                 </a>
             </div>
 
             <!-- User Menu - للمستخدمين المسجلين -->
             <div class="user-menu-container" id="user-menu-container" style="display: none;">
                 <button class="user-menu-btn" id="user-menu-btn" aria-label="User menu">
-                    <img class="user-photo" id="user-photo" alt="صورة المستخدم">
+                    <img class="user-photo" id="user-photo" alt="صورة المستخدم" src="">
                     <span class="user-display-name" id="user-display-name"></span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="user-dropdown" id="user-dropdown">
-                    <div class="user-info">
-                        <img class="user-photo-large" id="user-photo-large" alt="صورة المستخدم">
-                        <div class="user-details">
-                            <span class="user-name" id="user-name-dropdown"></span>
-                            <span class="user-email" id="user-email"></span>
+                    <!-- User Profile Header -->
+                    <div class="user-profile-header">
+                        <img class="user-photo-large" id="user-photo-large" alt="صورة المستخدم" src="">
+                        <div class="user-profile-details">
+                            <h3 class="user-profile-name" id="user-name-dropdown"></h3>
+                            <p class="user-profile-email" id="user-email"></p>
+                            <span class="user-auth-method" id="user-auth-method">
+                                <i class="fas fa-envelope"></i>
+                                <span data-translate="auth.emailAuth">Email Account</span>
+                            </span>
                         </div>
                     </div>
+                    
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item" id="user-favorites">
-                        <i class="fas fa-heart"></i>
-                        <span data-translate="auth.favorites">Favorites</span>
-                    </a>
-                    <a href="my-plans.html" class="dropdown-item" id="user-my-plans">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span data-translate="auth.myPlans">My Plans</span>
-                    </a>
-                    <a href="#settings" class="dropdown-item" onclick="closeUserDropdown()">
-                        <i class="fas fa-cog"></i>
-                        <span data-translate="auth.settings">Settings</span>
-                    </a>
+                    
+                    <!-- User Menu Items -->
+                    <div class="dropdown-menu-items">
+                        <a href="#" class="dropdown-item" id="user-saved-plans" onclick="openSavedPlansFromDropdown()">
+                            <i class="fas fa-bookmark"></i>
+                            <span data-translate="plans.savedPlans">Saved Plans</span>
+                            <span class="plans-badge" id="dropdown-plans-count">0</span>
+                        </a>
+                        <a href="#" class="dropdown-item" id="user-favorites">
+                            <i class="fas fa-heart"></i>
+                            <span data-translate="auth.favorites">Favorites</span>
+                        </a>
+                        <a href="#settings" class="dropdown-item" onclick="closeUserDropdown()">
+                            <i class="fas fa-cog"></i>
+                            <span data-translate="auth.settings">Settings</span>
+                        </a>
+                    </div>
+                    
                     <div class="dropdown-divider"></div>
+                    
+                    <!-- Logout Button -->
                     <button class="dropdown-item logout-btn" onclick="handleLogout()">
                         <i class="fas fa-sign-out-alt"></i>
                         <span data-translate="auth.logout">Logout</span>
@@ -130,24 +288,27 @@
 </header>
 
 <!-- ========== MAIN CONTENT CONTAINER ========== -->
-<main class="main-content">
+<main class="main-content" id="main-content">
 
     <!-- ========== HOME SECTION ========== -->
     <section id="home" class="section active">
         <!-- Hero Section with Background -->
 
 
-        <img src="images/sunset-pyramids-giza-egypt-optimized.webp" alt="Egypt Pyramids" class="hero-bg">
+        <img src="images/303474.webp" 
+             alt="غروب الشمس الذهبي خلف الأهرامات الثلاثة العظيمة في الجيزة، مصر - منظر بانورامي خلاب يعكس عظمة الحضارة الفرعونية" 
+             class="hero-bg"
+             loading="eager">
         <div class="hero-overlay"></div>
 
         <!-- المحتوى -->
         <div class="hero-content">
             <h1 class="hero-title" data-translate="hero.title">Welcome to Egypt</h1>
             <p class="hero-subtitle" data-translate="hero.subtitle">
-                Explore over 7000 years of history and culture
+                Discover +7000 years of history and culture
             </p>
             <button class="cta-button" data-translate="hero.cta">
-                Start
+                Start Planning
             </button>
         </div>
 
@@ -156,256 +317,14 @@
 
     </section>
 
-    <!-- ============= Plans Section ===============  -->
-    <section id="plans" class="section plans-section">
-        <!-- Hero Section -->
-        <div class="plans-hero">
-            <div class="hero-bg">
-                <div class="pyramids"></div>
-                <div class="stars"></div>
-            </div>
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <div class="hero-badge">
-                        <span class="badge-icon">🌟</span>
-                        <span>خطط رحلتك المثالية</span>
-                        <span class="badge-icon">🌟</span>
-                    </div>
-                    <h1 class="hero-title">
-                        <span class="title-line">استكشف جمال</span>
-                        <span class="title-highlight">مصر الساحرة</span>
-                    </h1>
-                    <p class="hero-subtitle">رحلة عبر 7000 عام من الحضارة • 27 محافظة مصرية • تجارب لا تُنسى</p>
-
-                    <div class="quick-stats">
-                        <div class="stat">
-                            <div class="stat-number">27</div>
-                            <div class="stat-label">محافظة</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">200+</div>
-                            <div class="stat-label">معلم سياحي</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">8</div>
-                            <div class="stat-label">مناطق</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">∞</div>
-                            <div class="stat-label">ذكريات</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Planning Section -->
-        <div class="planning-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>ابدأ التخطيط لرحلتك</h2>
-                    <p>اختر تفضيلاتك وسنصمم لك برنامجاً مخصصاً</p>
-                </div>
-
-                <!-- Step 1: Region Selection -->
-                <div class="planning-step active" id="step1">
-                    <div class="step-header">
-                        <div class="step-number">1</div>
-                        <h3>اختر المنطقة</h3>
-                    </div>
-                    <div class="regions-showcase" id="regionsShowcase">
-                        <!-- Will be populated by JS -->
-                    </div>
-                </div>
-
-                <!-- Step 2: Governorate Selection -->
-                <div class="planning-step" id="step2">
-                    <div class="step-header">
-                        <div class="step-number">2</div>
-                        <h3>اختر المحافظة</h3>
-                    </div>
-                    <div class="governorates-grid" id="governoratesGrid">
-                        <!-- Will be populated by JS -->
-                    </div>
-                </div>
-
-                <!-- Step 3: Trip Details -->
-                <div class="planning-step" id="step3">
-                    <div class="step-header">
-                        <div class="step-number">3</div>
-                        <h3>حدد تفاصيل الرحلة</h3>
-                    </div>
-
-                    <div class="trip-details">
-                        <div class="detail-section">
-                            <h4><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg> المدة</h4>
-                            <div class="duration-options">
-                                <button class="option-card" data-days="1">
-                                    <span class="option-value">1</span>
-                                    <span class="option-label">يوم</span>
-                                </button>
-                                <button class="option-card" data-days="2">
-                                    <span class="option-value">2</span>
-                                    <span class="option-label">يوم</span>
-                                </button>
-                                <button class="option-card active" data-days="3">
-                                    <span class="option-value">3</span>
-                                    <span class="option-label">أيام</span>
-                                </button>
-                                <button class="option-card" data-days="5">
-                                    <span class="option-value">5</span>
-                                    <span class="option-label">أيام</span>
-                                </button>
-                                <button class="option-card" data-days="7">
-                                    <span class="option-value">7</span>
-                                    <span class="option-label">أيام</span>
-                                </button>
-                                <button class="option-card" data-days="10">
-                                    <span class="option-value">10</span>
-                                    <span class="option-label">أيام</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="detail-section">
-                            <h4><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> عدد المسافرين</h4>
-                            <div class="travelers-selector">
-                                <button class="counter-btn" onclick="plansApp.changeTravelers(-1)">-</button>
-                                <div class="counter-display">
-                                    <span class="counter-value" id="travelersCount">2</span>
-                                    <span class="counter-label">مسافر</span>
-                                </div>
-                                <button class="counter-btn" onclick="plansApp.changeTravelers(1)">+</button>
-                            </div>
-                        </div>
-
-                        <div class="detail-section full-width">
-                            <h4><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg> مستوى الميزانية</h4>
-                            <div class="budget-options">
-                                <div class="budget-card" data-budget="budget">
-                                    <div class="budget-icon">💰</div>
-                                    <div class="budget-name">اقتصادي</div>
-                                    <div class="budget-desc">للمسافرين بميزانية محدودة</div>
-                                    <div class="budget-price" data-price-type="budget">~500 EGP/day</div>
-                                </div>
-                                <div class="budget-card active" data-budget="moderate">
-                                    <div class="budget-icon">💰💰</div>
-                                    <div class="budget-name">متوسط</div>
-                                    <div class="budget-desc">توازن مثالي بين السعر والجودة</div>
-                                    <div class="budget-price" data-price-type="moderate">~1200 EGP/day</div>
-                                    <div class="recommended-badge">الأكثر شيوعاً</div>
-                                </div>
-                                <div class="budget-card" data-budget="luxury">
-                                    <div class="budget-icon">💰💰💰</div>
-                                    <div class="budget-name">فاخر</div>
-                                    <div class="budget-desc">تجربة استثنائية من الدرجة الأولى</div>
-                                    <div class="budget-price" data-price-type="luxury">~3500 EGP/day</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="detail-section full-width">
-                            <h4><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l-5.5 9h11z M12 22l5.5-9h-11z"/></svg> الاهتمامات (اختر واحد أو أكثر)</h4>
-                            <div class="interests-grid">
-                                <button class="interest-card active" data-interest="history">
-                                    <div class="interest-icon">🏛️</div>
-                                    <div class="interest-name">آثار فرعونية</div>
-                                    <div class="interest-count">80+ معلم</div>
-                                </button>
-                                <button class="interest-card" data-interest="islamic">
-                                    <div class="interest-icon">🕌</div>
-                                    <div class="interest-name">عمارة إسلامية</div>
-                                    <div class="interest-count">60+ مسجد</div>
-                                </button>
-                                <button class="interest-card" data-interest="beach">
-                                    <div class="interest-icon">🏖️</div>
-                                    <div class="interest-name">شواطئ وبحار</div>
-                                    <div class="interest-count">40+ شاطئ</div>
-                                </button>
-                                <button class="interest-card" data-interest="desert">
-                                    <div class="interest-icon">🏜️</div>
-                                    <div class="interest-name">صحراء وسفاري</div>
-                                    <div class="interest-count">15+ واحة</div>
-                                </button>
-                                <button class="interest-card" data-interest="culture">
-                                    <div class="interest-icon">🎨</div>
-                                    <div class="interest-name">ثقافة محلية</div>
-                                    <div class="interest-count">100+ سوق</div>
-                                </button>
-                                <button class="interest-card" data-interest="food">
-                                    <div class="interest-icon">🍽️</div>
-                                    <div class="interest-name">طعام وتذوق</div>
-                                    <div class="interest-count">200+ مطعم</div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="generate-btn" onclick="plansApp.generatePlan()">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                        <span>أنشئ برنامجي المخصص الآن</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Results Section -->
-        <div class="results-section" id="resultsSection" style="display:none">
-            <div class="container">
-                <div id="planResults"></div>
-            </div>
-        </div>
-
-        <!-- Compare Section -->
-        <div class="compare-section-wrapper">
-            <div class="container">
-                <div class="section-header">
-                    <h2>قارن بين المحافظات</h2>
-                    <p>اختر محافظتين أو أكثر للمقارنة بينهما</p>
-                </div>
-
-                <!-- Governorate Selector -->
-                <div class="compare-selector">
-                    <div class="selector-grid" id="compareSelectorGrid">
-                        <!-- Will be populated by JS -->
-                    </div>
-                    <button class="compare-btn" onclick="app.showComparison()" id="compareBtn" disabled>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
-                        </svg>
-                        <span>قارن المحافظات المختارة</span>
-                    </button>
-                </div>
-
-                <!-- Comparison Results -->
-                <div id="compareContainer" class="compare-results" style="display:none;">
-                    <!-- Will be populated by JS -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Loader -->
-        <div class="loader" id="loader" style="display:none">
-            <div class="loader-content">
-                <div class="sphinx-loader">
-                    <div class="sphinx-body"></div>
-                    <div class="sphinx-head"></div>
-                </div>
-                <p class="loader-text">جاري تصميم رحلتك المثالية...</p>
-                <div class="loader-progress">
-                    <div class="progress-bar"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ============= Tools ===============  -->
     <section id="tools" class="section tools">
         <div class="section-header">
             <h1 class="section-title" data-translate="tools.title">Tools</h1>
             <p class="section-subtitle" data-translate="tools.subtitle">Explore our tourism tools</p>
+            <p class="section-intro" data-translate="tools.intro">
+                Discover Egypt with our interactive tools. Plan your trip, explore destinations, get AI recommendations, and calculate your budget.
+            </p>
         </div>
 
         <div class="tools-buttons">
@@ -425,7 +344,58 @@
                 <div class="tool-icon">🧮</div>
                 <h3><span data-translate="nav.calculator">Budget Calculator</span></h3>
             </a>
+            <a href="#current-weather-tool" class="nav-link tool-card" data-section="current-weather-tool">
+                <div class="tool-icon">🌡️</div>
+                <h3><span data-translate="tools.currentWeather">Current Weather</span></h3>
+            </a>
+            <a href="#weather-comparison-tool" class="nav-link tool-card" data-section="weather-comparison-tool">
+                <div class="tool-icon">📊</div>
+                <h3><span data-translate="tools.weatherComparison">Weather Comparison</span></h3>
+            </a>
+            <a href="#weather-map-tool" class="nav-link tool-card" data-section="weather-map-tool">
+                <div class="tool-icon">🗺️</div>
+                <h3><span data-translate="tools.weatherMap">Weather Map</span></h3>
+            </a>
         </div>
+    </section>
+
+    <!-- ========== CURRENT WEATHER TOOL ========== -->
+    <section id="current-weather-tool" class="section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span data-translate="tools.currentWeather">الطقس الحالي</span>
+            </h2>
+            <p class="section-subtitle" data-translate="tools.currentWeatherDesc">
+                شاهد الطقس الحالي والتوقعات لأي محافظة في مصر
+            </p>
+        </div>
+        <div id="current-weather-container"></div>
+    </section>
+
+    <!-- ========== WEATHER COMPARISON TOOL ========== -->
+    <section id="weather-comparison-tool" class="section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span data-translate="tools.weatherComparison">المقارنة بين المحافظات</span>
+            </h2>
+            <p class="section-subtitle" data-translate="tools.weatherComparisonDesc">
+                قارن الطقس بين حتى 4 محافظات في نفس الوقت
+            </p>
+        </div>
+        <div id="weather-comparison-container"></div>
+    </section>
+
+    <!-- ========== WEATHER MAP TOOL ========== -->
+    <section id="weather-map-tool" class="section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span data-translate="tools.weatherMap">خريطة الطقس</span>
+            </h2>
+            <p class="section-subtitle" data-translate="tools.weatherMapDesc">
+                استكشف الطقس في جميع محافظات مصر على خريطة تفاعلية
+            </p>
+        </div>
+        <div id="weather-map-container"></div>
     </section>
 
     <!-- ========== EXPLORE EGYPT SECTION ========== -->
@@ -441,34 +411,131 @@
             <button class="filter-btn" data-category="ancient" data-translate="explore.ancient">Ancient Sites</button>
             <button class="filter-btn" data-category="nature" data-translate="explore.nature">Nature</button>
             <button class="filter-btn" data-category="beach" data-translate="explore.beach">Beaches</button>
-            <button class="filter-btn" data-category="museum">Museums</button>
-            <button class="filter-btn" data-category="religious">Religious</button>
-            <button class="filter-btn" data-category="historical">Historical</button>
-            <button class="filter-btn" data-category="modern" data-translate="explore.modern">Modern</button>
-            <button class="filter-btn" data-category="cultural">Cultural</button>
+            <button class="filter-btn" data-category="museum" data-translate="explore.museum">Museums</button>
+            <button class="filter-btn" data-category="religious" data-translate="explore.religious">Religious Sites</button>
+            <button class="filter-btn" data-category="historical" data-translate="explore.historical">Historical Sites</button>
+            <button class="filter-btn" data-category="modern" data-translate="explore.modern">Modern Cities</button>
+            <button class="filter-btn" data-category="cultural" data-translate="explore.cultural">Cultural Sites</button>
         </div>
 
         <!-- Dynamic Cards Container - ALL 55 places loaded here -->
         <div class="explore-cards-grid" id="explore-cards-container">
             <!-- Cards will be loaded dynamically by explore-dynamic.js -->
             <div style="text-align: center; padding: 40px; color: var(--text-secondary);">
-                <p>Loading places...</p>
+                <p data-translate="explore.loading">Loading places...</p>
             </div>
         </div>
     </section>
 
     <!-- ========== MAP SECTION ========== -->
+    <!-- ========== TRAVEL PLANS SECTION ========== -->
+    <section id="plans" class="section">
+        <div class="plans-hero">
+            <div class="plans-hero-badge">
+                <span>✨</span>
+                <span data-translate="plans.heroTitle">Plan Your Perfect Egyptian Journey</span>
+                <span>✨</span>
+            </div>
+            <h2 class="plans-hero-title" data-translate="plans.title">Travel Plans</h2>
+            <p class="plans-hero-subtitle" data-translate="plans.subtitle">Discover Egypt's 27 Governorates</p>
+            
+            <!-- Stats -->
+            <div class="plans-stats">
+                <div class="plans-stat">
+                    <span class="plans-stat-number">27</span>
+                    <span class="plans-stat-label" data-translate="plans.governoratesCount">Governorates</span>
+                </div>
+                <div class="plans-stat">
+                    <span class="plans-stat-number">200+</span>
+                    <span class="plans-stat-label" data-translate="plans.attractionsCount">Attractions</span>
+                </div>
+                <div class="plans-stat">
+                    <span class="plans-stat-number">7000+</span>
+                    <span class="plans-stat-label" data-translate="stats.years">Years of History</span>
+                </div>
+            </div>
+
+            <!-- Start Interactive Plans Button -->
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="wizard-start-btn" onclick="openTravelPlannerModal()" style="
+                    padding: 18px 45px;
+                    background: linear-gradient(135deg, #d4af37 0%, #f7ce68 100%);
+                    color: #1a1a1a;
+                    border: none;
+                    border-radius: 50px;
+                    font-size: 18px;
+                    font-weight: 700;
+                    cursor: pointer;
+                    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+                    transition: all 0.3s ease;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 12px;
+                ">
+                    <i class="fas fa-route"></i>
+                    <span data-translate="plans.startPlanner">Start Planning Your Trip</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Saved Plans Button -->
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="saved-plans-btn" onclick="openSavedPlansModal()" style="
+                    padding: 15px 35px;
+                    background: transparent;
+                    color: #d4af37;
+                    border: 2px solid #d4af37;
+                    border-radius: 50px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 10px;
+                ">
+                    <i class="fas fa-bookmark"></i>
+                    <span data-translate="plans.savedPlans">Saved Plans</span>
+                    <span id="saved-plans-count" class="saved-plans-count" style="
+                        background: #d4af37;
+                        color: white;
+                        padding: 2px 8px;
+                        border-radius: 12px;
+                        font-size: 12px;
+                        font-weight: bold;
+                    ">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Plans Container - Will be populated by JavaScript -->
+        <div class="governorate-cards-grid" id="plans-cards-container"></div>
+    </section>
+
     <section id="map" class="section map-section">
-        <h1 class="text-center">Explore Egypt</h1>
-        <p class="text-center">
-            <iframe
+        <div class="section-header">
+            <h2 class="section-title" data-translate="map.title">Explore Egypt Map</h2>
+            <p class="section-subtitle" data-translate="map.subtitle">Interactive map of Egypt's tourist attractions</p>
+        </div>
+        
+        <div class="map-container">
+            <div class="map-actions">
+                <button class="map-btn" id="openMapBtn" data-translate="map.openInMaps">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Open in Google Maps</span>
+                </button>
+            </div>
+            <div class="map-iframe-wrapper">
+                <iframe
+                    id="googleMapFrame"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5246765.280911796!2d33.27734136198609!3d26.898047757173526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14368976c35c36e9%3A0x2c45a00925c4c444!2z2YXYtdix!5e0!3m2!1sar!2seg!4v1769882517722!5m2!1sar!2segy"
-                    style="border:0;"
+                    style="border:0; width: 100%; height: 100%;"
                     allowfullscreen=""
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </p>
+                </iframe>
+            </div>
+        </div>
     </section>
 
 
@@ -477,16 +544,29 @@
     <!-- ========== AI TOURIST GUIDE SECTION ========== -->
     <section id="ai-guide" class="section">
         <div class="section-header">
-            <h2 class="section-title" data-translate="ai.title">AI Tourist Guide</h2>
-            <p class="section-subtitle" data-translate="ai.subtitle">Ask me anything about Egypt tourism!</p>
+            <h2 class="section-title" data-translate="ai.title">🏛️ AI Tourist Guide - Quad Engine</h2>
+            <p class="section-subtitle" data-translate="ai.subtitle">Powered by 4 Advanced AI Engines with Smart Rotation</p>
         </div>
 
-        <!-- AI Disclaimer -->
-        <div class="ai-disclaimer">
-            <p data-translate="ai.disclaimer">
-                ℹ️ This is a simple educational AI model using keyword matching.
-                It provides basic tourism information about Egypt.
-            </p>
+        <!-- AI Info Bar -->
+        <div class="ai-info-bar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div id="engine-indicator" style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.9rem;">
+                    <span style="opacity: 0.8;">Next Engine:</span>
+                    <span id="next-engine-name" style="font-weight: 700; margin-left: 0.5rem;">🔮 Gemini 2.5</span>
+                </div>
+                <div style="font-size: 0.85rem; opacity: 0.9;">
+                    <span id="session-cost" style="font-weight: 600;">$0.00</span> spent today
+                </div>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+                <button onclick="showComparisonPanel()" style="background: rgba(255,255,255,0.2); border: none; padding: 0.5rem 1rem; border-radius: 8px; color: white; cursor: pointer; font-weight: 600;">
+                    📊 Compare
+                </button>
+                <button onclick="window.QuadAIGuide?.clearConversation()" style="background: rgba(255,255,255,0.2); border: none; padding: 0.5rem 1rem; border-radius: 8px; color: white; cursor: pointer; font-weight: 600;">
+                    🗑️ Clear
+                </button>
+            </div>
         </div>
 
         <!-- Chat Container -->
@@ -494,12 +574,23 @@
             <!-- Chat Messages Area -->
             <div class="chat-messages" id="chat-messages">
                 <!-- Welcome Message -->
-                <div class="message bot-message">
-                    <div class="message-avatar">🤖</div>
+                <div class="message bot-message" style="border-left: 4px solid #667eea;">
                     <div class="message-content">
-                        <p data-translate="ai.welcome">
-                            Hello! I'm your AI tourist guide. Ask me about Egyptian places, history,
-                            culture, or travel tips!
+                        <div style="font-weight: 700; margin-bottom: 0.5rem; color: #667eea;">🤖 مرشد مصر الذكي</div>
+                        <p>
+                            مرحباً! أنا مرشدك السياحي الذكي المتخصص في السياحة المصرية. 🇪🇬
+                        </p>
+                        <p style="margin-top: 0.5rem;">
+                            أستخدم <strong>4 محركات ذكاء اصطناعي متقدمة</strong> للحصول على أفضل الإجابات:
+                        </p>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                            <li>🔮 <strong>Gemini 2.5</strong> - السرعة والدقة</li>
+                            <li>⚡ <strong>Groq Llama</strong> - الإجابات التفصيلية</li>
+                            <li>🎯 <strong>Cohere</strong> - التحليل العميق</li>
+                            <li>🌟 <strong>Mistral</strong> - التوازن المثالي</li>
+                        </ul>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.9;">
+                            اسألني عن الأماكن السياحية، التخطيط للرحلات، التكاليف، الطقس، أو أي شيء متعلق بالسياحة في مصر!
                         </p>
                     </div>
                 </div>
@@ -511,20 +602,54 @@
                         type="text"
                         id="chat-input"
                         class="chat-input"
-                        placeholder="Type your question..."
+                        placeholder="اسألني عن أي شيء متعلق بالسياحة في مصر..."
                         data-translate-placeholder="ai.placeholder"
                 >
                 <button id="send-btn" class="send-btn">
-                    <span>Send</span>
+                    <span>إرسال 🚀</span>
                 </button>
             </div>
 
             <!-- Quick Question Buttons -->
             <div class="quick-questions">
-                <button class="quick-btn" data-question="pyramids">🏛️ <span data-translate="ai.q1">Pyramids</span></button>
-                <button class="quick-btn" data-question="weather">🌤️ <span data-translate="ai.q2">Weather</span></button>
-                <button class="quick-btn" data-question="food">🍽️ <span data-translate="ai.q3">Food</span></button>
-                <button class="quick-btn" data-question="safety">🛡️ <span data-translate="ai.q4">Safety</span></button>
+                <button class="quick-btn" onclick="sendQuickQuestion('اقترح لي خطة سياحية لمدة 3 أيام في القاهرة')">🗺️ خطة 3 أيام</button>
+                <button class="quick-btn" onclick="sendQuickQuestion('ما هي أفضل الأماكن السياحية في الأقصر؟')">🏛️ الأقصر</button>
+                <button class="quick-btn" onclick="sendQuickQuestion('نصائح للسفر إلى شرم الشيخ')">🏖️ شرم الشيخ</button>
+                <button class="quick-btn" onclick="sendQuickQuestion('كم تكلفة رحلة عائلية لمدة أسبوع؟')">💰 التكلفة</button>
+                <button class="quick-btn" onclick="sendQuickQuestion('ما هو أفضل وقت لزيارة مصر؟')">📅 أفضل وقت</button>
+            </div>
+        </div>
+
+        <!-- Comparison Panel (Hidden by default) -->
+        <div id="comparison-panel" style="display: none; margin-top: 2rem; background: var(--bg-secondary, #1a1f2e); border-radius: 16px; padding: 2rem; border: 2px solid var(--border-color, #2d3748);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.5rem; font-weight: 800;">📊 المقارنة الشاملة</h3>
+                <button onclick="hideComparisonPanel()" style="background: transparent; border: none; color: #999; font-size: 1.5rem; cursor: pointer;">×</button>
+            </div>
+            
+            <!-- Session Stats -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                <div style="background: var(--bg-tertiary, #2d3748); padding: 1rem; border-radius: 12px; text-align: center;">
+                    <div id="total-requests-panel" style="font-size: 2rem; font-weight: 800; color: #667eea;">0</div>
+                    <div style="font-size: 0.85rem; color: #999; margin-top: 0.3rem;">إجمالي الطلبات</div>
+                </div>
+                <div style="background: var(--bg-tertiary, #2d3748); padding: 1rem; border-radius: 12px; text-align: center;">
+                    <div id="total-cost-panel" style="font-size: 2rem; font-weight: 800; color: #667eea;">$0.00</div>
+                    <div style="font-size: 0.85rem; color: #999; margin-top: 0.3rem;">التكلفة الإجمالية</div>
+                </div>
+                <div style="background: var(--bg-tertiary, #2d3748); padding: 1rem; border-radius: 12px; text-align: center;">
+                    <div id="success-rate-panel" style="font-size: 2rem; font-weight: 800; color: #10b981;">100%</div>
+                    <div style="font-size: 0.85rem; color: #999; margin-top: 0.3rem;">معدل النجاح</div>
+                </div>
+                <div style="background: var(--bg-tertiary, #2d3748); padding: 1rem; border-radius: 12px; text-align: center;">
+                    <div id="avg-time-panel" style="font-size: 2rem; font-weight: 800; color: #667eea;">0ms</div>
+                    <div style="font-size: 0.85rem; color: #999; margin-top: 0.3rem;">متوسط الوقت</div>
+                </div>
+            </div>
+            
+            <!-- Engines Comparison -->
+            <div id="engines-comparison-panel">
+                <!-- سيتم ملؤه ديناميكياً -->
             </div>
         </div>
     </section>
@@ -532,7 +657,7 @@
     <!-- ========== CALCULATOR SECTION ========== -->
     <section id="calculator" class="section">
         <div class="calculator-container">
-
+            
             <!-- العنوان الرئيسي -->
             <div class="calculator-header">
                 <h2 class="calculator-title">
@@ -545,7 +670,7 @@
 
             <!-- نموذج الإدخال -->
             <div class="calculator-inputs">
-
+                
                 <!-- اختيار المحافظة -->
                 <div class="input-group">
                     <label for="governorateSelect" class="input-label">
@@ -586,7 +711,7 @@
 
             <!-- النتائج -->
             <div class="calculator-results" id="calculatorResults">
-
+                
                 <!-- Context ذكي -->
                 <div class="smart-context" id="smartContext">
                     <span class="context-icon">💡</span>
@@ -597,7 +722,7 @@
 
                 <!-- تفاصيل التكلفة -->
                 <div class="results-breakdown">
-
+                    
                     <div class="breakdown-item">
                         <span class="breakdown-label">
                             <span class="label-icon">🏨</span>
@@ -666,6 +791,120 @@
 
             </div>
 
+        </div>
+    </section>
+
+    <!-- ========== WEATHER SECTION ========== -->
+    <section id="weather" class="section">
+        <div class="section-header">
+            <h2 class="section-title" data-translate="weather.title">Weather Forecast</h2>
+            <p class="section-subtitle" data-translate="weather.subtitle">Current weather and 7-day forecast for major Egyptian cities</p>
+        </div>
+
+        <!-- Weather Widget -->
+        <div class="weather-widget">
+            <div class="weather-card">
+                <div class="weather-header">
+                    <div class="weather-city-selector">
+                        <select id="weather-city-select"></select>
+                    </div>
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <button class="weather-add-plan-btn" id="weather-add-plan-btn" onclick="addCurrentWeatherToPlan()" style="
+                            background: rgba(255, 255, 255, 0.2);
+                            border: 2px solid rgba(255, 255, 255, 0.3);
+                            color: white;
+                            padding: 0.5rem 1rem;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            transition: all 0.3s;
+                        " onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                            <i class="fas fa-plus"></i>
+                            <span data-translate="weather.addToPlan">Add to Plan</span>
+                        </button>
+                        <div class="weather-last-update">
+                            <span data-translate="weather.lastUpdate">آخر تحديث:</span>
+                            <span id="last-update">--:--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="weather-current">
+                    <div class="weather-icon-large" id="weather-icon">
+                        <div style="font-size: 5rem;">🌤️</div>
+                    </div>
+                    <div class="weather-temp-main">
+                        <div class="current-temp" id="current-temp">--</div>
+                        <div class="weather-desc" id="weather-desc">جاري التحميل...</div>
+                    </div>
+                </div>
+
+                <div class="weather-details">
+                    <div class="weather-detail-item">
+                        <div class="weather-detail-icon">🌡️</div>
+                        <div class="weather-detail-value">
+                            <span id="feels-like">--</span>°C
+                        </div>
+                        <div class="weather-detail-label" data-translate="weather.feelsLike">يبدو كأنه</div>
+                    </div>
+
+                    <div class="weather-detail-item">
+                        <div class="weather-detail-icon">💧</div>
+                        <div class="weather-detail-value">
+                            <span id="humidity">--</span>%
+                        </div>
+                        <div class="weather-detail-label" data-translate="weather.humidity">الرطوبة</div>
+                    </div>
+
+                    <div class="weather-detail-item">
+                        <div class="weather-detail-icon">💨</div>
+                        <div class="weather-detail-value">
+                            <span id="wind-speed">--</span> km/h
+                        </div>
+                        <div class="weather-detail-label" data-translate="weather.wind">الرياح</div>
+                    </div>
+
+                    <div class="weather-detail-item">
+                        <div class="weather-detail-icon">🌅</div>
+                        <div class="weather-detail-value" id="sunrise">--:--</div>
+                        <div class="weather-detail-label" data-translate="weather.sunrise">الشروق</div>
+                    </div>
+
+                    <div class="weather-detail-item">
+                        <div class="weather-detail-icon">🌇</div>
+                        <div class="weather-detail-value" id="sunset">--:--</div>
+                        <div class="weather-detail-label" data-translate="weather.sunset">الغروب</div>
+                    </div>
+
+                    <div class="weather-detail-item">
+                        <div class="weather-detail-icon">📊</div>
+                        <div class="weather-detail-value">
+                            <span id="pressure">--</span> hPa
+                        </div>
+                        <div class="weather-detail-label" data-translate="weather.pressure">الضغط</div>
+                    </div>
+                </div>
+
+                <div class="weather-forecast">
+                    <div class="forecast-title" data-translate="weather.forecast">التوقعات للأيام القادمة</div>
+                    <div class="forecast-container" id="forecast-container">
+                        <!-- Forecast items will be added here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Info -->
+        <div class="weather-info" style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); text-align: center;">
+            <p style="margin: 0; opacity: 0.8;">
+                <i class="fas fa-info-circle"></i>
+                <span data-translate="weather.poweredBy">Powered by</span>
+                <strong>Open-Meteo</strong> - 
+                <span data-translate="weather.freeService">Free weather API service</span>
+            </p>
         </div>
     </section>
 
@@ -761,43 +1000,46 @@
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-section">
-            <h3 data-translate="siteName">Discover Egypt</h3>
+            <h3>Discover Egypt</h3>
             <p data-translate="footer.tagline">Your gateway to Egypt's wonders</p>
         </div>
 
         <div class="footer-section">
             <h4 data-translate="footer.contact">Contact</h4>
-            <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afc6c1c9c0efcbc6dcccc0d9caddcac8d6dfdb81cacbda">[email&#160;protected]</a></p>
+            <p>Email: <a href="/cdn-cgi/l/email-protection#2a43444c456a4e435949455c4f58074f4d535a5e04494547"><span class="__cf_email__" data-cfemail="452c2b232a05212c36262a3320376820223c35316b262a28">[email&#160;protected]</span></a></p>
             <p>Phone: +20 123 456 789</p>
         </div>
 
         <div class="footer-section">
             <h4 data-translate="footer.social">Follow Us</h4>
             <div class="social-links">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/DiscoverEgypt" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/discover_egypt" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/DiscoverEgypt" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.youtube.com/@DiscoverEgypt" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </div>
 
     <div class="footer-bottom">
-        <p>&copy; 2026 Discover Egypt -    OMAR Web Design Project - Middle 2</p>
+        <p>
+            &copy; 2026 <span data-translate="site.title">Discover Egypt</span> - 
+            OMAR <span data-translate="site.projectType">Web Design Project</span> - Middle 2
+        </p>
     </div>
 </footer>
 
 <!-- ========== SEARCH MODAL ========== -->
-<div class="search-modal" id="search-modal">
+<div class="search-modal" id="search-modal" role="dialog" aria-modal="true" aria-labelledby="search-title">
     <div class="search-modal-content">
-        <button class="search-close" id="search-close">&times;</button>
-        <h2 class="search-title" data-translate="search.title">Search Places</h2>
-
+        <button class="search-close" id="search-close" aria-label="إغلاق البحث">&times;</button>
+        <h2 class="search-title" id="search-title" data-translate="search.title">Search Places</h2>
+        
         <div class="search-input-container">
             <i class="fas fa-search search-icon"></i>
             <input type="text" id="search-input" class="search-input" placeholder="Search for places, cities..." data-translate-placeholder="search.placeholder">
         </div>
-
+        
         <div id="search-results" class="search-results"></div>
         <div id="search-no-results" class="search-no-results" style="display: none;">
             <i class="fas fa-search"></i>
@@ -806,8 +1048,22 @@
     </div>
 </div>
 
+<!-- ========== LOADING OVERLAY ========== -->
+<div class="loading-overlay" id="loading-overlay" style="display: none;">
+    <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p data-translate="common.loading">Loading...</p>
+    </div>
+</div>
+
+<!-- ========== MESSAGE CONTAINER ========== -->
+<div id="message-container" aria-live="polite" aria-atomic="true"></div>
+
 
 <!-- ========== JAVASCRIPT LINKS ========== -->
+
+<!-- Logger System - يجب أن يحمّل أولاً -->
+<script src="js/utils/logger.js"></script>
 
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
@@ -818,20 +1074,17 @@
 <!-- Leaflet JS for maps -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<!-- Translations Data -->
-<script src="data/translations.js"></script>
+<!-- Translations Data (Unified) -->
+<script src="data/translations-enhanced.js"></script>
 
 <!-- Places Data -->
 <script src="data/places-enhanced.js"></script>
 
-<!-- نظام المصادقة - النسخة المبسطة -->
-<script src="js/auth/firebase-config.js"></script>
-<!-- Auth UI Scripts - معطلة لأننا نستخدم صفحة منفصلة الآن
-<script src="js/auth/auth-translations.js"></script>
-<script src="js/auth/activity-tracker.js"></script>
-<script src="js/auth/auth-manager.js"></script>
-<script src="js/auth/auth-ui.js"></script>
--->
+<!-- Place Images -->
+<script src="data/place-images.js"></script>
+
+<!-- نظام المصادقة - النسخة المحسّنة -->
+<script src="js/auth/auth-system.js"></script>
 
 <!-- Core: bootstrap first, then features -->
 <script src="js/core/app.js"></script>
@@ -842,38 +1095,455 @@
 <!-- Language Fixes -->
 <script src="js/language-fixes.js"></script>
 
-<!-- Complete Translation System -->
-<script src="js/complete-translations.js"></script>
-
-<!-- Plans Section Translation -->
-<script src="js/plans-translations.js"></script>
-
-<!-- Features: filters, map, AI guide -->
+<!-- Features: filters, map -->
 <script src="js/features/filters.js"></script>
 <script src="js/features/map.js"></script>
-<script src="js/features/aiGuide.js"></script>
+
+<!-- Api keys -->
+<script src="js/config/%20keys.js"></script>
+
+<!-- AI Guide - Gemini Powered (NEW!) -->
+<script src="js/ai-guide-quad.js"></script>
 
 <!-- Explore Dynamic Cards (No Images) -->
 <script src="js/explore-dynamic.js"></script>
 
-<!-- Search Engine (No Images Version) -->
-<script src="js/search-no-images.js"></script>
+<!-- Search Engine - Advanced Multi-language -->
+<script src="js/search-advanced.js"></script>
+
+<!-- User Menu System - Enhanced -->
+<script src="js/user-menu-enhanced.js"></script>
+
+<!-- Travel Plans - OLD SYSTEM DISABLED -->
+<!-- <script src="js/plans-advanced.js"></script> -->
+<!-- <script src="js/plans-wizard.js"></script> -->
+<script src="js/interactive-plans-system.js"></script>
+
+<!-- Smart Plans Integration (Weather + AI) -->
+<script src="js/smart-plans-integration.js"></script>
 
 <!-- Budget Calculator -->
 <script src="js/calculator.js"></script>
 
+<!-- Weather API -->
+<script src="js/weather-api.js"></script>
+
+<!-- Separate Weather Tools -->
+<script src="js/weather-tools-separate.js"></script>
+
 <!-- Utils -->
 <script src="js/utils/helpers.js"></script>
+<script src="js/utilities.js"></script>
 
-<!-- Auth Integration Script -->
-<script src="js/auth-integration.js"></script>
+<!-- Saved Plans Manager -->
+<script src="js/saved-plans-manager.js"></script>
 
-<!-- Debug Script - يمكن حذفه في الإنتاج -->
-<script src="js/debug.js"></script>
 
-<!-- Plans Script -->
-<script src="plans/plans.js"></script>
+<!-- Travel Planner Modal -->
+<div id="travel-planner-modal" class="travel-planner-modal" style="display: none;">
+    <div class="travel-planner-modal-overlay" onclick="closeTravelPlannerModal()"></div>
+    <div class="travel-planner-modal-content">
+        <button class="travel-planner-close-btn" onclick="closeTravelPlannerModal()" title="Close">
+            <i class="fas fa-times"></i>
+        </button>
+        <iframe id="travel-planner-iframe" src="" frameborder="0"></iframe>
+    </div>
+</div>
 
+<!-- Saved Plans Modal -->
+<div id="saved-plans-modal" class="saved-plans-modal" style="display: none;">
+    <div class="saved-plans-modal-overlay" onclick="closeSavedPlansModal()"></div>
+    <div class="saved-plans-modal-content">
+        <div class="saved-plans-header">
+            <h2 data-translate="plans.savedPlans">Saved Plans</h2>
+            <button class="saved-plans-close-btn" onclick="closeSavedPlansModal()" title="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="saved-plans-body" id="saved-plans-list">
+            <!-- Plans will be loaded here -->
+            <div class="saved-plans-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p data-translate="common.loading">Loading...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Travel Planner Modal Functions
+function openTravelPlannerModal() {
+    const modal = document.getElementById('travel-planner-modal');
+    const iframe = document.getElementById('travel-planner-iframe');
+    
+    if (modal && iframe) {
+        // Set iframe source
+        iframe.src = 'planner/index.html';
+        
+        // Show modal
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Animation
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 10);
+    }
+}
+
+function closeTravelPlannerModal() {
+    const modal = document.getElementById('travel-planner-modal');
+    const iframe = document.getElementById('travel-planner-iframe');
+    
+    if (modal) {
+        modal.classList.remove('active');
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+            
+            // Clear iframe to stop any ongoing processes
+            if (iframe) {
+                iframe.src = '';
+            }
+        }, 300);
+    }
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeTravelPlannerModal();
+    }
+});
+</script>
+
+<!-- ========== QUAD AI GUIDE INTEGRATION ========== -->
+<script>
+// دالة إرسال الرسالة الرئيسية
+async function sendAIMessage() {
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    const chatMessages = document.getElementById('chat-messages');
+    
+    if (!chatInput || !sendBtn || !chatMessages) return;
+    
+    const message = chatInput.value.trim();
+    if (!message || !window.QuadAIGuide) return;
+    
+    // تعطيل الإدخال
+    chatInput.disabled = true;
+    sendBtn.disabled = true;
+    
+    // مسح الإدخال
+    chatInput.value = '';
+    
+    // إضافة رسالة المستخدم
+    addChatMessage(message, 'user');
+    
+    // إضافة رسالة التحميل
+    const loadingId = 'loading-' + Date.now();
+    const loadingDiv = document.createElement('div');
+    loadingDiv.id = loadingId;
+    loadingDiv.className = 'message bot-message';
+    loadingDiv.style.borderLeft = '4px solid #8b5cf6';
+    loadingDiv.innerHTML = `
+        <div class="message-content">
+            <div style="display: flex; align-items: center; gap: 0.8rem;">
+                <div style="width: 20px; height: 20px; border: 3px solid #8b5cf6; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                <span>جاري التفكير والبحث عن أفضل إجابة...</span>
+            </div>
+        </div>
+    `;
+    chatMessages.appendChild(loadingDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    
+    try {
+        // إرسال الرسالة
+        const result = await window.QuadAIGuide.sendMessage(message);
+        
+        // إزالة رسالة التحميل
+        const loadingElement = document.getElementById(loadingId);
+        if (loadingElement) {
+            loadingElement.remove();
+        }
+        
+        // إضافة رد المرشد
+        addChatMessage(result.response, 'ai', result.engine, {
+            time: result.totalTime,
+            attempts: result.attempts
+        });
+        
+        // تحديث المؤشرات
+        updateEngineIndicator();
+        
+    } catch (error) {
+        console.error('خطأ في إرسال الرسالة:', error);
+        
+        // إزالة رسالة التحميل
+        const loadingElement = document.getElementById(loadingId);
+        if (loadingElement) {
+            loadingElement.remove();
+        }
+        
+        // إضافة رسالة خطأ
+        addChatMessage('❌ عذراً، حدث خطأ: ' + error.message + '\n\n💡 تأكد من:\n• وضع مفاتيح API بشكل صحيح\n• الاتصال بالإنترنت\n• عدم تجاوز الحد اليومي', 'ai');
+    } finally {
+        // إعادة تفعيل الإدخال
+        chatInput.disabled = false;
+        sendBtn.disabled = false;
+        chatInput.focus();
+    }
+}
+
+// دالة إضافة رسالة للمحادثة
+function addChatMessage(content, type, engine = null, meta = null) {
+    const chatMessages = document.getElementById('chat-messages');
+    if (!chatMessages) return;
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message ' + (type === 'user' ? 'user-message' : 'bot-message');
+    
+    let html = '';
+    
+    if (type === 'ai' && engine) {
+        const engineConfig = window.AI_ENGINES[engine.key];
+        messageDiv.style.borderLeft = `4px solid ${engineConfig.color}`;
+        html += `
+            <div class="message-content">
+                <div style="font-weight: 700; margin-bottom: 0.5rem; color: ${engineConfig.color};">
+                    ${engineConfig.emoji} ${engineConfig.nameAr}
+                </div>
+                <div>${formatMessageContent(content)}</div>
+        `;
+        
+        if (meta) {
+            html += `
+                <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 1rem; font-size: 0.75rem; color: #999;">
+                    <span>⏱️ ${meta.time}ms</span>
+                    <span>🔄 ${meta.attempts} محاولة</span>
+                </div>
+            `;
+        }
+        
+        html += `</div>`;
+    } else if (type === 'user') {
+        messageDiv.style.borderLeft = '4px solid #667eea';
+        html = `
+            <div class="message-content">
+                <div style="font-weight: 700; margin-bottom: 0.5rem; color: #667eea;">
+                    👤 أنت
+                </div>
+                <div>${formatMessageContent(content)}</div>
+            </div>
+        `;
+    } else {
+        messageDiv.style.borderLeft = '4px solid #667eea';
+        html = `<div class="message-content">${formatMessageContent(content)}</div>`;
+    }
+    
+    messageDiv.innerHTML = html;
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// دالة تنسيق محتوى الرسالة
+function formatMessageContent(text) {
+    // دعم Markdown البسيط
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    text = text.replace(/`(.*?)`/g, '<code style="background: rgba(255,255,255,0.1); padding: 0.2rem 0.4rem; border-radius: 4px;">$1</code>');
+    text = text.replace(/\n/g, '<br>');
+    return text;
+}
+
+// دالة إرسال سؤال سريع
+function sendQuickQuestion(question) {
+    const chatInput = document.getElementById('chat-input');
+    if (chatInput) {
+        chatInput.value = question;
+        sendAIMessage();
+    }
+}
+
+// دالة إظهار لوحة المقارنة
+function showComparisonPanel() {
+    const panel = document.getElementById('comparison-panel');
+    if (panel) {
+        panel.style.display = 'block';
+        updateComparisonPanel();
+    }
+}
+
+// دالة إخفاء لوحة المقارنة
+function hideComparisonPanel() {
+    const panel = document.getElementById('comparison-panel');
+    if (panel) {
+        panel.style.display = 'none';
+    }
+}
+
+// دالة تحديث لوحة المقارنة
+function updateComparisonPanel() {
+    if (!window.QuadAIGuide) return;
+    
+    try {
+        const stats = window.QuadAIGuide.getStats();
+        
+        // تحديث الإحصائيات العامة
+        document.getElementById('total-requests-panel').textContent = stats.session.requests || 0;
+        document.getElementById('total-cost-panel').textContent = '$' + (stats.session.cost || 0).toFixed(4);
+        
+        const successRate = stats.session.requests > 0
+            ? ((stats.session.successCount || stats.session.requests) / stats.session.requests * 100)
+            : 100;
+        document.getElementById('success-rate-panel').textContent = successRate.toFixed(0) + '%';
+        
+        document.getElementById('avg-time-panel').textContent = 
+            (stats.session.avgResponseTime || 0).toFixed(0) + 'ms';
+        
+        // تحديث معلومات التكلفة في الشريط العلوي
+        const sessionCost = document.getElementById('session-cost');
+        if (sessionCost) {
+            sessionCost.textContent = '$' + (stats.session.cost || 0).toFixed(4);
+        }
+        
+        // تحديث مقارنة المحركات
+        const comparison = stats.engines;
+        const container = document.getElementById('engines-comparison-panel');
+        if (container && comparison) {
+            container.innerHTML = '';
+            
+            Object.entries(comparison).forEach(([key, data]) => {
+                const card = document.createElement('div');
+                card.style.cssText = 'background: var(--bg-tertiary, #2d3748); padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border-left: 4px solid ' + data.color;
+                
+                const scoreColor = parseFloat(data.performance.score) >= 80 
+                    ? '#10b981' 
+                    : parseFloat(data.performance.score) >= 60
+                    ? '#f59e0b'
+                    : '#ef4444';
+                
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="font-size: 2.5rem;">${data.emoji}</div>
+                            <div>
+                                <h4 style="font-size: 1.1rem; margin: 0;">${data.nameAr}</h4>
+                                <div style="font-size: 0.85rem; color: #999; margin-top: 0.2rem;">${data.name}</div>
+                            </div>
+                        </div>
+                        <div style="width: 60px; height: 60px; border-radius: 50%; background: ${scoreColor}; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: white;">
+                            ${data.performance.score}
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                        ${data.strengths.map(s => `<span style="padding: 0.4rem 0.8rem; background: rgba(59, 130, 246, 0.1); border-radius: 12px; font-size: 0.75rem; color: #999;">✓ ${s}</span>`).join('')}
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem;">
+                        <div>
+                            <div style="font-size: 0.75rem; color: #666;">الطلبات</div>
+                            <div style="font-size: 1rem; font-weight: 700; margin-top: 0.2rem;">${data.stats.requests}</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.75rem; color: #666;">معدل النجاح</div>
+                            <div style="font-size: 1rem; font-weight: 700; margin-top: 0.2rem;">${data.stats.successRate}</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.75rem; color: #666;">الوقت</div>
+                            <div style="font-size: 1rem; font-weight: 700; margin-top: 0.2rem;">${data.stats.avgResponseTime}</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.75rem; color: #666;">التكلفة</div>
+                            <div style="font-size: 1rem; font-weight: 700; margin-top: 0.2rem;">${data.stats.totalCost}</div>
+                        </div>
+                    </div>
+                    
+                    <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; margin-top: 1rem;">
+                        <div style="height: 100%; width: ${data.stats.successRate}; background: ${data.color}; transition: width 0.5s ease;"></div>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+    } catch (error) {
+        console.error('Error updating comparison panel:', error);
+    }
+}
+
+// تحديث مؤشر المحرك القادم
+function updateEngineIndicator() {
+    if (!window.QuadAIGuide) return;
+    
+    try {
+        const nextEngine = window.QuadAIGuide.getNextEngine();
+        if (nextEngine) {
+            const indicator = document.getElementById('next-engine-name');
+            if (indicator) {
+                indicator.textContent = nextEngine.emoji + ' ' + nextEngine.nameAr;
+            }
+        }
+    } catch (error) {
+        console.error('Error updating engine indicator:', error);
+    }
+}
+
+// تحديث دوري للمؤشرات
+setInterval(() => {
+    updateEngineIndicator();
+    const panel = document.getElementById('comparison-panel');
+    if (panel && panel.style.display !== 'none') {
+        updateComparisonPanel();
+    }
+}, 5000);
+
+// ربط أحداث المرشد الذكي عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    const sendBtn = document.getElementById('send-btn');
+    const chatInput = document.getElementById('chat-input');
+    
+    // ربط زر الإرسال
+    if (sendBtn) {
+        sendBtn.addEventListener('click', sendAIMessage);
+    }
+    
+    // ربط Enter في الإدخال
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendAIMessage();
+            }
+        });
+    }
+    
+    console.log('✅ تم ربط أحداث المرشد الذكي');
+    
+    // التأكد من ظهور زر تسجيل الدخول
+    setTimeout(function() {
+        const authButtons = document.getElementById('auth-buttons');
+        const authMobileItem = document.getElementById('auth-mobile-item');
+        const userMenuContainer = document.getElementById('user-menu-container');
+        
+        // إذا لم يكن هناك Firebase أو مستخدم مسجل، أظهر زر تسجيل الدخول
+        if (typeof firebase === 'undefined' || !window.currentUser) {
+            if (authButtons && authButtons.style.display === 'none') {
+                authButtons.style.display = 'flex';
+                console.log('✅ تم عرض زر تسجيل الدخول (fallback)');
+            }
+            if (authMobileItem && authMobileItem.style.display === 'none') {
+                authMobileItem.style.display = 'block';
+            }
+            if (userMenuContainer) {
+                userMenuContainer.style.display = 'none';
+            }
+        }
+    }, 1000); // انتظر ثانية بعد تحميل الصفحة
+});
+</script>
 
 </body>
 </html>

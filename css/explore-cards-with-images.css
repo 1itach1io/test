@@ -1,0 +1,343 @@
+/* ==========================================
+   DISCOVER EGYPT - EXPLORE CARDS WITH IMAGES
+   تصميم البطاقات مع الصور
+   ========================================== */
+
+.explore-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 2rem 1rem;
+}
+
+.explore-card {
+    background: #ffffff;  /* أبيض نقي في Light Mode */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+    border: 2px solid transparent;
+}
+
+/* Dark Mode */
+[data-theme="dark"] .explore-card {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+.explore-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(212, 175, 55, 0.1),
+        0 0 40px rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+/* صورة البطاقة */
+.explore-card-image-container {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+}
+
+.explore-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.explore-card:hover .explore-card-image {
+    transform: scale(1.1);
+}
+
+/* شارة الفئة على الصورة */
+.explore-card-category-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+[dir="rtl"] .explore-card-category-badge {
+    right: auto;
+    left: 15px;
+}
+
+/* محتوى البطاقة */
+.explore-card-content {
+    padding: 1.5rem;
+}
+
+.explore-card-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1a1a1a;  /* أسود داكن دائماً في Light Mode */
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+/* Dark Mode */
+[data-theme="dark"] .explore-card-title {
+    color: #f8fafc;  /* أبيض فاتح في Dark Mode */
+}
+
+.explore-card:hover .explore-card-title {
+    background: linear-gradient(135deg, #d4af37, #c89b3c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.explore-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.explore-card-location {
+    font-size: 0.95rem;
+    color: #2d2d2d;  /* رمادي داكن واضح */
+    font-weight: 600;
+}
+
+[data-theme="dark"] .explore-card-location {
+    color: #cbd5e1;  /* رمادي فاتح في Dark Mode */
+}
+
+.explore-card-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.rating-stars {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.rating-number {
+    font-weight: 700;
+    color: #d4af37;  /* ذهبي واضح */
+    font-size: 0.95rem;
+}
+
+.explore-card-description {
+    font-size: 1rem;
+    color: #3d3d3d;  /* رمادي داكن للوصف */
+    line-height: 1.6;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .explore-card-description {
+    color: #94a3b8;  /* رمادي متوسط في Dark Mode */
+}
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* تأثير التحميل للصور */
+.explore-card-image[loading="lazy"] {
+    background: linear-gradient(
+        90deg,
+        #f0f0f0 0%,
+        #e0e0e0 50%,
+        #f0f0f0 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Dark Mode - Additional Styles */
+[data-theme="dark"] .explore-card:hover {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(251, 191, 36, 0.3);
+}
+
+[data-theme="dark"] .explore-card-image-container {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+[data-theme="dark"] .explore-card-category-badge {
+    background: rgba(251, 191, 36, 0.2);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+[data-theme="dark"] .explore-card-image[loading="lazy"] {
+    background: linear-gradient(
+        90deg,
+        #1e293b 0%,
+        #0f172a 50%,
+        #1e293b 100%
+    );
+    background-size: 200% 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .explore-cards-container {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .explore-card-image-container {
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .explore-cards-container {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 1.2rem;
+        padding: 1.5rem 0.8rem;
+    }
+    
+    .explore-card-image-container {
+        height: 180px;
+    }
+    
+    .explore-card-content {
+        padding: 1.2rem;
+    }
+    
+    .explore-card-title {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .explore-cards-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem 0.5rem;
+    }
+    
+    .explore-card-image-container {
+        height: 220px;
+    }
+    
+    .explore-card-category-badge {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.8rem;
+    }
+}
+
+/* تحسين الأداء */
+@media (prefers-reduced-motion: reduce) {
+    .explore-card,
+    .explore-card-image {
+        transition: none;
+    }
+}
+
+/* حالة التحميل */
+.explore-card.loading {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.explore-card.loading .explore-card-image-container {
+    background: linear-gradient(
+        90deg,
+        #f0f0f0 0%,
+        #e0e0e0 50%,
+        #f0f0f0 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* تأثير النقر */
+.explore-card:active {
+    transform: translateY(-8px) scale(0.98);
+}
+
+/* حالة Focus للوصول */
+.explore-card:focus-visible {
+    outline: 3px solid var(--primary-gold-solid);
+    outline-offset: 4px;
+}
+
+/* ========== تحسينات إضافية للصور ========== */
+
+/* التأكد من تحميل الصور بشكل صحيح */
+.explore-card-image {
+    background-color: #f0f0f0;
+    background-image: linear-gradient(
+        135deg,
+        #f0f0f0 25%,
+        #e0e0e0 25%,
+        #e0e0e0 50%,
+        #f0f0f0 50%,
+        #f0f0f0 75%,
+        #e0e0e0 75%,
+        #e0e0e0
+    );
+    background-size: 40px 40px;
+}
+
+/* عند نجاح التحميل */
+.explore-card-image[src]:not([src=""]) {
+    background: none;
+}
+
+/* عند فشل التحميل */
+.explore-card-image[src=""]:after {
+    content: "📷";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+}
+
+/* تحسين الانتقالات للفلتر */
+.explore-card {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease, display 0.3s ease;
+}
+
+.explore-card.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* تحسين عرض الصور على الموبايل */
+@media (max-width: 480px) {
+    .explore-card-image {
+        object-fit: cover;
+        object-position: center;
+    }
+}

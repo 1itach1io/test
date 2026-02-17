@@ -89,18 +89,19 @@
 }
 
 .explore-card-location {
-    color: var(--text-secondary);
-    font-weight: 500;
+    color: var(--text-primary);  /* أسود بدلاً من رمادي */
+    font-weight: 600;  /* نص أسمك */
 }
 
 /* ========== CARD DESCRIPTION ========== */
 
 .explore-card-description {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
+    color: var(--text-primary);  /* أسود بدلاً من رمادي */
+    font-size: 1rem;  /* حجم أكبر قليلاً */
     line-height: 1.6;
     margin: 0;
     flex: 1;
+    font-weight: 500;  /* نص أوضح */
 }
 
 /* ========== CARD RATING ========== */
@@ -128,20 +129,20 @@
         gap: 20px;
         padding: 0 15px;
     }
-
+    
     .explore-card {
         padding: 20px;
         min-height: 180px;
     }
-
+    
     .explore-card-icon {
         font-size: 2.5rem;
     }
-
+    
     .explore-card-title {
         font-size: 1.2rem;
     }
-
+    
     .explore-card-description {
         font-size: 0.9rem;
     }
@@ -154,25 +155,25 @@
         gap: 15px;
         padding: 0 10px;
     }
-
+    
     .explore-card {
         padding: 18px;
         min-height: 160px;
     }
-
+    
     .explore-card-icon {
         font-size: 2.2rem;
     }
-
+    
     .explore-card-title {
         font-size: 1.1rem;
     }
-
+    
     .explore-card-meta {
         font-size: 0.85rem;
         gap: 8px;
     }
-
+    
     .explore-card-description {
         font-size: 0.875rem;
     }

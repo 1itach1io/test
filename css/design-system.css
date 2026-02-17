@@ -1,0 +1,437 @@
+/* ═══════════════════════════════════════════════════════════════════
+   DISCOVER EGYPT - DESIGN SYSTEM
+   Complete Dark/Light Mode System - Enterprise Level
+   نظام تصميم شامل احترافي مع دعم كامل للوضع الليلي والنهاري
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════════
+   LIGHT MODE (Default) - الوضع النهاري
+   ══════════════════════════════════════════════════════════════════ */
+
+:root {
+    /* ===== Primary Colors - الألوان الرئيسية ===== */
+    --primary-color: #d4af37;
+    --primary-hover: #c49a2d;
+    --primary-active: #b38a25;
+    --primary-light: #f4e4c1;
+    --primary-lighter: #fef9f0;
+    
+    --secondary-color: #8b4513;
+    --secondary-hover: #6d3410;
+    --secondary-light: #d4a574;
+    
+    --accent-color: #e74c3c;
+    --accent-hover: #c0392b;
+    
+    /* ===== Background Colors - ألوان الخلفيات ===== */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #f1f3f5;
+    --bg-card: #ffffff;
+    --bg-hover: #f8f9fa;
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+    
+    /* ===== Text Colors - ألوان النصوص ===== */
+    --text-primary: #111827;
+    --text-secondary: #1f2937;
+    --text-tertiary: #374151;
+    --text-muted: #4b5563;
+    --text-on-primary: #000000;
+    --text-on-dark: #ffffff;
+    --text-link: #0066cc;
+    --text-link-hover: #0052a3;
+    
+    /* ===== Border Colors - ألوان الحدود ===== */
+    --border-primary: #e2e8f0;
+    --border-secondary: #cbd5e0;
+    --border-focus: #d4af37;
+    --border-error: #ef4444;
+    
+    /* ===== Shadow System - نظام الظلال ===== */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.18);
+    --shadow-2xl: 0 20px 40px rgba(0, 0, 0, 0.22);
+    
+    /* ===== Status Colors - ألوان الحالات ===== */
+    --success-color: #22c55e;
+    --success-bg: #dcfce7;
+    --success-border: #86efac;
+    
+    --error-color: #ef4444;
+    --error-bg: #fee2e2;
+    --error-border: #fca5a5;
+    
+    --warning-color: #f59e0b;
+    --warning-bg: #fef3c7;
+    --warning-border: #fcd34d;
+    
+    --info-color: #3b82f6;
+    --info-bg: #dbeafe;
+    --info-border: #93c5fd;
+    
+    /* ===== Spacing Scale - نظام المسافات ===== */
+    --space-1: 0.25rem;    /* 4px */
+    --space-2: 0.5rem;     /* 8px */
+    --space-3: 0.75rem;    /* 12px */
+    --space-4: 1rem;       /* 16px */
+    --space-5: 1.25rem;    /* 20px */
+    --space-6: 1.5rem;     /* 24px */
+    --space-8: 2rem;       /* 32px */
+    --space-10: 2.5rem;    /* 40px */
+    --space-12: 3rem;      /* 48px */
+    --space-16: 4rem;      /* 64px */
+    --space-20: 5rem;      /* 80px */
+    --space-24: 6rem;      /* 96px */
+    
+    /* ===== Border Radius Scale - نظام الحواف المستديرة ===== */
+    --radius-none: 0;
+    --radius-sm: 0.25rem;   /* 4px */
+    --radius-md: 0.5rem;    /* 8px */
+    --radius-lg: 0.75rem;   /* 12px */
+    --radius-xl: 1rem;      /* 16px */
+    --radius-2xl: 1.5rem;   /* 24px */
+    --radius-full: 9999px;
+    
+    /* ===== Typography Scale - نظام الطباعة ===== */
+    --font-size-xs: 0.75rem;    /* 12px */
+    --font-size-sm: 0.875rem;   /* 14px */
+    --font-size-base: 1rem;     /* 16px */
+    --font-size-lg: 1.125rem;   /* 18px */
+    --font-size-xl: 1.25rem;    /* 20px */
+    --font-size-2xl: 1.5rem;    /* 24px */
+    --font-size-3xl: 1.875rem;  /* 30px */
+    --font-size-4xl: 2.25rem;   /* 36px */
+    --font-size-5xl: 3rem;      /* 48px */
+    --font-size-6xl: 3.75rem;   /* 60px */
+    
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+    --line-height-loose: 2;
+    
+    /* ===== Transitions - الانتقالات ===== */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slower: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* ===== Z-Index Scale - نظام الطبقات ===== */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   DARK MODE - الوضع الليلي
+   ══════════════════════════════════════════════════════════════════ */
+
+[data-theme="dark"] {
+    /* ===== Primary Colors - الألوان الرئيسية ===== */
+    --primary-color: #fbbf24;
+    --primary-hover: #f59e0b;
+    --primary-active: #d97706;
+    --primary-light: #451a03;
+    --primary-lighter: #292524;
+    
+    --secondary-color: #fb923c;
+    --secondary-hover: #f97316;
+    --secondary-light: #431407;
+    
+    --accent-color: #ef4444;
+    --accent-hover: #dc2626;
+    
+    /* ===== Background Colors - ألوان الخلفيات ===== */
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --bg-card: #1e293b;
+    --bg-hover: #334155;
+    --bg-overlay: rgba(0, 0, 0, 0.7);
+    
+    /* ===== Text Colors - ألوان النصوص ===== */
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #94a3b8;
+    --text-muted: #64748b;
+    --text-on-primary: #0f172a;
+    --text-on-dark: #f1f5f9;
+    --text-link: #60a5fa;
+    --text-link-hover: #93c5fd;
+    
+    /* ===== Border Colors - ألوان الحدود ===== */
+    --border-primary: #334155;
+    --border-secondary: #475569;
+    --border-focus: #fbbf24;
+    --border-error: #ef4444;
+    
+    /* ===== Shadow System - نظام الظلال ===== */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.6);
+    --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.7);
+    --shadow-2xl: 0 20px 40px rgba(0, 0, 0, 0.8);
+    
+    /* ===== Status Colors - ألوان الحالات ===== */
+    --success-color: #22c55e;
+    --success-bg: #14532d;
+    --success-border: #166534;
+    
+    --error-color: #ef4444;
+    --error-bg: #450a0a;
+    --error-border: #7f1d1d;
+    
+    --warning-color: #fbbf24;
+    --warning-bg: #451a03;
+    --warning-border: #78350f;
+    
+    --info-color: #60a5fa;
+    --info-bg: #1e3a8a;
+    --info-border: #1e40af;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   GLOBAL STYLES - الأنماط العامة
+   ══════════════════════════════════════════════════════════════════ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: var(--line-height-normal);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    transition: background-color var(--transition-base), color var(--transition-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Typography - الطباعة ===== */
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    margin: 0;
+}
+
+h1 { font-size: var(--font-size-5xl); }
+h2 { font-size: var(--font-size-4xl); }
+h3 { font-size: var(--font-size-3xl); }
+h4 { font-size: var(--font-size-2xl); }
+h5 { font-size: var(--font-size-xl); }
+h6 { font-size: var(--font-size-lg); }
+
+p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+a {
+    color: var(--text-link);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--text-link-hover);
+}
+
+strong, b {
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+}
+
+/* ===== Images - الصور ===== */
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ===== Buttons - الأزرار ===== */
+
+button {
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    transition: all var(--transition-fast);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* ===== Lists - القوائم ===== */
+
+ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ===== Forms - النماذج ===== */
+
+input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    transition: all var(--transition-fast);
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   UTILITY CLASSES - فئات مساعدة
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ===== Display ===== */
+.hidden { display: none !important; }
+.block { display: block !important; }
+.inline-block { display: inline-block !important; }
+.flex { display: flex !important; }
+.inline-flex { display: inline-flex !important; }
+.grid { display: grid !important; }
+
+/* ===== Text Alignment ===== */
+.text-left { text-align: left !important; }
+.text-center { text-align: center !important; }
+.text-right { text-align: right !important; }
+
+/* ===== Font Weights ===== */
+.font-light { font-weight: var(--font-weight-light) !important; }
+.font-normal { font-weight: var(--font-weight-normal) !important; }
+.font-medium { font-weight: var(--font-weight-medium) !important; }
+.font-semibold { font-weight: var(--font-weight-semibold) !important; }
+.font-bold { font-weight: var(--font-weight-bold) !important; }
+
+/* ===== Colors ===== */
+.text-primary { color: var(--text-primary) !important; }
+.text-secondary { color: var(--text-secondary) !important; }
+.text-muted { color: var(--text-muted) !important; }
+
+.bg-primary { background-color: var(--bg-primary) !important; }
+.bg-secondary { background-color: var(--bg-secondary) !important; }
+.bg-card { background-color: var(--bg-card) !important; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   ACCESSIBILITY - إمكانية الوصول
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Focus States */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+/* Screen Reader Only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Skip Link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: var(--text-on-primary);
+    padding: var(--space-2) var(--space-4);
+    z-index: 9999;
+    transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode */
+.high-contrast {
+    --text-primary: #000000;
+    --text-secondary: #000000;
+    --border-primary: #000000;
+}
+
+[data-theme="dark"].high-contrast {
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --border-primary: #ffffff;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RTL SUPPORT - دعم اللغة العربية
+   ═══════════════════════════════════════════════════════════════════ */
+
+[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] body {
+    font-family: 'Segoe UI', Tahoma, 'Arial', sans-serif;
+}

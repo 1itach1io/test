@@ -1,0 +1,290 @@
+/* ==========================================
+   DISCOVER EGYPT - TABLET RESPONSIVE CSS
+   تحسينات خاصة بالأجهزة اللوحية
+   ========================================== */
+
+/* ========== TABLET - PORTRAIT ========== */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    /* Navigation */
+    .navbar {
+        padding: 1rem 1.5rem;
+    }
+    
+    .nav-menu {
+        gap: 1.25rem;
+    }
+    
+    .nav-link {
+        font-size: 0.95rem;
+        padding: 0.45rem 0.85rem;
+    }
+    
+    /* Grid Layouts */
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+    
+    .places-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+    
+    /* Hero Section */
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    /* Typography */
+    h1 {
+        font-size: 2.25rem;
+    }
+    
+    h2 {
+        font-size: 1.85rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+    
+    /* Sections */
+    .section {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+    
+    /* Cards */
+    .place-card {
+        width: 100%;
+    }
+    
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+        text-align: center;
+    }
+    
+    /* Calculator */
+    .calculator-container {
+        padding: var(--spacing-md);
+    }
+    
+    /* Search Modal */
+    .search-modal-content {
+        width: 85%;
+        max-width: 600px;
+    }
+}
+
+/* ========== TABLET - LANDSCAPE ========== */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    /* Navigation */
+    .navbar {
+        padding: 0.85rem 1.5rem;
+    }
+    
+    .nav-menu {
+        gap: 1.5rem;
+    }
+    
+    /* Grid Layouts */
+    .stats-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .places-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* Hero Section */
+    .hero-title {
+        font-size: 2.75rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.15rem;
+    }
+    
+    /* Sections */
+    .section {
+        padding: var(--spacing-xl) var(--spacing-lg);
+    }
+    
+    /* Cards */
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ========== GENERAL TABLET ADJUSTMENTS ========== */
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* Root font size adjustment */
+    html {
+        font-size: 15px;
+    }
+    
+    /* Logo */
+    .logo h1 {
+        font-size: 1.35rem;
+    }
+    
+    /* Buttons */
+    .cta-button {
+        padding: 0.85rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .btn {
+        padding: 0.7rem 1.4rem;
+    }
+    
+    /* Forms */
+    .form-input {
+        padding: 0.7rem;
+    }
+    
+    /* Spacing adjustments */
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    /* Auth buttons */
+    .auth-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    /* User menu */
+    .user-menu-btn {
+        padding: 0.5rem 1rem;
+    }
+    
+    /* Language selector */
+    .language-select {
+        padding: 0.45rem 0.85rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Icon buttons */
+    .icon-btn {
+        width: 38px;
+        height: 38px;
+    }
+    
+    /* Modals */
+    .modal-content {
+        width: 80%;
+        max-width: 450px;
+        padding: var(--spacing-md);
+    }
+    
+    /* Filter buttons */
+    .filter-btn {
+        padding: 0.65rem 1.15rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Explore cards */
+    .explore-card {
+        min-height: 200px;
+    }
+    
+    /* Settings cards */
+    .settings-card {
+        padding: var(--spacing-md);
+    }
+    
+    /* Theme options */
+    .theme-option-btn {
+        padding: 0.85rem;
+    }
+    
+    /* Breadcrumbs */
+    .breadcrumb {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    /* Toast Messages */
+    .toast-message {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    /* Chat Messages - AI Guide */
+    .chat-messages .message {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    /* Tables */
+    table {
+        font-size: 0.9rem;
+    }
+    
+    /* Map container */
+    #map-container {
+        height: 450px;
+    }
+    
+    /* AI Guide */
+    .ai-chat-container {
+        height: 450px;
+    }
+}
+
+/* ========== IPAD SPECIFIC (1024px) ========== */
+@media (min-width: 1024px) and (max-width: 1024px) {
+    .places-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ========== IPAD MINI SPECIFIC (768px) ========== */
+@media (min-width: 768px) and (max-width: 768px) {
+    .places-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ========== TOUCH OPTIMIZATIONS FOR TABLETS ========== */
+@media (min-width: 768px) and (max-width: 1024px) and (pointer: coarse) {
+    /* Larger touch targets */
+    .nav-link,
+    .btn,
+    .filter-btn,
+    .theme-option-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Larger clickable areas */
+    .place-card,
+    .explore-card {
+        cursor: pointer;
+    }
+    
+    /* Remove hover effects (not needed on touch) */
+    .place-card:hover,
+    .explore-card:hover,
+    .card:hover {
+        transform: none;
+    }
+    
+    /* Add active states instead */
+    .place-card:active,
+    .explore-card:active,
+    .card:active {
+        transform: scale(0.98);
+    }
+}

@@ -50,6 +50,15 @@ function applyTranslations() {
         chatInput.placeholder = langData.ai.placeholder;
     }
 
+    // Translate all elements with data-translate-placeholder
+    document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-translate-placeholder');
+        const translation = getNestedTranslation(langData, key);
+        if (translation) {
+            element.placeholder = translation;
+        }
+    });
+
     console.log(`✅ Translations applied: ${translatedCount} successful, ${notFoundCount} not found`);
 }
 
@@ -67,8 +76,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     initializeMobileMenu();
     initializeFilters();
     initializeMap();
-    initializeAIGuide();
-    initializeTools();
+    // initializeAIGuide(); // ❌ Removed - New Gemini AI Guide initializes itself
+    initializeTools();  // ✅ تم التصحيح
 });
 
 // Log for educational purposes

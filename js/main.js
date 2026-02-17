@@ -23,33 +23,37 @@ document.addEventListener('DOMContentLoaded', async function() {
         // Initialize all features
         initializeNavigation();
         console.log('✅ Navigation initialized');
-
+        
         initializeTheme();
         console.log('✅ Theme initialized');
-
+        
         initializeLanguage();
         console.log('✅ Language initialized');
-
+        
         initializeMobileMenu();
         console.log('✅ Mobile menu initialized');
-
+        
         initializeFilters();
         console.log('✅ Filters initialized');
-
+        
         initializeMap();
         console.log('✅ Map initialized');
-
-        initializeAIGuide();
-        console.log('✅ AI Guide initialized');
-
-        initializeTools();
+        
+        // initializeAIGuide(); // ❌ Removed - Using new Gemini AI Guide
+        // console.log('✅ AI Guide initialized');
+        
+        initializeTools();  // ✅ تم التصحيح
         console.log('✅ Tools initialized');
-
+        
+        // Initialize tool buttons for navigation
+        initializeToolButtons();
+        console.log('✅ Tool buttons initialized');
+        
         // Initialize simple authentication system
         console.log('🔐 Initializing authentication...');
         initAuth();
         console.log('✅ Authentication ready');
-
+        
         console.log('🎉 All systems ready!');
     } catch (error) {
         console.error('❌ Initialization error:', error);
@@ -106,7 +110,7 @@ function initializeNavigation() {
     if (ctaButton) {
         ctaButton.addEventListener('click', function() {
             // Find and click the Tools navigation link
-            const toolsLink = document.querySelector('[data-section="tools"]');
+            const toolsLink = document.querySelector('[data-section="plans"]');
             if (toolsLink) {
                 toolsLink.click();
             }
@@ -114,13 +118,8 @@ function initializeNavigation() {
     }
 }
 
-
-
-
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
+// ========== TOOL BUTTONS NAVIGATION ==========
+function initializeToolButtons() {
     const toolButtons = document.querySelectorAll('.tool-btn');
     const sections = document.querySelectorAll('.section');
 
@@ -141,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
             targetSection.scrollIntoView({ behavior: 'smooth' });
         });
     });
-});
+}
 
 
 
@@ -312,50 +311,7 @@ function setLanguage(lang) {
     console.log(`✅ Language changed to: ${lang}`);
 }
 
-
-function applyTranslations() {
-    console.log('🎨 Applying translations for:', currentLanguage);
-    const langData = translations[currentLanguage];
-
-    if (!langData) {
-        console.warn('❌ No translation data for language:', currentLanguage);
-        console.log('Available languages:', Object.keys(translations));
-        return;
-    }
-
-    console.log('✅ Language data found for:', currentLanguage);
-
-    let translatedCount = 0;
-    let notFoundCount = 0;
-
-    // Translate all elements with data-translate attribute
-    document.querySelectorAll('[data-translate]').forEach(element => {
-        const key = element.getAttribute('data-translate');
-        const translation = getNestedTranslation(langData, key);
-
-        if (translation) {
-            element.textContent = translation;
-            translatedCount++;
-            console.log(`  ✅ Translated: ${key} = "${translation}"`);
-        } else {
-            notFoundCount++;
-            console.warn(`  ❌ Not found: ${key}`);
-        }
-    });
-
-    // Translate placeholder attributes
-    const chatInput = document.getElementById('chat-input');
-    if (chatInput && langData.ai && langData.ai.placeholder) {
-        chatInput.placeholder = langData.ai.placeholder;
-    }
-
-    console.log(`✅ Translations applied: ${translatedCount} successful, ${notFoundCount} not found`);
-}
-
-// Helper function to get nested translation (e.g., "hero.title")
-function getNestedTranslation(obj, key) {
-    return key.split('.').reduce((o, k) => (o || {})[k], obj);
-}
+// Translation functions are now in js/core/app.js - no duplication needed
 
 
 // ========== MOBILE MENU TOGGLE ==========
@@ -659,7 +615,7 @@ function initializeAIGuide() {
 // ========== UTILITY FUNCTIONS ==========
 
 // Initialize Tools Section
-function initializeTools() {
+function initializeTools() {  // ✅ تم التصحيح
     console.log('✅ Tools section initialized');
     // Navigation is handled by initializeNavigation()
     // This function can be extended for additional tools features

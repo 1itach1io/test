@@ -14,7 +14,7 @@
     --primary-hover: #C4A030;
     --primary-light: #E8D78F;
     --primary-dark: #B89F2E;
-
+    
     /* الخلفيات */
     --bg-primary: #FFFFFF;
     --bg-secondary: #F8F9FA;
@@ -23,26 +23,26 @@
     --bg-note: #FFF9E6;
     --bg-context: #F0F7FF;
     --bg-disclaimer: #FFF5F5;
-
+    
     /* النصوص */
     --text-primary: #1A1A1A;
     --text-secondary: #6C757D;
     --text-muted: #ADB5BD;
-
+    
     /* الحدود */
     --border-color: #DEE2E6;
     --border-focus: #D4AF37;
-
+    
     /* الظلال */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
-
+    
     /* مستويات السعر */
     --price-low: #10B981;
     --price-medium: #F59E0B;
     --price-high: #EF4444;
-
+    
     /* Colors للـ Context */
     --context-low: #DCFCE7;
     --context-medium: #FEF3C7;
@@ -61,7 +61,7 @@ html.dark {
     --primary-hover: #F0E0A0;
     --primary-light: #F5E9B5;
     --primary-dark: #D4AF37;
-
+    
     /* الخلفيات */
     --bg-primary: #1A1A1A;
     --bg-secondary: #2D2D2D;
@@ -70,26 +70,26 @@ html.dark {
     --bg-note: #2A2520;
     --bg-context: #1E2A3A;
     --bg-disclaimer: #2A2020;
-
+    
     /* النصوص */
     --text-primary: #F8F9FA;
     --text-secondary: #ADB5BD;
     --text-muted: #6C757D;
-
+    
     /* الحدود */
     --border-color: #404040;
     --border-focus: #E8D78F;
-
+    
     /* الظلال */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
     --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
-
+    
     /* مستويات السعر */
     --price-low: #34D399;
     --price-medium: #FBBF24;
     --price-high: #F87171;
-
+    
     /* Colors للـ Context */
     --context-low: #1E3A2F;
     --context-medium: #3A3020;
@@ -104,7 +104,7 @@ html.dark {
     padding: 3rem 0;
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Cairo', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -491,33 +491,33 @@ html[lang="fr"] [data-lang="fr"] {
     .egypt-travel-calculator {
         padding: 2rem 0;
     }
-
+    
     .calculator-title {
         font-size: 1.5rem;
     }
-
+    
     .calculator-subtitle {
         font-size: 0.9rem;
     }
-
+    
     .calculator-inputs {
         grid-template-columns: 1fr;
         gap: 1.25rem;
     }
-
+    
     .results-breakdown {
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
     }
-
+    
     .total-value {
         font-size: 2.25rem;
     }
-
+    
     .results-info {
         grid-template-columns: 1fr;
     }
-
+    
     .calculator-results {
         padding: 1.5rem;
     }
@@ -535,15 +535,15 @@ html[lang="fr"] [data-lang="fr"] {
     .calculator-container {
         padding: 0 1rem;
     }
-
+    
     .calculator-title {
         font-size: 1.35rem;
     }
-
+    
     .total-value {
         font-size: 1.85rem;
     }
-
+    
     .breakdown-value {
         font-size: 1.1rem;
     }
@@ -569,7 +569,7 @@ html[lang="fr"] [data-lang="fr"] {
     .egypt-travel-calculator {
         padding: 0;
     }
-
+    
     .calculator-inputs {
         display: none;
     }
@@ -578,3 +578,91 @@ html[lang="fr"] [data-lang="fr"] {
         box-shadow: none;
     }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   DARK MODE - Calculator
+   ══════════════════════════════════════════════════════════════════ */
+
+[data-theme="dark"] .egypt-travel-calculator {
+    background: var(--bg-primary);
+}
+
+[data-theme="dark"] .calculator-header {
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+}
+
+[data-theme="dark"] .calculator-title {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .calculator-subtitle {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .calculator-container {
+    background: var(--bg-card);
+    border-color: var(--border-primary);
+}
+
+[data-theme="dark"] .input-group label {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .input-group input,
+[data-theme="dark"] .input-group select {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-primary);
+}
+
+[data-theme="dark"] .input-group input:focus,
+[data-theme="dark"] .input-group select:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+[data-theme="dark"] .results-card {
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .total-label,
+[data-theme="dark"] .info-label {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .total-value,
+[data-theme="dark"] .info-value {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .breakdown-item {
+    background: var(--bg-card);
+}
+
+[data-theme="dark"] .breakdown-label {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .breakdown-value {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .smart-context {
+    background: var(--bg-secondary);
+    border-color: var(--info-color);
+}
+
+[data-theme="dark"] .context-text {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .disclaimer-note {
+    background: var(--bg-secondary);
+    border-color: var(--border-primary);
+}
+
+[data-theme="dark"] .disclaimer-text {
+    color: var(--text-secondary);
+}
+

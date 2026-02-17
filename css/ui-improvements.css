@@ -1,0 +1,352 @@
+/* ==========================================
+   DISCOVER EGYPT - UI/UX IMPROVEMENTS
+   Enhanced user interface and experience
+   ========================================== */
+
+/* ========== SMOOTH SCROLLING ========== */
+html {
+    scroll-padding-top: 80px; /* Account for sticky header */
+}
+
+/* ========== IMPROVED TRANSITIONS ========== */
+* {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== ENHANCED HOVER EFFECTS ========== */
+.nav-link,
+.filter-btn,
+.tool-card,
+.explore-card,
+button:not(.search-close) {
+    transform: translateZ(0); /* Enable hardware acceleration */
+    backface-visibility: hidden;
+}
+
+.nav-link:hover,
+.filter-btn:hover,
+.tool-card:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 20px var(--shadow-medium);
+}
+
+/* ========== CARDS IMPROVEMENTS ========== */
+.explore-card,
+.tool-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.explore-card:hover,
+.tool-card:hover {
+    z-index: 10;
+}
+
+/* ========== BUTTON IMPROVEMENTS ========== */
+button,
+.cta-button,
+.submit-btn {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+button::before,
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before,
+.cta-button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* ========== LOADING ANIMATIONS ========== */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.loading-skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--bg-secondary) 0%,
+        var(--bg-card) 50%,
+        var(--bg-secondary) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* ========== FOCUS IMPROVEMENTS ========== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
+/* ========== SCROLL IMPROVEMENTS ========== */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+    border: 2px solid var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* ========== SECTION TRANSITIONS ========== */
+.section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== IMPROVED CARD SHADOWS ========== */
+.explore-card,
+.tool-card,
+.settings-card,
+.map-container {
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.05),
+        0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .explore-card,
+[data-theme="dark"] .tool-card,
+[data-theme="dark"] .settings-card,
+[data-theme="dark"] .map-container {
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.3),
+        0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.explore-card:hover,
+.tool-card:hover {
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.15),
+        0 20px 50px rgba(212, 175, 55, 0.15);
+}
+
+[data-theme="dark"] .explore-card:hover,
+[data-theme="dark"] .tool-card:hover {
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 20px 50px rgba(251, 191, 36, 0.2);
+}
+
+/* ========== TEXT SELECTION ========== */
+::selection {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+::-moz-selection {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* ========== IMPROVED FORM INPUTS ========== */
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+    transition: all 0.3s ease;
+}
+
+input:hover:not(:focus),
+select:hover:not(:focus),
+textarea:hover:not(:focus) {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+/* ========== SKELETON LOADERS ========== */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--bg-secondary) 25%,
+        var(--bg-card) 50%,
+        var(--bg-secondary) 75%
+    );
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: var(--radius-md);
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ========== GLASS MORPHISM EFFECTS ========== */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .glass-effect {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ========== ENHANCED TOOLTIPS ========== */
+[data-tooltip] {
+    position: relative;
+    cursor: help;
+}
+
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    padding: 8px 12px;
+    background: var(--text-primary);
+    color: var(--text-light);
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+[data-tooltip]:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-4px);
+}
+
+/* ========== RESPONSIVE IMPROVEMENTS ========== */
+@media (max-width: 768px) {
+    .section {
+        animation: none; /* Reduce motion on mobile */
+    }
+    
+    button:hover::before,
+    .cta-button:hover::before {
+        display: none; /* Disable ripple on touch devices */
+    }
+}
+
+/* ========== ACCESSIBILITY IMPROVEMENTS ========== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Skip to main content link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 10000;
+    border-radius: 0 0 var(--radius-md) 0;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ========== REDUCED MOTION ========== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ========== HIGH CONTRAST MODE ========== */
+.high-contrast {
+    --primary-color: #ffcc00;
+    --text-primary: #000000;
+    --bg-primary: #ffffff;
+    --border-color: #000000;
+}
+
+[data-theme="dark"].high-contrast {
+    --primary-color: #ffdd00;
+    --text-primary: #ffffff;
+    --bg-primary: #000000;
+    --border-color: #ffffff;
+}
+
+/* ========== PRINT STYLES ========== */
+@media print {
+    .header,
+    .footer,
+    .nav-controls,
+    .search-btn,
+    .mobile-menu-toggle,
+    .auth-buttons,
+    .user-menu-container {
+        display: none !important;
+    }
+    
+    .section {
+        page-break-inside: avoid;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+}

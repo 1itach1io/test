@@ -1,5 +1,54 @@
 // search.js - Search Functionality (WITHOUT IMAGES)
 
+// ========== Governorate Translations ==========
+const governorateTranslations = {
+    en: {
+        'Giza': 'Giza',
+        'Cairo': 'Cairo',
+        'Luxor': 'Luxor',
+        'Aswan': 'Aswan',
+        'Alexandria': 'Alexandria',
+        'Red Sea': 'Red Sea',
+        'South Sinai': 'South Sinai',
+        'Matrouh': 'Matrouh',
+        'New Valley': 'New Valley',
+        'Fayoum': 'Fayoum',
+        'Qena': 'Qena',
+        'Sohag': 'Sohag',
+        'Beheira': 'Beheira'
+    },
+    ar: {
+        'Giza': 'الجيزة',
+        'Cairo': 'القاهرة',
+        'Luxor': 'الأقصر',
+        'Aswan': 'أسوان',
+        'Alexandria': 'الإسكندرية',
+        'Red Sea': 'البحر الأحمر',
+        'South Sinai': 'جنوب سيناء',
+        'Matrouh': 'مطروح',
+        'New Valley': 'الوادي الجديد',
+        'Fayoum': 'الفيوم',
+        'Qena': 'قنا',
+        'Sohag': 'سوهاج',
+        'Beheira': 'البحيرة'
+    },
+    fr: {
+        'Giza': 'Gizeh',
+        'Cairo': 'Le Caire',
+        'Luxor': 'Louxor',
+        'Aswan': 'Assouan',
+        'Alexandria': 'Alexandrie',
+        'Red Sea': 'Mer Rouge',
+        'South Sinai': 'Sinaï du Sud',
+        'Matrouh': 'Matrouh',
+        'New Valley': 'Nouvelle Vallée',
+        'Fayoum': 'Fayoum',
+        'Qena': 'Qena',
+        'Sohag': 'Sohag',
+        'Beheira': 'Beheira'
+    }
+};
+
 // ========== GLOBAL VARIABLES ==========
 let searchModal;
 let searchInput;
@@ -9,24 +58,24 @@ let searchNoResults;
 // ========== Initialize Search ==========
 function initializeSearch() {
     console.log('🔍 Initializing search functionality...');
-
+    
     // Get elements
     searchModal = document.getElementById('search-modal');
     searchInput = document.getElementById('search-input');
     searchResults = document.getElementById('search-results');
     searchNoResults = document.getElementById('search-no-results');
-
+    
     const desktopSearchBtn = document.getElementById('desktop-search-btn');
     const mobileSearchBtn = document.getElementById('mobile-search-btn');
     const searchClose = document.getElementById('search-close');
-
+    
     // Open search modal - Desktop
     if (desktopSearchBtn) {
         desktopSearchBtn.addEventListener('click', () => {
             openSearchModal();
         });
     }
-
+    
     // Open search modal - Mobile
     if (mobileSearchBtn) {
         mobileSearchBtn.addEventListener('click', () => {
@@ -38,14 +87,14 @@ function initializeSearch() {
             }
         });
     }
-
+    
     // Close search modal
     if (searchClose) {
         searchClose.addEventListener('click', () => {
             closeSearchModal();
         });
     }
-
+    
     // Close on outside click
     if (searchModal) {
         searchModal.addEventListener('click', (e) => {
@@ -54,14 +103,14 @@ function initializeSearch() {
             }
         });
     }
-
+    
     // Search on input
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             performSearch(e.target.value);
         });
     }
-
+    
     console.log('✅ Search initialized');
 }
 
@@ -88,20 +137,20 @@ function closeSearchModal() {
 // ========== Perform Search ==========
 function performSearch(query) {
     const searchTerm = query.toLowerCase().trim();
-
+    
     // Clear results if search is empty
     if (!searchTerm || searchTerm.length < 2) {
         searchResults.innerHTML = '';
         searchNoResults.style.display = 'none';
         return;
     }
-
+    
     // Get current language
     const currentLang = localStorage.getItem('language') || 'en';
-
-    // Get all places from placesEnhanced (loaded from places-enhanced.js)
-    const allPlaces = placesEnhanced.places || [];
-
+    
+    // Get all places from placesData (loaded from places-enhanced.js)
+    const allPlaces = placesData.places || [];
+    
     // Filter places based on search term
     const filtered = allPlaces.filter(place => {
         // Get names in all languages
@@ -112,7 +161,7 @@ function performSearch(query) {
         const category = (place.category || '').toLowerCase();
         const description = (place.description || '').toLowerCase();
         const descriptionAr = (place.descriptionAr || '').toLowerCase();
-
+        
         // Search in all relevant fields
         return nameEn.includes(searchTerm) ||
                nameAr.includes(searchTerm) ||
@@ -122,10 +171,10 @@ function performSearch(query) {
                description.includes(searchTerm) ||
                descriptionAr.includes(searchTerm);
     });
-
+    
     // Display results
     displaySearchResults(filtered, currentLang);
-
+    
     console.log('🔍 Search results for "' + query + '":', filtered.length, 'places found');
 }
 
@@ -133,7 +182,7 @@ function performSearch(query) {
 function displaySearchResults(places, currentLang) {
     // Clear previous results
     searchResults.innerHTML = '';
-
+    
     // Show/hide no results message
     if (places.length === 0) {
         searchNoResults.style.display = 'block';
@@ -141,7 +190,7 @@ function displaySearchResults(places, currentLang) {
     } else {
         searchNoResults.style.display = 'none';
     }
-
+    
     // Create result items
     places.forEach(place => {
         const resultItem = createSearchResultItem(place, currentLang);
@@ -153,11 +202,11 @@ function displaySearchResults(places, currentLang) {
 function createSearchResultItem(place, currentLang) {
     const item = document.createElement('div');
     item.className = 'search-result-item no-image';
-
+    
     // Get localized name and description
     let placeName = place.name;
     let placeDesc = place.description;
-
+    
     if (currentLang === 'ar') {
         placeName = place.nameAr || place.name;
         placeDesc = place.descriptionAr || place.description;
@@ -165,7 +214,7 @@ function createSearchResultItem(place, currentLang) {
         placeName = place.nameFr || place.name;
         placeDesc = place.descriptionFr || place.description;
     }
-
+    
     // Get category icon
     const categoryIcons = {
         'ancient': '🏛️',
@@ -178,9 +227,9 @@ function createSearchResultItem(place, currentLang) {
         'cultural': '🎭',
         'adventure': '🎢'
     };
-
+    
     const categoryIcon = categoryIcons[place.category] || '📍';
-
+    
     // Get category name localized
     const categoryNames = {
         en: {
@@ -217,12 +266,15 @@ function createSearchResultItem(place, currentLang) {
             'adventure': 'Aventure'
         }
     };
-
+    
     const categoryName = categoryNames[currentLang][place.category] || place.category;
-
+    
+    // Get localized governorate
+    const governorateName = governorateTranslations[currentLang][place.governorate] || place.governorate;
+    
     // Truncate description
     const shortDesc = placeDesc.length > 120 ? placeDesc.substring(0, 120) + '...' : placeDesc;
-
+    
     // Create HTML WITHOUT IMAGE
     item.innerHTML = `
         <div class="search-result-icon">${categoryIcon}</div>
@@ -234,7 +286,7 @@ function createSearchResultItem(place, currentLang) {
                     ${categoryIcon} ${categoryName}
                 </span>
                 <span class="search-result-governorate">
-                    📍 ${place.governorate}
+                    📍 ${governorateName}
                 </span>
                 ${place.rating ? `
                 <span class="search-result-rating">
@@ -244,15 +296,15 @@ function createSearchResultItem(place, currentLang) {
             </div>
         </div>
     `;
-
+    
     // Click event - close modal and show place on map
     item.addEventListener('click', () => {
         closeSearchModal();
-
+        
         // If map exists, center on this place
         if (typeof map !== 'undefined' && place.coordinates) {
             map.setView([place.coordinates.lat, place.coordinates.lng], 13);
-
+            
             // Navigate to map section
             const mapSection = document.getElementById('map');
             if (mapSection) {
@@ -260,10 +312,10 @@ function createSearchResultItem(place, currentLang) {
                 document.querySelectorAll('.section').forEach(sec => {
                     sec.classList.remove('active');
                 });
-
+                
                 // Show map section
                 mapSection.classList.add('active');
-
+                
                 // Update navigation
                 document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('active');
@@ -271,7 +323,7 @@ function createSearchResultItem(place, currentLang) {
                         link.classList.add('active');
                     }
                 });
-
+                
                 // Add marker
                 if (typeof L !== 'undefined') {
                     L.marker([place.coordinates.lat, place.coordinates.lng])
@@ -282,11 +334,19 @@ function createSearchResultItem(place, currentLang) {
             }
         }
     });
-
+    
     return item;
 }
 
 // ========== Initialize on Page Load ==========
 document.addEventListener('DOMContentLoaded', () => {
-    initializeSearch();
+    // Wait for placesData to be loaded
+    setTimeout(() => {
+        if (typeof placesData !== 'undefined') {
+            initializeSearch();
+            console.log('✅ Search initialized with', placesData.places.length, 'places');
+        } else {
+            console.error('❌ placesData not loaded');
+        }
+    }, 500);
 });
